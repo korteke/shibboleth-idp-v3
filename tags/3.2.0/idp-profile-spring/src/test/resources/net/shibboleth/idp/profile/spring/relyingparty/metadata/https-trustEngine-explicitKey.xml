@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata:MetadataProvider xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:metadata="urn:mace:shibboleth:2.0:metadata"
+    xmlns:security="urn:mace:shibboleth:2.0:security" 
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:metadata http://shibboleth.net/schema/idp/shibboleth-metadata.xsd
+                        urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd
+                       urn:oasis:names:tc:SAML:2.0:metadata http://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd"
+
+	id="HTTPSEntity" xsi:type="metadata:HTTPMetadataProvider" metadataURL="https://svn.shibboleth.net/java-identity-provider/trunk/idp-profile-spring/src/test/resources/net/shibboleth/idp/profile/spring/relyingparty/metadata/entity.xml"> 
+    
+    <metadata:TLSTrustEngine>
+        <security:TrustEngine id="trustEngine" xsi:type="security:StaticExplicitKey">
+            <security:Credential xsi:type="security:X509Inline" id="shibboleth.net">
+                <security:Certificate>
+<!-- TODO this is the current *.shibboleth.net wildcard cert, expires Jan 2017.-->
+MIIFVTCCBD2gAwIBAgIRAKAUmlel82eQAKVyhh4ohcswDQYJKoZIhvcNAQELBQAw
+ZDELMAkGA1UEBhMCTkwxFjAUBgNVBAgTDU5vb3JkLUhvbGxhbmQxEjAQBgNVBAcT
+CUFtc3RlcmRhbTEPMA0GA1UEChMGVEVSRU5BMRgwFgYDVQQDEw9URVJFTkEgU1NM
+IENBIDIwHhcNMTUwMTIyMDAwMDAwWhcNMTcwMTIxMjM1OTU5WjCB9zELMAkGA1UE
+BhMCR0IxETAPBgNVBBETCE9YMTEgMFNHMRQwEgYDVQQIEwtPeGZvcmRzaGlyZTEP
+MA0GA1UEBxMGRElEQ09UMRcwFQYDVQQJEw5IYXJ3ZWxsIE94Zm9yZDEXMBUGA1UE
+CRMOTGlicmFyeSBBdmVudWUxFDASBgNVBAkTC0x1bWVuIEhvdXNlMSswKQYDVQQK
+EyJKaXNjIENvbGxlY3Rpb25zIGFuZCBKYW5ldCBMaW1pdGVkMR4wHAYDVQQLExVT
+aGliYm9sZXRoIENvbnNvcnRpdW0xGTAXBgNVBAMUECouc2hpYmJvbGV0aC5uZXQw
+ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDOoGKkiOGSBd2jig41hnjS
+BN4A6bgZXbvdmCUsfctNliedVgJ3+M+Iu+Ov2c7PzISfWoqq/45ctriR7i0UjHLf
+PwX3hLi5JLfRtdUMYYZiJZ7KEuGtS0j8e3I9hmtm3BDB2WazgD4zmXZkMaGCJl/A
+11P6/aSYTPzkypul/8F9nTBCaR3Ur/I8o7wU3NjEy08dpkrxmcRCeEFloBP8R7TV
+7G21+tP5g3YfRoaJOZPYMcGcHXYRwCz5jYM44dAZNKzatn/24USs5tDg10oV0jA2
+CtUcuc8uVQF6gRMbYQebN+aF59sx8yldJRVB1CIvb7V8VMywyqVlAeQW+kD2vnyj
+AgMBAAGjggFsMIIBaDAfBgNVHSMEGDAWgBRb0IocmjJb4LXdllQb4YYosP22vTAd
+BgNVHQ4EFgQUtblck29XTVA0UbqsT4WpABb4fqswDgYDVR0PAQH/BAQDAgWgMAwG
+A1UdEwEB/wQCMAAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMCIGA1Ud
+IAQbMBkwDQYLKwYBBAGyMQECAh0wCAYGZ4EMAQICMDoGA1UdHwQzMDEwL6AtoCuG
+KWh0dHA6Ly9jcmwudXNlcnRydXN0LmNvbS9URVJFTkFTU0xDQTIuY3JsMGwGCCsG
+AQUFBwEBBGAwXjA1BggrBgEFBQcwAoYpaHR0cDovL2NydC51c2VydHJ1c3QuY29t
+L1RFUkVOQVNTTENBMi5jcnQwJQYIKwYBBQUHMAGGGWh0dHA6Ly9vY3NwLnVzZXJ0
+cnVzdC5jb20wGwYDVR0RBBQwEoIQKi5zaGliYm9sZXRoLm5ldDANBgkqhkiG9w0B
+AQsFAAOCAQEASjrb5lvw6qJQ+ac2DZIl3KlMG59hiUqLDa1OrvWh//Y08dsZjT/S
+OG/5KQZPWAluxb4zbAnQgHIh4V9tyFl0MpDU0DcsO6DOnKHP7JkDKw+z0ljNdzAR
+l/SLivdSVDMVKNd5zyswmPYFAkLQWJvv/J2bXuKiFDaxPbQvMxiCHx9M3djCe29u
+3QJKmaD3Y1Dqjd4dXZRGLMYU+UYdZhRQRTpt0e/PvBzI5ZluJ+azaObttc1U/0i3
+v5RIWF+7zjSUubc10AkxxJrtcIiLHVOorNk4yLloKoeaNMHaBjpHkt2teMwTc8lB
+Lj4vIUsmIWLtnSJXv+14nGunVzXoYikI9w==
+                </security:Certificate>
+            </security:Credential>
+        </security:TrustEngine>
+    </metadata:TLSTrustEngine>
+
+</metadata:MetadataProvider>
+                                   

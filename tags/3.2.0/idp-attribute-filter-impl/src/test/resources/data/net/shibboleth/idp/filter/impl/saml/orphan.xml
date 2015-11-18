@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EntityDescriptor entityID="https://idp.shibboleth.net/idp/shibboleth"
+	xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" xmlns:alg="urn:oasis:names:tc:SAML:metadata:algsupport"
+	xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+	xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	name="http://shibboleth.net">
+
+	<IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+
+		<NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+		</NameIDFormat>
+
+		<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+			Location="https://idp.shibboleth.net/idp/profile/SAML2/POST/SSO" />
+
+		<SingleSignOnService
+			Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign"
+			Location="https://idp.shibboleth.net/idp/profile/SAML2/POST-SimpleSign/SSO" />
+
+		<SingleSignOnService
+			Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+			Location="https://idp.shibboleth.net/idp/profile/SAML2/Redirect/SSO" />
+	</IDPSSODescriptor>
+
+	<Organization>
+		<OrganizationName xml:lang="en">Shibboleth.net
+		</OrganizationName>
+		<OrganizationDisplayName xml:lang="en">Shibboleth.net
+		</OrganizationDisplayName>
+		<OrganizationURL xml:lang="en">http://www.shibboleth.net
+		</OrganizationURL>
+	</Organization>
+	<ContactPerson contactType="support">
+		<GivenName>Shibboleth.Net Technical Support</GivenName>
+		<EmailAddress>contact@shibboleth.net</EmailAddress>
+	</ContactPerson>
+
+</EntityDescriptor>

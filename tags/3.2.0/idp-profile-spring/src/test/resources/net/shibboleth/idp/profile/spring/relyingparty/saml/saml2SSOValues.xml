@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rp:RelyingPartyGroup xmlns:rp="urn:mace:shibboleth:2.0:relying-party"
+	xmlns:saml="urn:mace:shibboleth:2.0:relying-party:saml" xmlns:sec="urn:mace:shibboleth:2.0:security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:relying-party http://shibboleth.net/schema/idp/shibboleth-relying-party.xsd
+                        urn:mace:shibboleth:2.0:relying-party:saml http://shibboleth.net/schema/idp/shibboleth-relying-party-saml.xsd
+                        urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd">
+	<rp:AnonymousRelyingParty provider="bar" />
+	<rp:DefaultRelyingParty provider="foo"></rp:DefaultRelyingParty>
+
+	<rp:RelyingParty id="rp" provider="provider"
+		nameIDFormatPrecedence="one two" defaultSigningCredentialRef="signer"
+		defaultAuthenticationMethod="urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport">
+
+		<rp:ProfileConfiguration xsi:type="saml:SAML2SSOProfile"
+			includeAttributeStatement="false" securityPolicyRef="ignore"
+			maximumSPSessionLifetime="1" encryptionOptional="true"
+			encryptAttributes="always" encryptAssertions="conditional"
+            allowDelegation="true" maximumTokenDelegationChainLength="3"
+			signRequests="conditional" signAssertions="always" signResponses="never"
+			skipEndpointValidationWhenSigned="true" artifactType="7654">
+		</rp:ProfileConfiguration>
+
+	</rp:RelyingParty>
+	<sec:Credential id="signer" xsi:type="sec:BasicInline">
+		<sec:PublicKey>
+			MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxg0TyQAP/tIvOH89EtaX
+			uRRn8SYzTj7W1TbNY4VvBmobjkRmSkki4hH9x4sQpi635wn6WtXTN/FNNmkTK3N/
+			LspmBWxfZS+n+cc7I82E5yvCAPX67QsZgqgglp2W5dvK/FsMMCS6X6SVqzBLMP88
+			NenXKxY+HMxMs0sT0UKYh1cAEqadrHRBO65aDBcm5a0sBVYt9K6pgaOHrp/zSIbh
+			nR5tFFLjBbtFktDpHL3AdGBH3OYidNGKBO3tJ3Ms7LeKXsM0+0Y4P+9fHZINL2X3
+			E2N6GVnKs5PZTg9sP0FtIpAbYm/+zCx7Yj1ET/Er8mDd6tNVGSQsn9s5xUBwGqn1
+			4wIDAQAB
+		</sec:PublicKey>
+	</sec:Credential>
+</rp:RelyingPartyGroup>

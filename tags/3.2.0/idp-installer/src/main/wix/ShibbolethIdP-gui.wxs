@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Licensed to the University Corporation for Advanced Internet
+     Development, Inc. (UCAID) under one or more contributor license
+     agreements.  See the NOTICE file distributed with this work for
+     additional information regarding copyright ownership. The UCAID
+     licenses this file to You under the Apache License, Version 2.0
+     (the 'License'); you may not use this file except in compliance
+     with the License.  You may obtain a copy of the License at
+     
+     http://www.apache.org/licenses/LICENSE-2.0
+     
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an 'AS IS' BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+     implied.  See the License for the specific language governing
+     permissions and limitations under the License.  -->
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <!-- This file controls the dispaying of the GUI dialogs (both WiX and custom) -->
+    <Fragment>
+
+        <WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)\license.rtf" />
+        <WixVariable Id="WixUIBannerBmp" Value="$(var.ProjectDir)\TopBanner.bmp" />
+        <WixVariable Id="WixUIDialogBmp" Value="$(var.ProjectDir)\Dialog.bmp" />
+        <WixVariable Id="WixUICostingPopupOptOut" Value="1" />
+
+    <!-- GUI For Shibboleth installer.  Uses the Wix packages, but linked in
+         blindly by looking at documentation (for sizes and dialog names) 
+         and the generated.msi -->
+
+        <!-- Property that Light complained for -->
+        <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+
+    <!-- "You must set a property named WIXUI_INSTALLDIR with a value
+         of the ID of the directory you want the user to be able to specify
+         the location of." -->
+
+        <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+
+        <UI Id="ShibbolethInstallDir">
+
+            <!-- "WixUI_InstallDir includes the following dialogs:" -->
+            <DialogRef Id="BrowseDlg" />
+            <DialogRef Id="DiskCostDlg" />
+            <DialogRef Id="InvalidDirDlg" />
+            <DialogRef Id="LicenseAgreementDlg" />
+            <DialogRef Id="WelcomeDlg" />
+
+      <!-- "In addition, WixUI_InstallDir includes the following common
+           dialogs that appear in all WixUI dialog sets:" -->
+            <DialogRef Id="CancelDlg" />
+            <DialogRef Id="ErrorDlg" />
+            <DialogRef Id="ExitDialog" />
+            <DialogRef Id="FatalError" />
+            <DialogRef Id="FilesInUse" />
+            <DialogRef Id="MaintenanceTypeDlg" />
+            <DialogRef Id="MaintenanceWelcomeDlg" />
+            <DialogRef Id="MsiRMFilesInUse" />
+            <DialogRef Id="OutOfDiskDlg" />
+            <DialogRef Id="OutOfRbDiskDlg" />
+            <DialogRef Id="PrepareDlg" />
+            <DialogRef Id="ProgressDlg" />
+            <DialogRef Id="ResumeDlg" />
+            <DialogRef Id="UserExit" />
+            <DialogRef Id="VerifyReadyDlg" />
+            <DialogRef Id="WaitForCostingDlg" />
+
+            <!-- We also define two dialogs -->
+            <DialogRef Id="UpdateDlgShib" />
+            <DialogRef Id="InstallDirDlgShib" />
+            <DialogRef Id="ConfigADDlg" />
+
+            <!-- Text Styles (from Orca) -->
+            <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+            <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
+            <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
+
+            <!-- Events (from Orca\ControlEvent and from light"s complaints) -->
+            <Publish Dialog="BrowseDlg" Control="OK" Event="DoAction" Value="WixUIValidatePath" Order="3">1</Publish>
+            <Publish Dialog="BrowseDlg" Control="OK" Event="SpawnDialog" Value="InvalidDirDlg" Order="4">
+	WIXUI_INSTALLDIR_VALID&lt;&gt;"1"
+      </Publish>
+
+            <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="InstallDirDlgShib">
+	LicenseAccepted = "1"
+      </Publish>
+
+            <Publish Dialog="MaintenanceTypeDlg" Control="RepairButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+            <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+
+
+            <Publish Dialog="MaintenanceWelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+
+            <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="LicenseAgreementDlg">
+        (NOT Installed) AND (NOT ALREADYINSTALLED)
+      </Publish>
+            <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="UpdateDlgShib">
+        (NOT Installed) AND ALREADYINSTALLED
+      </Publish>
+            <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">
+        Installed AND PATCH
+      </Publish>
+
+            <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return">1</Publish>
+            <Publish Dialog="LicenseAgreementDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
+            <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg">1</Publish>
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">
+        Installed AND PATCH
+      </Publish>
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="ConfigADDlg">
+        (NOT Installed) AND (NOT ALREADYINSTALLED) AND CONFIGURE_AD="TRUE"
+      </Publish>
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="InstallDirDlgShib">
+        (NOT Installed) AND (NOT ALREADYINSTALLED) AND CONFIGURE_AD &lt;&gt;"TRUE"
+      </Publish>
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="UpdateDlgShib">
+        (NOT Installed) AND ALREADYINSTALLED
+      </Publish>
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg">
+        Installed AND NOT PATCH
+      </Publish>
+
+            <ProgressText Action="QtIdpAnt">Performing IdP Installation tasks; this may take some time.</ProgressText>
+            <ProgressText Action="QtJettyAnt">Configuring Jetty</ProgressText>
+        </UI>
+    </Fragment>
+</Wix>

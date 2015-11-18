@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" p:driverClass="org.hsqldb.jdbc.JDBCDriver"
+        p:jdbcUrl="jdbc:hsqldb:mem:RDBMSDataConnectorStore" p:user="SA" p:password="" p:acquireIncrement="3"
+        p:acquireRetryAttempts="24" p:acquireRetryDelay="5000" p:breakAfterAcquireFailure="true" p:minPoolSize="1"
+        p:maxPoolSize="5" p:maxIdleTime="300" p:idleConnectionTestPeriod="360" />
+    <bean id="connectionReadOnly" class="java.lang.Boolean" factory-method="valueOf">
+        <constructor-arg value="false" />
+    </bean>
+    <bean id="cacheBuilder" class="com.google.common.cache.CacheBuilder" factory-method="from">
+        <constructor-arg value="expireAfterAccess=10s,maximumSize=25" />
+    </bean>
+    <bean id="cache" class="com.google.common.cache.Cache" factory-bean="cacheBuilder" factory-method="build" />
+    <bean class="net.shibboleth.idp.attribute.resolver.dc.rdbms.impl.FormatExecutableStatementBuilder">
+        <constructor-arg index="0" value="SELECT * FROM people WHERE userid='%s'" />
+    </bean>
+    <bean id="mappings" class="net.shibboleth.idp.attribute.resolver.dc.rdbms.impl.StringResultMappingStrategy"
+        p:noResultAnError="true" p:multipleResultsAnError="true">
+        <property name="resultRenamingMap">
+            <map>
+                <entry key="homephone" value="phonenumber" />
+            </map>
+        </property>
+    </bean> 
+    <bean id="validator" class="net.shibboleth.idp.attribute.resolver.dc.rdbms.impl.DataSourceValidator">
+        <constructor-arg index="0" ref="dataSource" />
+        <constructor-arg index="1" value="true" />
+    </bean> 
+</beans>

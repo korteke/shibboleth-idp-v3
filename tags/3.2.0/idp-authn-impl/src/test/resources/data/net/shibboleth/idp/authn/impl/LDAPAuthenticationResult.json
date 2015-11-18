@@ -1,0 +1,1 @@
+{"id":"test","ts":1378827849463,"princ":[{"LDAPN":"bob","LDAPE":{"dn":"uid=1234,ou=people,dc=shibboleth,dc=net","cn":["Bob Cobb"],"givenName":["Bob","Robert"],"mail":["bob@shibboleth.net"],"sn":["Cobb"]}}]}

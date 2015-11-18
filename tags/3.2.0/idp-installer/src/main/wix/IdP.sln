@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "IdP", "IdP.wixproj", "{160BBB2F-0656-4132-9428-8FE5DC417E08}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B9FE96C0-3667-4AF8-B1BF-ADABE24FC8BB} = {B9FE96C0-3667-4AF8-B1BF-ADABE24FC8BB}
+	EndProjectSection
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Jetty", "Jetty.wixproj", "{B9FE96C0-3667-4AF8-B1BF-ADABE24FC8BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{604AB912-549C-4613-A987-E0146AE7BB68}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\shib_random.vbs = scripts\shib_random.vbs
+		scripts\shib_set_java_idp_home.vbs = scripts\shib_set_java_idp_home.vbs
+		scripts\shib_write_configs.vbs = scripts\shib_write_configs.vbs
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{160BBB2F-0656-4132-9428-8FE5DC417E08}.Debug|x86.ActiveCfg = Debug|x86
+		{160BBB2F-0656-4132-9428-8FE5DC417E08}.Debug|x86.Build.0 = Debug|x86
+		{160BBB2F-0656-4132-9428-8FE5DC417E08}.Release|x86.ActiveCfg = Release|x86
+		{160BBB2F-0656-4132-9428-8FE5DC417E08}.Release|x86.Build.0 = Release|x86
+		{B9FE96C0-3667-4AF8-B1BF-ADABE24FC8BB}.Debug|x86.ActiveCfg = Debug|x86
+		{B9FE96C0-3667-4AF8-B1BF-ADABE24FC8BB}.Debug|x86.Build.0 = Debug|x86
+		{B9FE96C0-3667-4AF8-B1BF-ADABE24FC8BB}.Release|x86.ActiveCfg = Release|x86
+		{B9FE96C0-3667-4AF8-B1BF-ADABE24FC8BB}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

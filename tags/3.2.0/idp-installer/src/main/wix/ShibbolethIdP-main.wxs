@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Licensed to the University Corporation for Advanced Internet
+     Development, Inc. (UCAID) under one or more contributor license
+     agreements.  See the NOTICE file distributed with this work for
+     additional information regarding copyright ownership. The UCAID
+     licenses this file to You under the Apache License, Version 2.0
+     (the 'License'); you may not use this file except in compliance
+     with the License.  You may obtain a copy of the License at
+     
+     http://www.apache.org/licenses/LICENSE-2.0
+     
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an 'AS IS' BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+     implied.  See the License for the specific language governing
+     permissions and limitations under the License.  -->
+
+<?define UpgradeUUID="8d3bfb53-47ff-4cbc-9363-cbf9e46bedc4"?>
+
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="*" Name="Shibboleth IdP V3" Language="1033" Version="3.2.0.1" Manufacturer="The Shibboleth Consortium" UpgradeCode="$(var.UpgradeUUID)">
+        <Package InstallerVersion="310" Compressed="yes" InstallScope="perMachine" Platform="$(var.msitype)" Description="Shibboleth IdP V3.1" Manufacturer="The Shibboleth Consortium" />
+
+        <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." AllowSameVersionUpgrades="yes" Schedule="afterInstallInitialize" />
+        <MediaTemplate EmbedCab="yes" />
+
+        <Condition Message="Shibboleth requires a Windows NT-based operating system.">NOT Version9X</Condition>
+        <?if $(var.msitype) = "x86" ?>
+        <Condition Message="Do not install the 32 bit installer on a 64 bit machine.">NOT VersionNT64</Condition>
+        <?endif ?>
+
+        <!-- Information for the properties page of the msi -->
+
+        <Property Id="ARPCONTACT" Value="contact@shibboleth.net" />
+        <Property Id="ARPHELPLINK" Value="https://wiki.shibboleth.net/confluence/display/IDP30/Installation" />
+        <Property Id="ARPURLUPDATEINFO" Value="https://wiki.shibboleth.net/confluence/display/IDP30/Upgrading" />
+        <Property Id="ARPURLINFOABOUT" Value="http://shibboleth.net/" />
+        <Property Id="ARPNOMODIFY" Value="TRUE" />
+
+        <Feature Id="ProductFeature" Title="IdP" Level="1">
+            <Feature Id="InstallJetty" Title="Jetty">
+                <MergeRef Id="jetty" />
+                <ComponentRef Id="JettyPermissions" />
+                <ComponentRef Id="Shibd_idpw" />
+            </Feature>
+            <ComponentGroupRef Id="DeleteFiles" />
+            <ComponentGroupRef Id="IdPGroup" />
+            <ComponentGroupRef Id="SaveRegistry" />
+            <ComponentRef Id="IdPPermissions" />
+        </Feature>
+
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="SHIBBOLETHDIR" Name="Shibboleth">
+                    <Merge Id="jetty" Language="1033" SourceFile="$(var.ProjectDir)\jetty-$(var.msitype).msm" DiskId="1" />
+                    <Directory Id="INSTALLDIR" Name="IdP">
+                        <Directory Id="CredsFolder" Name="credentials" />
+                        <Directory Id="ConfFolder" Name="conf" />
+                        <Directory Id="JettyBaseFolder" Name="jetty-base">
+                            <Directory Id="StartDotD" Name="start.d" />
+                        </Directory>
+                        <Directory Id="BinFolder" Name="bin">
+                            <Component Id="Shibd_idpw" Guid="{30E1130E-BEBF-4167-83A0-BBDE083968C4}" Win64="no">
+                                <RegistryValue Id="Shibd_idpw_r" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="Shibd_idpw" Value="TRUE" Type="string" KeyPath="yes" />
+                                <Shortcut Id="Shibd_idpw_shortcut" Name="shibd_idpw.exe" Target="[ProgramFilesFolder]\Shibboleth\Procrun\shibd_idpw.exe" />
+                            </Component>
+                        </Directory>
+                        <Component Id="IdPPermissions" Guid="{5672474B-3CD2-44EB-9942-871844A2B089}" Win64="no">
+                            <RegistryValue Id="SetPermissions" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="SetPermissions" Value="TRUE" Type="string" KeyPath="yes" />
+                            <CreateFolder Directory="CredsFolder">
+                                <Permission User="Administrators" GenericAll="yes" />
+                            </CreateFolder>
+                            <CreateFolder Directory="ConfFolder">
+                                <Permission User="Administrators" GenericAll="yes" />
+                            </CreateFolder>
+                        </Component>
+                        <Component Id="JettyPermissions" Guid="{900980C5-CF3D-4816-9922-6142C12F6D13}" Win64="no">
+                            <RegistryValue Id="SetPermissionsJetty" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="SetPermissionsJetty" Value="TRUE" Type="string" KeyPath="yes" />
+                            <CreateFolder Directory="StartDotD">
+                                <Permission User="Administrators" GenericAll="yes" />
+                            </CreateFolder>
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+        </Directory>
+
+        <Property Id="JAVA_EXECUTABLE" Secure="yes">
+            <DirectorySearch Id="JavaBinSearch" Depth="0" Path="[%JAVA_HOME]\bin">
+                <FileSearch Id="JavaBinSearch" Name="java.exe" />
+            </DirectorySearch>
+        </Property>
+
+        <CustomAction Id="NoJavaBin" Error="Could not locate Java.exe.  Please check the value for JAVA_HOME." />
+
+        <!-- Inherit the setup, if they were. -->
+        <CustomAction Id="InheritInstallDir" Property="INSTALLDIR" Value="[OLD_INSTALLDIR]" />
+        <CustomAction Id="InheritQIInstallDir" Property="INSTALLDIR" Value="[QI_INSTALL_DIR]\Shib2IdP" />
+        <CustomAction Id="InheritInstallJetty" Property="INSTALL_JETTY" Value="[OLD_INSTALL_JETTY]" />
+        <CustomAction Id="InheritQIInstallJetty" Property="INSTALL_JETTY" Value="TRUE" />
+        <CustomAction Id="InheritQIConfigAd" Property="CONFIGURE_AD" Value="TRUE" />
+
+        <!-- Other properties -->
+        <CustomAction Id="SetDNSName" Property="DNSNAME" Value="[ComputerName]" />
+
+        <Binary Id="WriteConfigFilesSrc" SourceFile="scripts\shib_write_configs.vbs" />
+        <Binary Id="SetJavaIdpHomeSrc" SourceFile="scripts\shib_set_java_idp_home.vbs" />
+
+        <CustomAction Id="WriteConfigFiles" BinaryKey="WriteConfigFilesSrc" VBScriptCall="" Execute="deferred" Impersonate="no" />
+        <CustomAction Id="SetJavaIdpHome" BinaryKey="SetJavaIdpHomeSrc" VBScriptCall="" Execute="immediate" />
+        <CustomAction Id="SetWriteConfigFiles" Property="WriteConfigFiles" Value="[INSTALLDIR];@;[DNSNAME];@;[INSTALL_JETTY];@;[IDP_SCOPE];@;[DEBUG_INSTALL];@;[CONFIGURE_AD];@;[AD_DOMAIN];@;[AD_USER];@;[AD_PASS];@;[AD_USE_GC]" />
+
+        <CustomAction Id="SetDefaultInstallDir" Property="DefaultInstallDir" Value="[WindowsVolume]opt\shibboleth-idp\" />
+
+        <!-- Ant actions -->
+        <CustomAction Id="SetIdpAnt" Property="QtIdpAnt" Value="&quot;[JAVA_EXECUTABLE]&quot; -cp &quot;[INSTALLDIR]\bin\lib\*;[INSTALLDIR]\webapp\WEB-INF\lib\*&quot; -Didp.home=&quot;[JAVA_IDP_HOME]&quot; org.apache.tools.ant.Main -e -f &quot;[INSTALLDIR]\bin\build.xml&quot; -Didp.property.file=idp.install.properties install-nocopy" />
+        <CustomAction Id="RunIdpAnt" Directory="ProgramFilesFolder" ExeCommand="[QtIdpAnt]" Execute="deferred" Impersonate="no" />
+        <CustomAction Id="QtIdpAnt" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Impersonate="no" />
+
+        <CustomAction Id="SetJettyAnt" Property="QtJettyAnt" Value="&quot;[JAVA_EXECUTABLE]&quot; -cp &quot;[INSTALLDIR]\bin\lib\*;[INSTALLDIR]\webapp\WEB-INF\lib\*&quot; org.apache.tools.ant.Main -e -f &quot;[INSTALLDIR]\bin\ant-jetty.xml&quot; -Djetty.property.file=jetty.install.properties install" />
+        <CustomAction Id="RunJettyAnt" Directory="INSTALLDIR" ExeCommand="[QtJettyAnt]" Execute="deferred" Impersonate="no" />
+        <CustomAction Id="QtJettyAnt" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Impersonate="no" />
+
+        <?if $(var.msitype) = "x86" ?>
+        <CustomAction Id="SetJavaJvmMx" Property="JAVA_JVMMX" Value="#768" />
+        <?else ?>
+        <CustomAction Id="SetJavaJvmMx" Property="JAVA_JVMMX" Value="#1024" />
+        <?endif ?>
+
+        <InstallUISequence>
+
+            <!-- inherit installationDir if there is something to inherit (Conditions set in ShibolethIdP-registry) -->
+            <Custom Action="InheritQIInstallDir" After="AppSearch">QI_INSTALL_DIR</Custom>
+            <Custom Action="SetDefaultInstallDir" After="AppSearch" />
+            <Custom Action="InheritInstallDir" After="InheritQIInstallDir">OLD_INSTALLDIR</Custom>
+
+
+            <!-- Set up defaults for AD and Jetty if we are a QI upgrade -->
+            <Custom Action="InheritQIInstallJetty" After="AppSearch">QI_INSTALLED</Custom>
+            <Custom Action="InheritQIConfigAd" After="AppSearch">QI_INSTALLED</Custom>
+
+            <!-- inherit JETTY_INSTALL if there is something to inherit AND JETTY_INSTALL was not passed in -->
+            <Custom Action="InheritInstallJetty" After="AppSearch">OLD_INSTALL_JETTY AND NOT INSTALL_JETTY</Custom>
+
+            <!-- Could we find JAVA.EXE ?-->
+            <Custom Action="NoJavaBin" After="AppSearch">
+        NOT JAVA_EXECUTABLE and NOT Installed
+      </Custom>
+
+            <Custom Action="SetDNSName" After="AppSearch">
+        NOT DNSNAME
+      </Custom>
+
+        </InstallUISequence>
+
+        <InstallExecuteSequence>
+
+            <!-- Duplicate actions from the UI case - but only for auto 3->3 upgrades -->
+            <Custom Action="InheritInstallDir" After="AppSearch">OLD_INSTALLDIR</Custom>
+
+            <Custom Action="InheritInstallJetty" After="AppSearch">OLD_JETTY_INSTALL AND NOT JETTY_INSTALL</Custom>
+
+            <!-- Setup JAVA_IDP_HOME before we use it -->
+
+            <Custom Action="SetJavaIdpHome" Before="SetIdpAnt" />
+
+            <!-- Could we find JAVA.EXE ?-->
+            <Custom Action="NoJavaBin" After="AppSearch">NOT JAVA_EXECUTABLE</Custom>
+            <!-- Preserve Jetty parms -->
+            <Custom Action="SetJavaJvmMx" After="AppSearch">(NOT Installed) AND INSTALL_JETTY AND (NOT JAVA_JVMMX)</Custom>
+
+            <!-- Work -->
+
+            <Custom Action="SetWriteConfigFiles" Before="CostInitialize">NOT Installed</Custom>
+            <Custom Action="WriteConfigFiles" After="InstallFiles">NOT Installed</Custom>
+            <Custom Action="SetIdpAnt" After="WriteConfigFiles">NOT Installed</Custom>
+            <Custom Action="RunIdpAnt" After="SetIdpAnt">(NOT Installed) AND DEBUG_INSTALL</Custom>
+            <Custom Action="QtIdpAnt" After="SetIdpAnt">(NOT Installed) AND (NOT DEBUG_INSTALL)</Custom>
+            <Custom Action="SetJettyAnt" After="RunIdpAnt">(NOT Installed) AND INSTALL_JETTY</Custom>
+            <Custom Action="RunJettyAnt" After="SetJettyAnt">(NOT Installed) AND INSTALL_JETTY AND DEBUG_INSTALL</Custom>
+            <Custom Action="QtJettyAnt" After="SetJettyAnt">(NOT Installed) AND INSTALL_JETTY AND (NOT DEBUG_INSTALL)</Custom>
+
+        </InstallExecuteSequence>
+
+        <Upgrade Id="$(var.UpgradeUUID)">
+            <UpgradeVersion ExcludeLanguages="yes" IncludeMaximum="yes" Maximum="127.255.255" Minimum="0.0.1" OnlyDetect="yes" Property="ALREADYINSTALLED" />
+        </Upgrade>
+
+        <!-- Uninstall the Quick Installer if it was used previously. -->
+        <Upgrade Id="{2F478CCE-0E4A-4427-BDFE-E426D5F831DB}">
+            <UpgradeVersion ExcludeLanguages="yes" IncludeMaximum="yes" Maximum="127.255.255" Minimum="0.0.1" Property="QI_INSTALLED" />
+        </Upgrade>
+
+        <UIRef Id="ShibbolethInstallDir" />
+    </Product>
+</Wix>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-init-method="initialize"
+       default-destroy-method="destroy">
+
+	<bean id="rpResolverService" class="net.shibboleth.ext.spring.service.ReloadableSpringService"
+		p:failFast="true" p:reloadCheckDelay="0">
+        <constructor-arg name="claz"
+            value="net.shibboleth.idp.relyingparty.RelyingPartyConfigurationResolver" />
+        <constructor-arg name="strategy">
+            <bean class="net.shibboleth.ext.spring.service.ClassBasedServiceStrategy"
+                c:serviceableClaz="net.shibboleth.idp.relyingparty.impl.DefaultRelyingPartyConfigurationResolver" />
+        </constructor-arg>
+		<property name="serviceConfigurations">
+			<util:list>
+				<value>classpath:/net/shibboleth/idp/profile/spring/relyingparty/relying-party-group.xml</value>
+                <value>classpath:/net/shibboleth/idp/profile/spring/relyingparty/propertyPlaceholder.xml</value>
+			</util:list>
+		</property>
+	</bean>
+	
+    <bean id="metadataResolverService" class="net.shibboleth.ext.spring.service.ReloadableSpringService"
+        p:failFast="true" p:reloadCheckDelay="0">
+        <constructor-arg name="claz"
+            value="org.opensaml.saml.metadata.resolver.MetadataResolver" />
+        <constructor-arg name="strategy">
+            <bean class="net.shibboleth.ext.spring.service.ClassBasedServiceStrategy"
+                c:serviceableClaz="net.shibboleth.idp.saml.metadata.RelyingPartyMetadataProvider" />
+        </constructor-arg>
+        <property name="serviceConfigurations">
+            <util:list>
+                <value>classpath:/net/shibboleth/idp/profile/spring/relyingparty/relying-party-group.xml</value>
+                <value>classpath:/net/shibboleth/idp/profile/spring/relyingparty/propertyPlaceholder.xml</value>
+            </util:list>
+        </property>
+    </bean>
+	
+	<bean id="shibboleth.RelyingPartyResolver"
+		class="net.shibboleth.idp.relyingparty.impl.ReloadingRelyingPartyConfigurationResolver"
+		c:resolverService-ref="rpResolverService" />
+		
+    <bean id="shibboleth.MetadataResolver"
+        class="net.shibboleth.idp.saml.metadata.impl.ReloadingRelyingPartyMetadataProvider"
+        c:resolverService-ref="metadataResolverService" />
+
+</beans>
+                            

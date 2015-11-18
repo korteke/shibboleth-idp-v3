@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" xmlns:alg="urn:oasis:names:tc:SAML:metadata:algsupport" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="http://shibboleth.net">
+    
+    <EntityDescriptor entityID="https://idp.shibboleth.net/idp/shibboleth">
+       
+        <Extensions>
+            <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+            <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+            <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+            <alg:SigningMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+            
+            <mdattr:EntityAttributes>
+                <saml:Attribute Name="urn:example.org:policies">
+                    <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema"  xsi:type="xs:string">urn:example.org:policy:ABCD</saml:AttributeValue>
+                    <saml:AttributeValue>urn:example.org:policy:1234</saml:AttributeValue>
+                </saml:Attribute>
+                <saml:Attribute Name="urn:example.org:policies">
+                    <saml:AttributeValue>urn:example.org:policy:5678</saml:AttributeValue>
+                </saml:Attribute>
+                <saml:Attribute Name="urn:example.org:entitlements" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+                    <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema"  xsi:type="xs:boolean">32</saml:AttributeValue>
+                    <saml:AttributeValue>urn:example.org:entitlements:ABCD</saml:AttributeValue>
+                    <saml:AttributeValue>urn:example.org:entitlements:1234</saml:AttributeValue>
+                </saml:Attribute>
+            </mdattr:EntityAttributes>
+        </Extensions>
+
+        <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+            
+            <Extensions>
+                <shibmd:Scope regexp="false">shibboleth.net</shibmd:Scope>
+                
+                <mdui:UIInfo>
+                    <mdui:DisplayName xml:lang="en">Shibboleth.net</mdui:DisplayName>
+                    <mdui:Description xml:lang="en">An identity provider hosted and used by the developers of Shibboleth.</mdui:Description>
+                    <mdui:Logo height="82" width="64">https://discovery.shibboleth.net/images/gryphon_64x82.png</mdui:Logo>
+                </mdui:UIInfo>
+            </Extensions>
+            
+            <KeyDescriptor>
+                <ds:KeyInfo>
+                    <ds:X509Data>
+                        <ds:X509Certificate>
+                            MIIDNDCCAhygAwIBAgIVAKyBWnv1/h1U11C7kHvV33FIrEsJMA0GCSqGSIb3DQEB
+                            BQUAMB0xGzAZBgNVBAMTEmlkcC5zaGliYm9sZXRoLm5ldDAeFw0xMDEyMjkwMDA5
+                            MTlaFw0zMDEyMjkwMDA5MTlaMB0xGzAZBgNVBAMTEmlkcC5zaGliYm9sZXRoLm5l
+                            dDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKjWAdpUx/82FUzrRMfA
+                            M63PkZZYCm3RnT3eiL+DeJcbGdcEJx/o+32vgHXJgJOBt14YdVam5GErIYgk4SGq
+                            5Z5RYl0PpQn6HQG/9prGnYCu6p5zfb0557o51Eh8TcVehS6Y2ruyCjAF0jgVMwh5
+                            /0Oh8EE9wG93pSpm70DAiiaTVCb8WoT1aZYtxbBmmuH10bU+wge/NMmaHuVAe599
+                            pyezFIL4FoI2g+1Q6nG4Yl1Z07I81tTApXKVMWRt/4/M3m2D7PUMOQ9qsxthp2L/
+                            LovIeNo0bTyeW290T2Y/JRZhKOgeDqkhuu82DPri2Vm5G/unB69KfRB7CF9QWIc3
+                            y80CAwEAAaNrMGkwSAYDVR0RBEEwP4ISaWRwLnNoaWJib2xldGgubmV0hilodHRw
+                            czovL2lkcC5zaGliYm9sZXRoLm5ldC9pZHAvc2hpYmJvbGV0aDAdBgNVHQ4EFgQU
+                            3uZ32tKXJBzPCTp2dtHSLV0FvGgwDQYJKoZIhvcNAQEFBQADggEBAAYXYuzp0UTj
+                            3yLRvUCbEtaw9b80+weOELkVv3WFY3QAG8pIKEblrMMtzrzLFWZwYwwMZDab/HnH
+                            egmgjZBthrOedEmoJ+OHRmIiS8zdZxVGEadJhTUaeIkO6kwK7Ht3nQePoiXV7TI5
+                            +A9SpmZGoukC85Za4wGDw4xWGs5t5l6tBuuV+1s0oC6T8ih5n/NyThfpbihSW0d7
+                            iBfSUickgpoM2BLM3FCnbO8HOsX1rGV4ypG9ZGDDvr2jrzalXXmc05gSlL2qd9ce
+                            Q1M+9vavusPCqlj2zZf2/HfzhyiFcb/OgA0oTFWW2ynXji6UarIV5QaPoi/XmGmx
+                            BXD36HfGBXk= </ds:X509Certificate>
+                    </ds:X509Data>
+
+                </ds:KeyInfo>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/>
+            </KeyDescriptor>
+            
+            <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+
+            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://idp.shibboleth.net/idp/profile/SAML2/POST/SSO"/>
+            
+            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://idp.shibboleth.net/idp/profile/SAML2/POST-SimpleSign/SSO"/>
+            
+            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://idp.shibboleth.net/idp/profile/SAML2/Redirect/SSO"/>
+        </IDPSSODescriptor>
+        
+        <Organization>
+            <OrganizationName xml:lang="en">Shibboleth.net</OrganizationName>
+            <OrganizationDisplayName xml:lang="en">Shibboleth.net</OrganizationDisplayName>
+            <OrganizationURL xml:lang="en">http://www.shibboleth.net</OrganizationURL>
+        </Organization>
+        <ContactPerson contactType="support">
+            <GivenName>Shibboleth.Net Technical Support</GivenName>
+            <EmailAddress>contact@shibboleth.net</EmailAddress>
+        </ContactPerson>
+        
+    </EntityDescriptor>
+    
+    <EntityDescriptor entityID="https://issues.shibboleth.net/shibboleth">
+
+        <Extensions>
+            <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+            <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+            <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+            <alg:SigningMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+            <mdattr:EntityAttributes><saml:Assertion/>
+            </mdattr:EntityAttributes>
+        </Extensions>
+ 
+        <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:1.0:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+            
+            <Extensions>
+                <init:RequestInitiator xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/Login"/>
+
+                <idpdisc:DiscoveryResponse xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/Login" index="1"/>
+                
+                <mdui:UIInfo>
+                    <mdui:DisplayName xml:lang="en">Shibboleth.net Issue Tracking</mdui:DisplayName>
+                    <mdui:Description xml:lang="en">
+                        The issue (improvements, bugs, tasks) tracking system used by the Shibboleth project.
+                        Unauthenticated users may view submitted issues.  Authenticated users may submit new 
+                        issues and comment on existing ones.
+                    </mdui:Description>
+                    <mdui:Logo height="82" width="64">https://discovery.shibboleth.net/images/gryphon_64x82.png</mdui:Logo>
+                </mdui:UIInfo>                
+            </Extensions>
+
+            
+            <KeyDescriptor>
+                <ds:KeyInfo>
+                    <ds:KeyName>issues.shibboleth.net</ds:KeyName>
+                    <ds:X509Data>
+                        <ds:X509SubjectName>CN=issues.shibboleth.net,DC=shibboleth,DC=net</ds:X509SubjectName>
+                        <ds:X509Certificate>
+MIIDRjCCAi6gAwIBAgIJAPpEsjMpUtq9MA0GCSqGSIb3DQEBBQUAMFExEzARBgoJ
+kiaJk/IsZAEZFgNuZXQxGjAYBgoJkiaJk/IsZAEZFgpzaGliYm9sZXRoMR4wHAYD
+VQQDExVpc3N1ZXMuc2hpYmJvbGV0aC5uZXQwHhcNMTEwMTA3MTg0MTQ4WhcNMTQw
+MTA2MTg0MTQ4WjBRMRMwEQYKCZImiZPyLGQBGRYDbmV0MRowGAYKCZImiZPyLGQB
+GRYKc2hpYmJvbGV0aDEeMBwGA1UEAxMVaXNzdWVzLnNoaWJib2xldGgubmV0MIIB
+IjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtb4jIloWGvHJsSeq0PMjkWDA
++hseZ6/6/cEJKPk245f6hktC2k3z0AqJL8Kw9OudOjDx2op2jKm45TuIA46ti6VP
+f4stLIi7mO1B4A6jTWThCwU0DjMCwBXLhANdBQloyUYJU/usN8RBXlPnWZAV1dVb
+ygb7GUorkMON+wnFd7nhBePmQdJfbsqvKN8MykWfQ56chS+0lCYhyT7qql2bskJ4
+y621WSo47php2NyyU1KNcaFBLoao+UTH7KZ9qHOWJyGJGuWKwgZmCiVd0LQhWywP
+3M/JxZvpTr2Bs/J5d8BzZGSFUaHrVcPzIX+5c3sdK4d1wXUur1XE++bh9F9TjwID
+AQABoyEwHzAdBgNVHQ4EFgQUHtV8GWr64AIUV634b9YBlMEpHOwwDQYJKoZIhvcN
+AQEFBQADggEBAEzcImXrjUNZF/8AbpcDOqlBO/neTxE0Lcnv4HevHmjqVaemxXK5
+E2pAIJexcyCnp4EV7EK+5hpkr5J26iESHr3w4u/BvUvgSLNjlrIFw58mpBM9f+Qe
+q5bQWff+dmkhrxdhaIVraH70bsuxVKwycmUS0L11nOTxAQbh85wJbIwqH4fKAzQm
+jPp4VbLesRmUyDV+fY4YrZXHYosfuZLEexJgmgcRgZFug6NbWTclKnxKPhquYjem
+oHlA8E0OvkQswalMPLfSzhgftYNHohjdQ2oMBUC4uMk9T+r7ZeKkeCiXIzUzEh8M
+uQfWf/K4Fj4CqCzMOU3mmvy7ricwz/4Kzas=
+                           </ds:X509Certificate>
+                    </ds:X509Data>
+
+                </ds:KeyInfo>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/>
+            </KeyDescriptor>
+
+            <NameIDFormat>https://example.org/foo</NameIDFormat>
+            
+            <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/Artifact/SOAP" index="0"/>
+            <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SLO/Artifact"/>
+
+            <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SLO/POST"/>
+            <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SLO/Redirect"/>
+            <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SLO/SOAP"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SAML/Artifact" index="0"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SAML/POST" index="1"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SAML2/Artifact" index="2"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SAML2/ECP" index="3"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SAML2/POST" index="4"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SAML2/POST-SimpleSign" index="5"/>
+
+            
+            <AttributeConsumingService index="1">
+                <ServiceName xml:lang="en">Shibboleth Federated Issue Tracking</ServiceName>
+                <ServiceDescription xml:lang="en"> An issue (bugs, feature requests, tasks) tracking 
+                    service with automatic registration for users who can supply a supported identifier, 
+                    such as eduPersonPrincipalName or swissEduPersonUniqueID. </ServiceDescription>
+                <RequestedAttribute FriendlyName="eduPersonPrincipalName" Name="urn:oid:1.3.6.1.4.1.5923.1.1.1.6" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+                <RequestedAttribute FriendlyName="mail" Name="urn:oid:0.9.2342.19200300.100.1.3" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+                <RequestedAttribute FriendlyName="displayName" Name="urn:oid:2.16.840.1.113730.3.1.241" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+            </AttributeConsumingService>
+
+        </SPSSODescriptor>
+        
+        <Organization>
+            <OrganizationName xml:lang="en">Shibboleth Consortium</OrganizationName>
+            <OrganizationDisplayName xml:lang="en">Shibboleth Consortium</OrganizationDisplayName>
+            <OrganizationURL xml:lang="en">http://www.shibboleth.net/</OrganizationURL>
+        </Organization>
+        <ContactPerson contactType="support">
+            <GivenName>Shibboleth.Net Technical Support</GivenName>
+            <EmailAddress>contact@shibboleth.net</EmailAddress>
+        </ContactPerson>
+        
+    </EntityDescriptor>
+    
+    <EntityDescriptor entityID="https://wiki.shibboleth.net/shibboleth">
+
+        <Extensions>
+            <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+
+            <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+            <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+            <alg:SigningMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+            <mdattr:EntityAttributes>
+                <saml:Attribute Name="urn:example.org:entitlements" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+            </mdattr:EntityAttributes>
+            <mdattr:EntityAttributes><saml:Assertion/>
+            </mdattr:EntityAttributes>
+        </Extensions>
+        
+        <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:1.0:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+            
+            <Extensions>
+                <init:RequestInitiator xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/Login"/>
+
+                <idpdisc:DiscoveryResponse xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/Login" index="1"/>
+
+                
+                <mdui:UIInfo>
+                    <mdui:DisplayName xml:lang="en">Shibboleth.net Wiki</mdui:DisplayName>
+                    <mdui:Description xml:lang="en">
+                        The wiki hosting the documentation for Shibboleth.  Unauthenticated user may view the existing
+                        documentation.  Authenticated users may create new documentation pages and edit existing ones.
+                    </mdui:Description>
+                    <mdui:Logo height="82" width="64">https://discovery.shibboleth.net/images/gryphon_64x82.png</mdui:Logo>
+                </mdui:UIInfo>
+            </Extensions>
+
+            <KeyDescriptor>
+                <ds:KeyInfo>
+                    <ds:KeyName>wiki.shibboleth.net</ds:KeyName>
+                    <ds:X509Data>
+                        <ds:X509SubjectName>CN=wiki.shibboleth.net,DC=shibboleth,DC=net</ds:X509SubjectName>
+                        <ds:X509Certificate>
+MIIDQjCCAiqgAwIBAgIJAKMO1kGnu43yMA0GCSqGSIb3DQEBBQUAME8xEzARBgoJ
+kiaJk/IsZAEZFgNuZXQxGjAYBgoJkiaJk/IsZAEZFgpzaGliYm9sZXRoMRwwGgYD
+VQQDExN3aWtpLnNoaWJib2xldGgubmV0MB4XDTExMDEwNzE4NDIzN1oXDTE0MDEw
+NjE4NDIzN1owTzETMBEGCgmSJomT8ixkARkWA25ldDEaMBgGCgmSJomT8ixkARkW
+CnNoaWJib2xldGgxHDAaBgNVBAMTE3dpa2kuc2hpYmJvbGV0aC5uZXQwggEiMA0G
+CSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC1viMiWhYa8cmxJ6rQ8yORYMD6Gx5n
+r/r9wQko+Tbjl/qGS0LaTfPQCokvwrD06506MPHainaMqbjlO4gDjq2LpU9/iy0s
+iLuY7UHgDqNNZOELBTQOMwLAFcuEA10FCWjJRglT+6w3xEFeU+dZkBXV1VvKBvsZ
+SiuQw437CcV3ueEF4+ZB0l9uyq8o3wzKRZ9DnpyFL7SUJiHJPuqqXZuyQnjLrbVZ
+KjjumGnY3LJTUo1xoUEuhqj5RMfspn2oc5YnIYka5YrCBmYKJV3QtCFbLA/cz8nF
+m+lOvYGz8nl3wHNkZIVRoetVw/Mhf7lzex0rh3XBdS6vVcT75uH0X1OPAgMBAAGj
+ITAfMB0GA1UdDgQWBBQe1XwZavrgAhRXrfhv1gGUwSkc7DANBgkqhkiG9w0BAQUF
+AAOCAQEAEv6zwotAweOLEfibTXm5d6odE2o/+rHdeEW+IEAspAvmCK7nAPFkuV47
+WMn7JmOd7BWnoXmqFwefJFf3mZtadHnCXReSd8ehGA8/KerSxz9yClMaoanRTEb3
+chT+n5Oh2+WgjzR/v5RbChihoOES+Z2mcvbDm9wn3uSBdxbAoG0/YZihaY9LeoNW
+/CVXv0HYfDw5csol6zwz6dgUDXpfXSXLLKnrjVwARM6lVh00i5i2nfmrWnI41bRh
+NtrvvBkq2tvnd6wm1DJNDzZQB/nRpCadwp4a64Qa0XJiGCoxFUvkd1+RSHqbBsEF
+6w3nDMcYq/BKnF30KZ0Q274eVyQolg==
+                        </ds:X509Certificate>
+                    </ds:X509Data>
+
+                </ds:KeyInfo>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/>
+            </KeyDescriptor>
+            
+            <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/Artifact/SOAP" index="0"/>
+            <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SLO/Artifact"/>
+
+            <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SLO/POST"/>
+            <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SLO/Redirect"/>
+            <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SLO/SOAP"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SAML/Artifact" index="0"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SAML/POST" index="1"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SAML2/Artifact" index="2"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SAML2/ECP" index="3"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SAML2/POST" index="4"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SAML2/POST-SimpleSign" index="5"/>
+
+            
+            <AttributeConsumingService index="1">
+                <ServiceName xml:lang="en">Shibboleth Federated Wiki</ServiceName>
+                <ServiceDescription xml:lang="en"> A shared Wiki service with automatic registration
+                    for users who can supply a supported identifier, such as eduPersonPrincipalName
+                    or swissEduPersonUniqueID. </ServiceDescription>
+                <RequestedAttribute FriendlyName="eduPersonPrincipalName" Name="urn:oid:1.3.6.1.4.1.5923.1.1.1.6" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+                <RequestedAttribute FriendlyName="mail" Name="urn:oid:0.9.2342.19200300.100.1.3" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+                <RequestedAttribute FriendlyName="displayName" Name="urn:oid:2.16.840.1.113730.3.1.241" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+            </AttributeConsumingService>
+
+        </SPSSODescriptor>
+        
+        <Organization>
+            <OrganizationName xml:lang="en">Shibboleth Consortium</OrganizationName>
+            <OrganizationDisplayName xml:lang="en">Shibboleth Consortium</OrganizationDisplayName>
+            <OrganizationURL xml:lang="en">http://www.shibboleth.net/</OrganizationURL>
+        </Organization>
+        <ContactPerson contactType="support">
+            <GivenName>Shibboleth.Net Technical Support</GivenName>
+            <EmailAddress>contact@shibboleth.net</EmailAddress>
+        </ContactPerson>
+    </EntityDescriptor>
+
+    <EntityDescriptor entityID="https://none.shibboleth.net/shibboleth">
+
+        <Extensions>
+            <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+
+            <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+            <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+            <alg:SigningMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+        </Extensions>
+        
+        <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:1.0:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+            
+            <Extensions>
+                <init:RequestInitiator xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/Login"/>
+
+                <idpdisc:DiscoveryResponse xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/Login" index="1"/>
+
+                
+                <mdui:UIInfo>
+                    <mdui:DisplayName xml:lang="en">Shibboleth.net Wiki</mdui:DisplayName>
+                    <mdui:Description xml:lang="en">
+                        The wiki hosting the documentation for Shibboleth.  Unauthenticated user may view the existing
+                        documentation.  Authenticated users may create new documentation pages and edit existing ones.
+                    </mdui:Description>
+                    <mdui:Logo height="82" width="64">https://discovery.shibboleth.net/images/gryphon_64x82.png</mdui:Logo>
+                </mdui:UIInfo>
+            </Extensions>
+
+            <KeyDescriptor>
+                <ds:KeyInfo>
+                    <ds:KeyName>wiki.shibboleth.net</ds:KeyName>
+                    <ds:X509Data>
+                        <ds:X509SubjectName>CN=wiki.shibboleth.net,DC=shibboleth,DC=net</ds:X509SubjectName>
+                        <ds:X509Certificate>
+MIIDQjCCAiqgAwIBAgIJAKMO1kGnu43yMA0GCSqGSIb3DQEBBQUAME8xEzARBgoJ
+kiaJk/IsZAEZFgNuZXQxGjAYBgoJkiaJk/IsZAEZFgpzaGliYm9sZXRoMRwwGgYD
+VQQDExN3aWtpLnNoaWJib2xldGgubmV0MB4XDTExMDEwNzE4NDIzN1oXDTE0MDEw
+NjE4NDIzN1owTzETMBEGCgmSJomT8ixkARkWA25ldDEaMBgGCgmSJomT8ixkARkW
+CnNoaWJib2xldGgxHDAaBgNVBAMTE3dpa2kuc2hpYmJvbGV0aC5uZXQwggEiMA0G
+CSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC1viMiWhYa8cmxJ6rQ8yORYMD6Gx5n
+r/r9wQko+Tbjl/qGS0LaTfPQCokvwrD06506MPHainaMqbjlO4gDjq2LpU9/iy0s
+iLuY7UHgDqNNZOELBTQOMwLAFcuEA10FCWjJRglT+6w3xEFeU+dZkBXV1VvKBvsZ
+SiuQw437CcV3ueEF4+ZB0l9uyq8o3wzKRZ9DnpyFL7SUJiHJPuqqXZuyQnjLrbVZ
+KjjumGnY3LJTUo1xoUEuhqj5RMfspn2oc5YnIYka5YrCBmYKJV3QtCFbLA/cz8nF
+m+lOvYGz8nl3wHNkZIVRoetVw/Mhf7lzex0rh3XBdS6vVcT75uH0X1OPAgMBAAGj
+ITAfMB0GA1UdDgQWBBQe1XwZavrgAhRXrfhv1gGUwSkc7DANBgkqhkiG9w0BAQUF
+AAOCAQEAEv6zwotAweOLEfibTXm5d6odE2o/+rHdeEW+IEAspAvmCK7nAPFkuV47
+WMn7JmOd7BWnoXmqFwefJFf3mZtadHnCXReSd8ehGA8/KerSxz9yClMaoanRTEb3
+chT+n5Oh2+WgjzR/v5RbChihoOES+Z2mcvbDm9wn3uSBdxbAoG0/YZihaY9LeoNW
+/CVXv0HYfDw5csol6zwz6dgUDXpfXSXLLKnrjVwARM6lVh00i5i2nfmrWnI41bRh
+NtrvvBkq2tvnd6wm1DJNDzZQB/nRpCadwp4a64Qa0XJiGCoxFUvkd1+RSHqbBsEF
+6w3nDMcYq/BKnF30KZ0Q274eVyQolg==
+                        </ds:X509Certificate>
+                    </ds:X509Data>
+
+                </ds:KeyInfo>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"/>
+                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/>
+            </KeyDescriptor>
+            
+            <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/Artifact/SOAP" index="0"/>
+            <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SLO/Artifact"/>
+
+            <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SLO/POST"/>
+            <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SLO/Redirect"/>
+            <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SLO/SOAP"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SAML/Artifact" index="0"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SAML/POST" index="1"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SAML2/Artifact" index="2"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SAML2/ECP" index="3"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SAML2/POST" index="4"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://wiki.shibboleth.net/confluence/Shibboleth.sso/SAML2/POST-SimpleSign" index="5"/>
+
+            
+            <AttributeConsumingService index="1">
+                <ServiceName xml:lang="en">Shibboleth Federated Wiki</ServiceName>
+                <ServiceDescription xml:lang="en"> A shared Wiki service with automatic registration
+                    for users who can supply a supported identifier, such as eduPersonPrincipalName
+                    or swissEduPersonUniqueID. </ServiceDescription>
+                <RequestedAttribute FriendlyName="eduPersonPrincipalName" Name="urn:oid:1.3.6.1.4.1.5923.1.1.1.6" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+                <RequestedAttribute FriendlyName="mail" Name="urn:oid:0.9.2342.19200300.100.1.3" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+                <RequestedAttribute FriendlyName="displayName" Name="urn:oid:2.16.840.1.113730.3.1.241" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+            </AttributeConsumingService>
+
+        </SPSSODescriptor>
+        
+        <Organization>
+            <OrganizationName xml:lang="en">Shibboleth Consortium</OrganizationName>
+            <OrganizationDisplayName xml:lang="en">Shibboleth Consortium</OrganizationDisplayName>
+            <OrganizationURL xml:lang="en">http://www.shibboleth.net/</OrganizationURL>
+        </Organization>
+        <ContactPerson contactType="support">
+            <GivenName>Shibboleth.Net Technical Support</GivenName>
+            <EmailAddress>contact@shibboleth.net</EmailAddress>
+        </ContactPerson>
+    </EntityDescriptor>
+    
+</EntitiesDescriptor>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>net.shibboleth.idp</groupId>
+        <artifactId>idp-parent</artifactId>
+        <version>3.2.0</version>
+        <relativePath>../idp-parent</relativePath>
+    </parent>
+
+    <name>Shibboleth IdP :: UI Support</name>
+    <artifactId>idp-ui</artifactId>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <!-- Compile Dependencies -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>idp-saml-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        
+        <!-- Provided Dependencies -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Runtime Dependencies -->
+
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>${opensaml.groupId}</groupId>
+            <artifactId>opensaml-core</artifactId>
+            <version>${opensaml.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${opensaml.groupId}</groupId>
+            <artifactId>opensaml-saml-impl</artifactId>
+            <version>${opensaml.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Managed Dependencies -->
+    </dependencies>
+    
+</project>

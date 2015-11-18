@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security:ValidationInfo xmlns:security="urn:mace:shibboleth:2.0:security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd"
+	id="validInfoValues" xsi:type="security:PKIXFilesystem" verifyDepth="99">
+	
+	<security:Certificate>${DIR}/trustengine/cert.pem</security:Certificate>
+	<security:Certificate>classpath:/net/shibboleth/idp/profile/spring/relyingparty/security/trustengine/cert.pem</security:Certificate>
+	<security:CRL>${DIR}/trustengine/crl.pem</security:CRL>
+</security:ValidationInfo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+                           
+       default-init-method="initialize"
+       default-destroy-method="destroy">
+       
+    <bean id="shibboleth.ANYPolicyRule"  class="#{ T(net.shibboleth.idp.attribute.filter.PolicyRequirementRule).MATCHES_ALL.getClass().getName() }" />
+    <bean id="shibboleth.ANYMatcher"  class="#{ T(net.shibboleth.idp.attribute.filter.Matcher).MATCHES_ALL.getClass().getName() }" />
+    <bean id="shibboleth.AttributeValueStringMatcher"  class="net.shibboleth.idp.attribute.filter.matcher.impl.AttributeValueStringMatcher" abstract="true"/>
+    <bean id="shibboleth.OrMatcher"  class="net.shibboleth.idp.attribute.filter.matcher.logic.impl.OrMatcher" abstract="true"/>
+       
+                                   
+    <bean parent="shibboleth.OrMatcher" id="wobbleMatcher">
+        <constructor-arg name="composedMatchers">
+            <list>
+                <bean parent="shibboleth.AttributeValueStringMatcher" p:matchString="faculty" id="fac"/>
+                <bean parent="shibboleth.AttributeValueStringMatcher" p:matchString="student" id="stud"/>
+                <bean parent="shibboleth.AttributeValueStringMatcher" p:matchString="staff" id="stadd"/>
+                <bean parent="shibboleth.AttributeValueStringMatcher" p:matchString="alum" id="alum"/>
+                <bean parent="shibboleth.AttributeValueStringMatcher" p:matchString="member" id="member"/>
+                <bean parent="shibboleth.AttributeValueStringMatcher" p:matchString="affiliate" id="affilient"/>
+                <bean parent="shibboleth.AttributeValueStringMatcher" p:matchString="employee" id = "emp"/>
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    <bean class="net.shibboleth.idp.attribute.filter.AttributeRule" p:isDenyRule="false" id="wobble" p:attributeId="affiliation" p:matcher-ref="wobbleMatcher"/>
+<!--                        
+	<afp:AttributeRule attributeID="affiliation" id="wobble">
+		<afp:PermitValueRule xmlns="urn:mace:shibboleth:2.0:afp:mf:basic"
+			id="Wibble" xsi:type="OR">
+			<Rule xsi:type="AttributeValueString" value="faculty" id="fac"/>
+			<Rule xsi:type="AttributeValueString" value="student" id="stud"/>
+			<Rule xsi:type="AttributeValueString" value="staff" id="stadd"/>
+			<Rule xsi:type="AttributeValueString" value="alum" id="alum"/>
+			<Rule xsi:type="AttributeValueString" value="member" id="member"/>
+			<Rule xsi:type="AttributeValueString" value="affiliate" id="affilient"/>
+			<Rule xsi:type="AttributeValueString" value="employee" id = "emp"/>
+		</afp:PermitValueRule>
+	</afp:AttributeRule>
+ -->
+ 
+	<!-- Release affiliation to anyone in the InCommon group -->
+<!-- 
+	<afp:AttributeFilterPolicy id="InCommonRelease">
+		<afp:PolicyRequirementRule xsi:type="basic:ANY" id="pq"/>
+
+		<afp:AttributeRuleReference ref="wobble"/>
+
+	</afp:AttributeFilterPolicy>
+ -->
+      <bean class="net.shibboleth.idp.attribute.filter.AttributeFilterPolicy" c:policyId="InCommonRelease" c:requirementRule-ref="shibboleth.ANYPolicyRule" 
+           c:attributeRules="#{ {@wobble}}"/>
+ <!-- 
+ </afp:AttributeFilterPolicyGroup>
+ -->
+ </beans>

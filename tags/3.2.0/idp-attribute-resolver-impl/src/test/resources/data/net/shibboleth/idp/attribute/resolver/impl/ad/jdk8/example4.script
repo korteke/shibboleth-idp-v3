@@ -1,0 +1,10 @@
+load('nashorn:mozilla_compat.js')
+importPackage(Packages.edu.internet2.middleware.shibboleth.common.attribute.provider);
+ 
+// Create attribute to be returned from definition
+if (eduPersonEntitlement == null) eduPersonEntitlement = new BasicAttribute("eduPersonEntitlement");
+ 
+if (eduPersonAffiliation.getValues().contains("staff") ||
+        eduPersonAffiliation.getValues().contains("student")) {
+    eduPersonEntitlement.getValues().add("urn:mace:dir:entitlement:common-lib-terms");
+}

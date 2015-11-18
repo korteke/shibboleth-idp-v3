@@ -1,0 +1,3 @@
+load('nashorn:mozilla_compat.js')
+importPackage(Packages.net.shibboleth.idp.attribute);
+Scripted.addValue(new StringAttributeValue("simple"));

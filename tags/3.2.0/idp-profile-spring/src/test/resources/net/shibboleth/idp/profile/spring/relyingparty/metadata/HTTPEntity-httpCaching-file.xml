@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata:MetadataProvider xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+	xmlns:metadata="urn:mace:shibboleth:2.0:metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:metadata http://shibboleth.net/schema/idp/shibboleth-metadata.xsd
+                       urn:oasis:names:tc:SAML:2.0:metadata http://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd"
+
+	id="HTTPEntity" 
+    xsi:type="metadata:HTTPMetadataProvider" 
+    httpCaching="file"
+    httpCacheDirectory="#{systemProperties['java.io.tmpdir']}/httpProviderCacheTest"
+    httpMaxCacheEntries="100"
+    httpMaxCacheEntrySize="104857600"
+    metadataURL="http://svn.shibboleth.net/view/java-identity-provider/trunk/idp-profile-spring/src/test/resources/net/shibboleth/idp/profile/spring/relyingparty/metadata/entity.xml?revision=5634&amp;view=co"> 
+
+</metadata:MetadataProvider>
+                                   

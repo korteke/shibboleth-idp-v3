@@ -1,0 +1,39 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+	<on-start>
+		<evaluate expression="InitializeProfileRequestContext" />
+	</on-start>
+
+	<action-state id="StartTest">
+		<evaluate expression="SetupSAMLMessage" />
+		<evaluate expression="SAMLMetadataLookup" />
+		<evaluate expression="SAMLPopulateACS" />
+		<evaluate expression="PopulateResolution" />
+		<evaluate expression="ResolveAttributes" />
+		<evaluate expression="FilterAttributes" />
+        <evaluate expression="'proceed'" />
+        
+        <transition on="proceed" to="AfterTest" />
+    </action-state>
+
+    <action-state id="AfterTest">
+		<evaluate expression="TestAfterFilter" />
+		<evaluate expression="'proceed'" />
+
+		<transition on="proceed" to="end" />
+	</action-state>
+
+	<end-state id="end">
+		<!-- TODO: Probably remove later. For tests, map the profile request context 
+			as an output attribute -->
+		<output name="ProfileRequestContext" value="opensamlProfileRequestContext" />
+	</end-state>
+
+	<end-state id="error" />
+
+	<bean-import resource="beans.xml" />
+
+</flow>
+    

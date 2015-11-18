@@ -1,0 +1,37 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+    <!-- Initialize the profile request context. -->
+    <action-state id="Initialize">
+        <evaluate expression="InitializeProfileRequestContext" />
+        <evaluate expression="'proceed'" />
+        <transition on="proceed" to="PopulateClientStorageSaveContext" />
+    </action-state>
+
+    <!-- We may need to save client storage. -->
+    <action-state id="PopulateClientStorageSaveContext">
+        <evaluate expression="PopulateClientStorageSaveContext" />
+        <evaluate expression="'proceed'" />
+        <transition on="proceed" to="ClientStorageSave" />
+        <transition on="NoSaveNeeded" to="Finalize" />
+    </action-state>
+
+    <!-- Run the client-storage/write subflow. -->
+    <subflow-state id="ClientStorageSave" subflow="client-storage/write">
+        <input name="calledAsSubflow" value="true" />
+        <transition on="proceed" to="Finalize" />
+    </subflow-state>
+
+    <!-- Finalize the Spring Web Flow context. -->
+    <action-state id="Finalize">
+        <evaluate expression="RecordResponseComplete" />
+        <evaluate expression="'proceed'" />
+        <transition on="proceed" to="Done" />
+    </action-state>
+
+    <end-state id="Done" />
+
+    <bean-import resource="../client-storage-test-beans.xml" />
+
+</flow>

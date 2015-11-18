@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>net.shibboleth.idp</groupId>
+        <artifactId>idp-parent</artifactId>
+        <version>3.2.0</version>
+        <relativePath>../idp-parent</relativePath>
+    </parent>
+
+    <name>Shibboleth IdP :: Distribution</name>
+    <artifactId>idp-distribution</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <idp.finalName>shibboleth-identity-provider-${project.version}</idp.finalName>
+        <idp.assemblyDirectory>${project.build.directory}/${idp.finalName}</idp.assemblyDirectory>
+    </properties>
+
+    <dependencies>
+        <!-- Compile Dependencies -->
+
+        <!-- Provided Dependencies -->
+
+        <!-- Runtime Dependencies -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>idp-installer</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.shibboleth.utilities.jetty9</groupId>
+            <artifactId>jetty9-dta-ssl</artifactId>
+            <version>${jetty9-dta-ssl.version}</version>
+            <optional>true</optional>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- Required if using classes with command line support. -->
+        <dependency>
+            <groupId>com.beust</groupId>
+            <artifactId>jcommander</artifactId>
+            <optional>true</optional>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- Required if you're using classes from the security package. -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk15on</artifactId>
+            <optional>true</optional>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.9.4</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant-launcher</artifactId>
+            <version>1.9.4</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- Logging dependencies. https://issues.shibboleth.net/jira/browse/JPAR-57 -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>${slf4j.groupId}</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        
+        <!-- Test Dependencies -->
+
+        <!-- Managed Dependencies -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Copy src/main/resources to assembly directory. -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <includeEmptyDirs>true</includeEmptyDirs>
+                            <outputDirectory>${idp.assemblyDirectory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/src/main/resources</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <!-- Unpack idp-war to assembly directory. -->
+                    <execution>
+                        <id>copy-idp-war</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>idp-war</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>war</type>
+                                    <outputDirectory>${idp.assemblyDirectory}/webapp/</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <!-- Unpack idp-conf to assembly directory. -->
+                    <execution>
+                        <id>unpack-idp-conf</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>idp-conf</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>jar</type>
+                                    <outputDirectory>${idp.assemblyDirectory}</outputDirectory>
+                                    <excludes>**/META-INF/**,**/logs/*,**/credentials/*</excludes>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <!-- Copy Jetty DTA plugin to embedded/jetty-base/lib/ext directory. -->
+                    <execution>
+                        <id>copy-jetty-dta-ssl</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>net.shibboleth.utilities.jetty9</groupId>
+                                    <artifactId>jetty9-dta-ssl</artifactId>
+                                    <version>${jetty9-dta-ssl.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${idp.assemblyDirectory}/embedded/jetty-base/lib/ext</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <!-- Copy runtime dependencies to bin\lib directory. -->
+                    <execution>
+                        <id>copy-runtime-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>idp-installer</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.beust</groupId>
+                                    <artifactId>jcommander</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.bouncycastle</groupId>
+                                    <artifactId>bcpkix-jdk15on</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.ant</groupId>
+                                    <artifactId>ant</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.ant</groupId>
+                                    <artifactId>ant-launcher</artifactId>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${idp.assemblyDirectory}/bin/lib/</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <!-- Copy logging dependencies to embedded/jetty-base/lib directory. (for Jetty logging) -->
+                    <execution>
+                        <id>copy-jetty-logging-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>ch.qos.logback</groupId>
+                                    <artifactId>logback-classic</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>ch.qos.logback</groupId>
+                                    <artifactId>logback-core</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>ch.qos.logback</groupId>
+                                    <artifactId>logback-access</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>${slf4j.groupId}</groupId>
+                                    <artifactId>jcl-over-slf4j</artifactId>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${idp.assemblyDirectory}/embedded/jetty-base/lib/logging/</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <!-- Copy logging dependencies to WEB-INF/lib directory. -->
+                    <execution>
+                        <id>copy-logging-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>ch.qos.logback</groupId>
+                                    <artifactId>logback-classic</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>ch.qos.logback</groupId>
+                                    <artifactId>logback-core</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>${slf4j.groupId}</groupId>
+                                    <artifactId>jcl-over-slf4j</artifactId>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${idp.assemblyDirectory}/webapp/WEB-INF/lib/</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>make-files-in-bin-executable</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <chmod dir="${idp.assemblyDirectory}/bin" perm="755" includes="**/*.sh" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-dist-files</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <copy todir="${idp.assemblyDirectory}/dist">
+                                    <fileset dir="${idp.assemblyDirectory}">
+                                        <include name="conf/**/*.*" />
+                                        <include name="flows/**/*.*" />
+                                        <include name="messages/**/*.*" />
+                                        <include name="views/**/*.*" />
+                                    </fileset>
+                                    <globmapper from="*" to="*.dist" />
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Assemble. -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attached</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptors>
+                        <descriptor>src/main/assembly/idp-assembly-tgz.xml</descriptor>
+                        <descriptor>src/main/assembly/idp-assembly-zip.xml</descriptor>
+                    </descriptors>
+                    <finalName>${idp.finalName}</finalName>
+                    <tarLongFileMode>gnu</tarLongFileMode>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

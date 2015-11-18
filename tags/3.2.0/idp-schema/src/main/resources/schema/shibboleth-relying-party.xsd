@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:rp="urn:mace:shibboleth:2.0:relying-party" xmlns:security="urn:mace:shibboleth:2.0:security" xmlns:shibmd="urn:mace:shibboleth:2.0:metadata" xmlns:service="urn:mace:shibboleth:2.0:services" targetNamespace="urn:mace:shibboleth:2.0:relying-party" elementFormDefault="qualified">
+
+    <import namespace="urn:mace:shibboleth:2.0:metadata" schemaLocation="http://shibboleth.net/schema/idp/shibboleth-metadata.xsd"/>
+
+    <import namespace="urn:mace:shibboleth:2.0:security" schemaLocation="http://shibboleth.net/schema/idp/shibboleth-security.xsd"/>
+
+    <annotation>
+        <documentation>Schema describing relying party configurations.</documentation>
+    </annotation>
+
+    <element name="RelyingPartyGroup">
+        <annotation>
+            <documentation>Root element of a relying party configuration document.</documentation>
+        </annotation>
+        <complexType>
+            <sequence>
+                <element ref="rp:AnonymousRelyingParty" minOccurs="1"/>
+                <element ref="rp:DefaultRelyingParty" minOccurs="1"/>
+                <element ref="rp:RelyingParty" minOccurs="0" maxOccurs="unbounded"/>
+                <element ref="shibmd:MetadataProvider" minOccurs="0"/>
+                <element ref="security:Credential" minOccurs="0" maxOccurs="unbounded"/>
+                <element ref="security:TrustEngine" minOccurs="0" maxOccurs="unbounded"/>
+                <element ref="security:SecurityPolicy" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="RelyingParty" type="rp:IdentifiedRelyingPartyType">
+        <annotation>
+            <documentation>
+                A set of configuration options specific to a given relying party or group of relying parties as
+                expressed in SAML 2 metadata. Note, configuration options are not inherited from either the default
+                relying party or ancestral groups.
+            </documentation>
+        </annotation>
+    </element>
+
+    <element name="DefaultRelyingParty" type="rp:UnidentifiedRelyingParty">
+        <annotation>
+            <documentation>
+                The default set of configuration options to use for relying parties/groups not specifically called out.
+            </documentation>
+        </annotation>
+    </element>
+
+    <element name="AnonymousRelyingParty" type="rp:UnidentifiedRelyingParty">
+        <annotation>
+            <documentation>
+                The set of configuration options to use for relying parties/groups which are not authenticated or known
+                to the system.
+            </documentation>
+        </annotation>
+    </element>
+
+    <complexType name="IdentifiedRelyingPartyType">
+        <annotation>
+            <documentation>A relying party configuration specific to a particular relying party.</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="rp:UnidentifiedRelyingParty">
+                <attribute name="id" type="string" use="required">
+                    <annotation>
+                        <documentation>The entity ID of the relying party.</documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="UnidentifiedRelyingParty">
+    	<annotation>
+    		<documentation>
+    			Relying party configuration information that is not
+    			specific to an identified relying party.
+    		</documentation>
+    	</annotation>
+    	<sequence>
+    		<element ref="rp:ProfileConfiguration" minOccurs="0"
+    			maxOccurs="unbounded">
+    			<annotation>
+    				<documentation>
+    					Profile specific configuration information.
+    				</documentation>
+    			</annotation>
+    		</element>
+    	</sequence>
+    	<attribute name="provider" type="string" use="required">
+    		<annotation>
+    			<documentation>
+    				The entity ID the responder should use when
+    				communicating with the relying party.
+    			</documentation>
+    		</annotation>
+    	</attribute>
+    	<attribute name="defaultAuthenticationMethod" type="string">
+    		<annotation>
+    			<documentation>
+    				The authentication method to use to authenticate the
+    				user, if one is not specified within the request.
+    				This method must be one of the methods handled by
+    				one of the authentication handlers defined for the
+    				system.
+    			</documentation>
+    		</annotation>
+    	</attribute>
+    	<attribute name="defaultSigningCredentialRef" type="string">
+    		<annotation>
+    			<documentation>
+    				The ID of the default signing credential for the
+    				relying party. This is provided as a convenience
+    				method so that this credential need not be defined
+    				on every signing supporting profile configuration.
+    				If a profile configuration has a defined signing
+    				credential it must be used in place of the
+    				credential retrieved here.
+    			</documentation>
+    		</annotation>
+    	</attribute>
+    	<attribute name="nameIDFormatPrecedence" type="string">
+    		<annotation>
+    			<documentation>
+    				A space delimited list that provides a precedence
+    				for NameID format to be used with the relying party.
+    			</documentation>
+    		</annotation>
+    	</attribute>
+    	<attribute name="detailedErrors" type="string">
+            <annotation>
+                <documentation>
+                    a boolean to indicate whether details errors are to be reported
+                </documentation>
+            </annotation>
+    	</attribute>
+    </complexType>
+
+    <element name="ProfileConfiguration" type="rp:ProfileConfigurationType"/>
+    <complexType name="ProfileConfigurationType" abstract="true">
+        <annotation>
+            <documentation>
+                An abstract type from which all profile specific configuration types are derived.
+            </documentation>
+        </annotation>
+    </complexType>
+
+</schema>

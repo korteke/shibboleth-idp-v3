@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rp:RelyingPartyGroup xmlns:rp="urn:mace:shibboleth:2.0:relying-party" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                      xsi:schemaLocation="urn:mace:shibboleth:2.0:relying-party http://shibboleth.net/schema/idp/shibboleth-relying-party.xsd">
+                                       
+    <!-- ========================================== -->
+    <!--      Relying Party Configurations          -->
+    <!-- ========================================== -->
+    <rp:AnonymousRelyingParty provider="AnonIdP" defaultSigningCredentialRef="IdPCredential"/>
+    
+    <rp:DefaultRelyingParty provider="DefaultIdP" defaultSigningCredentialRef="IdPCredential"/>
+    <rp:RelyingParty provider="IdP1" id="the id1"/>
+    <rp:RelyingParty provider="IdP2" id="the id2"/>
+    
+</rp:RelyingPartyGroup>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-init-method="initialize"
+       default-destroy-method="destroy">
+
+
+    <bean id="testCase1" class="org.opensaml.security.x509.impl.PKIXX509CredentialTrustEngine">
+        <constructor-arg name="resolver">
+            <bean class="org.opensaml.security.x509.impl.StaticPKIXValidationInformationResolver"
+                  c:names="#{null}">
+                <constructor-arg name="info">
+                    <bean class="org.opensaml.security.x509.impl.BasicPKIXValidationInformation"
+                          c:crls="#{null}"
+                          c:depth="5">
+                        <constructor-arg name="anchors">
+                            <list>
+                                <bean class="net.shibboleth.ext.spring.factory.X509CertificateFactoryBean"
+                                      p:resource="classpath:credentials/localhost.pem" />
+                            </list>
+                        </constructor-arg>
+                    </bean>
+                </constructor-arg>
+            </bean>
+        </constructor-arg>
+        <constructor-arg name="pkixEvaluator">
+            <bean class="org.opensaml.security.x509.impl.CertPathPKIXTrustEvaluator" />
+        </constructor-arg>
+        <constructor-arg name="nameEvaluator"><null/></constructor-arg>
+    </bean>
+
+    <bean id="testCase2" class="org.opensaml.security.x509.impl.PKIXX509CredentialTrustEngine">
+        <constructor-arg name="resolver">
+            <bean class="org.opensaml.security.x509.impl.StaticPKIXValidationInformationResolver"
+                  c:names="#{null}">
+                <constructor-arg name="info">
+                    <bean class="org.opensaml.security.x509.impl.BasicPKIXValidationInformation"
+                          c:crls="#{null}"
+                          c:depth="5">
+                        <constructor-arg name="anchors">
+                            <list>
+                                <bean class="net.shibboleth.ext.spring.factory.X509CertificateFactoryBean"
+                                      p:resource="classpath:credentials/nobody-2.pem" />
+                            </list>
+                        </constructor-arg>
+                    </bean>
+                </constructor-arg>
+            </bean>
+        </constructor-arg>
+        <constructor-arg name="pkixEvaluator">
+            <bean class="org.opensaml.security.x509.impl.CertPathPKIXTrustEvaluator" />
+        </constructor-arg>
+        <constructor-arg name="nameEvaluator"><null/></constructor-arg>
+    </bean>
+
+</beans>

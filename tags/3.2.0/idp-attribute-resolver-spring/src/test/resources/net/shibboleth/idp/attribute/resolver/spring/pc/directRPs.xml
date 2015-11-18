@@ -1,0 +1,9 @@
+<resolver:PrincipalConnector xmlns:resolver="urn:mace:shibboleth:2.0:resolver"
+	xmlns:pc="urn:mace:shibboleth:2.0:resolver:pc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:resolver http://shibboleth.net/schema/idp/shibboleth-attribute-resolver.xsd
+                        urn:mace:shibboleth:2.0:resolver:pc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-pc.xsd"
+
+	xsi:type="pc:Direct" id="shibDirect" nameIDFormat="http://example.org/schema">
+	<resolver:RelyingParty>SP1</resolver:RelyingParty>
+	<resolver:RelyingParty>SP2</resolver:RelyingParty>
+</resolver:PrincipalConnector>

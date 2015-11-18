@@ -1,0 +1,6 @@
+logger = Java.type("org.slf4j.LoggerFactory").getLogger("net.shibboleth.idp.attribute");
+
+Scripted.addValue("foo");
+Scripted.addValue("bar");
+
+ logger.info("Values of scriptTest were: {} ", Scripted.getValues());

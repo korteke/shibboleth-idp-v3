@@ -1,0 +1,17 @@
+<resolver:AttributeEncoder 
+    xsi:type="enc:SAML1ScopedString"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:enc="urn:mace:shibboleth:2.0:attribute:encoder" 
+	xmlns:resolver="urn:mace:shibboleth:2.0:resolver"
+	name="SAML1_SCOPED_ATTRIBUTE_NAME" 
+	namespace="SAML1_SCOPED_ATTRIBUTE_NAME_FORMAT"
+	scopeType="attribute"
+	scopeAttribute="saml1ScopeAttrib"
+	scopeDelimiter="#@#"
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:resolver http://shibboleth.net/schema/idp/shibboleth-attribute-resolver.xsd
+                        urn:mace:shibboleth:2.0:resolver:pc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-pc.xsd
+                        urn:mace:shibboleth:2.0:resolver:ad http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-ad.xsd
+                        urn:mace:shibboleth:2.0:resolver:dc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-dc.xsd
+                        urn:mace:shibboleth:2.0:attribute:encoder http://shibboleth.net/schema/idp/shibboleth-attribute-encoder.xsd
+                        urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd"/> 
+ 

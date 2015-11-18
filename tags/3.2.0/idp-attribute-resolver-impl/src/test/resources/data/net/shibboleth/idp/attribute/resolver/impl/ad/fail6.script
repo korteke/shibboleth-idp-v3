@@ -1,0 +1,3 @@
+importPackage(Packages.java.lang);
+
+Scripted.addValue(new Integer(21));

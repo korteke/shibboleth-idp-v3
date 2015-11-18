@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+                           
+       default-init-method="initialize"
+       default-destroy-method="destroy">
+
+    <bean id="shibboleth.ANYPolicyRule"  class="#{ T(net.shibboleth.idp.attribute.filter.PolicyRequirementRule).MATCHES_ALL.getClass().getName() }" />
+    <bean id="shibboleth.ANYMatcher"  class="#{ T(net.shibboleth.idp.attribute.filter.Matcher).MATCHES_ALL.getClass().getName() }" />
+
+<!--
+    <afp:AttributeFilterPolicy id="MostBasicExample">
+        <afp:PolicyRequirementRule xsi:type="basic:ANY"/>
+        
+        <afp:AttributeRule attributeID="email">
+            <afp:PermitValueRule xsi:type="basic:ANY"/>
+        </afp:AttributeRule>
+    </afp:AttributeFilterPolicy>
+-->
+    <bean class="net.shibboleth.idp.attribute.filter.AttributeFilterPolicy" c:policyId="MostBasicExample" c:requirementRule-ref="shibboleth.ANYPolicyRule">
+        <constructor-arg name="attributeRules">
+            <bean class="net.shibboleth.idp.attribute.filter.AttributeRule" p:isDenyRule="false" p:attributeId="email" p:matcher-ref="shibboleth.ANYMatcher"/>
+        </constructor-arg>
+    </bean>
+<!--
+</afp:AttributeFilterPolicyGroup>
+ -->
+ </beans>

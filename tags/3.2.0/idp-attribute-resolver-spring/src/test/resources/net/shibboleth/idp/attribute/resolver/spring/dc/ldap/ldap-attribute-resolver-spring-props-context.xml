@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+    <bean id="connectionFactory" class="org.ldaptive.pool.PooledConnectionFactory">
+        <property name="connectionPool">
+            <bean class="org.ldaptive.pool.BlockingConnectionPool" init-method="initialize"
+                p:blockWaitTime="%{connectionPool.blockWaitTime}" p:failFastInitialize="%{connectionPool.failFastInitialize}">
+                <constructor-arg index="0">
+                    <bean class="org.ldaptive.pool.PoolConfig" p:minPoolSize="%{connectionPool.minPoolSize}"
+                        p:maxPoolSize="%{connectionPool.maxPoolSize}" p:validatePeriodically="%{connectionPool.validatePeriodically}"
+                        p:validatePeriod="%{connectionPool.validatePeriod}" />
+                </constructor-arg>
+                <constructor-arg index="1">
+                    <bean class="org.ldaptive.DefaultConnectionFactory">
+                        <property name="provider">
+                            <bean class="org.ldaptive.provider.jndi.JndiProvider">
+                                <property name="providerConfig">
+                                    <bean class="org.ldaptive.provider.jndi.JndiProviderConfig">
+                                        <property name="properties">
+                                            <map>
+                                                <entry key="name1" value="%{jndi.property1}" />
+                                                <entry key="name2" value="%{jndi.property2}" />
+                                            </map>
+                                        </property>
+                                    </bean>
+                                </property>
+                            </bean>
+                        </property>
+                        <property name="connectionConfig">
+                            <bean class="org.ldaptive.ConnectionConfig" p:ldapUrl="%{connectionConfig.ldapURL}"
+                                p:useStartTLS="%{connectionConfig.useStartTLS}">
+                                <property name="connectionInitializer">
+                                    <bean class="org.ldaptive.BindConnectionInitializer" p:bindDn="%{connectionConfig.bindDn}"
+                                        p:bindCredential="%{connectionConfig.bindCredential}" />
+                                </property>
+                                <property name="sslConfig">
+                                    <bean class="org.ldaptive.ssl.SslConfig">
+                                        <property name="credentialConfig">
+                                            <bean class="org.ldaptive.ssl.X509CredentialConfig"
+                                                p:trustCertificates="file:src/test/resources/net/shibboleth/idp/attribute/resolver/spring/dc/ldap/server.crt"
+                                                p:authenticationCertificate="file:src/test/resources/net/shibboleth/idp/attribute/resolver/spring/dc/ldap/client.crt"
+                                                p:authenticationKey="file:src/test/resources/net/shibboleth/idp/attribute/resolver/spring/dc/ldap/client.pkcs8" />
+                                        </property>
+                                    </bean>
+                                </property>
+                            </bean>
+                        </property>
+                    </bean>
+                </constructor-arg>
+                <property name="validator">
+                    <bean class="org.ldaptive.pool.SearchValidator">
+                        <property name="searchRequest">
+                            <bean class="org.ldaptive.SearchRequest">
+                                <constructor-arg value="%{connectionPool.validator.baseDn}" />
+                                <constructor-arg value="%{connectionPool.validator.filter}" />
+                            </bean>
+                        </property>
+                    </bean>
+                </property>
+                <property name="pruneStrategy">
+                    <bean class="org.ldaptive.pool.IdlePruneStrategy" p:prunePeriod="%{connectionPool.pruneStrategy.prunePeriod}"
+                        p:idleTime="%{connectionPool.pruneStrategy.idleTime}" />
+                </property>
+            </bean>
+        </property>
+    </bean>
+    <bean class="org.ldaptive.SearchExecutor" p:baseDn="%{search.baseDn}" p:returnAttributes="%{search.returnAttributes}">
+        <property name="searchFilter">
+            <bean class="org.ldaptive.SearchFilter" p:filter="%{search.filter}" />
+        </property>
+    </bean>
+    <bean id="cacheBuilder" class="com.google.common.cache.CacheBuilder" factory-method="from">
+        <constructor-arg value="%{cache.cacheBuilderSpec}" />
+    </bean>
+    <bean id="cache" class="com.google.common.cache.Cache" factory-bean="cacheBuilder" factory-method="build" />
+    <bean class="net.shibboleth.idp.attribute.resolver.dc.ldap.impl.TemplatedExecutableSearchFilterBuilder"
+        p:templateText="(uid=${resolutionContext.principal})" p:velocityEngine-ref="shibboleth.VelocityEngine"
+        init-method="initialize" />
+    <bean id="mappings" class="net.shibboleth.idp.attribute.resolver.dc.ldap.impl.StringAttributeValueMappingStrategy"
+        p:noResultAnError="%{noResultIsError}" p:multipleResultsAnError="%{multipleResultsIsError}">
+        <property name="resultRenamingMap">
+            <map>
+                <entry key="homephone" value="phonenumber" />
+            </map>
+        </property>
+    </bean>
+    <bean id="validator" class="net.shibboleth.idp.attribute.resolver.dc.ldap.impl.ConnectionFactoryValidator">
+        <constructor-arg index="0" ref="connectionFactory" />
+        <constructor-arg index="1" value="true" />
+    </bean>
+</beans>

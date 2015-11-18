@@ -1,0 +1,7 @@
+<AttributeFilterPolicy id="MostBasicExample" xmlns="urn:mace:shibboleth:2.0:afp" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:mace:shibboleth:2.0:afp http://shibboleth.net/schema/idp/shibboleth-afp.xsd
+                            urn:mace:shibboleth:2.0:mf:basic http://shibboleth.net/schema/idp/shibboleth-afp-mf-basic.xsd">
+    <PolicyRequirementRule xsi:type="NumberOfAttributeValues" attributeID="uid" minimum="1"
+        maximum="3" />
+
+</AttributeFilterPolicy>

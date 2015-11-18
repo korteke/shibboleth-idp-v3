@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+
+	default-init-method="initialize" default-destroy-method="destroy">
+
+	<!-- This BeanPostProcessor auto-sets identifiable beans with the bean name 
+		(if not already set). -->
+	<bean class="net.shibboleth.ext.spring.config.IdentifiableBeanPostProcessor" />
+
+	<bean id="shibboleth.MetadataResolverService" class="net.shibboleth.ext.spring.service.ReloadableSpringService"
+		p:failFast="true"
+		p:reloadCheckDelay="0">
+		<constructor-arg name="claz"
+			value="org.opensaml.saml.metadata.resolver.MetadataResolver" />
+		<constructor-arg name="strategy">
+			<bean
+				class="net.shibboleth.idp.profile.spring.relyingparty.metadata.impl.MetadataResolverServiceStrategy" />
+		</constructor-arg>
+		<property name="serviceConfigurations">
+			<util:list>
+				<value>classpath:/net/shibboleth/idp/profile/spring/relyingparty/metadata/inLineEntity.xml</value>
+                <value>classpath:/net/shibboleth/idp/profile/spring/relyingparty/metadata/inLineEntities.xml</value>
+			</util:list>
+		</property>
+
+	</bean>
+</beans>

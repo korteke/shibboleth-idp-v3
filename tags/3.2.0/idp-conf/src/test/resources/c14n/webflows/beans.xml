@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+	default-init-method="initialize" default-destroy-method="destroy">
+
+    <bean class="net.shibboleth.ext.spring.config.IdentifiableBeanPostProcessor" />
+    
+	<bean id="InitializeProfileRequestContext"
+		class="net.shibboleth.idp.profile.impl.InitializeProfileRequestContext"
+		scope="prototype" p:profileId="test_flow" />
+		
+		<bean id="PopulateResolution" class = "net.shibboleth.idp.test.flows.SetupForResolver"  scope="prototype" />
+        <bean id="ResolveAttributes" class="net.shibboleth.idp.profile.impl.ResolveAttributes" c:resolverService-ref="shibboleth.AttributeResolverService" scope="prototype" />
+        <bean id="PopulateSAML2C14N" class = "net.shibboleth.idp.test.flows.c14n.actions.SetupForSAML2C14N"  scope="prototype" p:attributeName="transientId" />
+        <bean id="PopulateSAML2C14NCrypto" class = "net.shibboleth.idp.test.flows.c14n.actions.SetupForSAML2C14N"  scope="prototype" p:attributeName="cryptoTransientId" />
+        <bean id="PopulateSAML2C14NTransform" class = "net.shibboleth.idp.test.flows.c14n.actions.SetupForSAML2C14N"  scope="prototype" p:attributeName="Principal" />
+        <bean id="TestAfterC14N" class = "net.shibboleth.idp.test.flows.c14n.actions.TestAfterC14N"  scope="prototype" />
+
+        <bean id="PopulateSAML1C14N" class = "net.shibboleth.idp.test.flows.c14n.actions.SetupForSAML1C14N"  scope="prototype" p:attributeName="transientId" />
+        <bean id="PopulateSAML1C14NCrypto" class = "net.shibboleth.idp.test.flows.c14n.actions.SetupForSAML1C14N"  scope="prototype" p:attributeName="cryptoTransientId" />
+        <bean id="PopulateSAML1C14NTransform" class = "net.shibboleth.idp.test.flows.c14n.actions.SetupForSAML1C14N"  scope="prototype" p:attributeName="Principal" />
+		
+</beans>

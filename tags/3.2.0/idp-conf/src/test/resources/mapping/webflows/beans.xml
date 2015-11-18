@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+	default-init-method="initialize" default-destroy-method="destroy">
+
+	<!-- Beans from the standard flows -->
+
+	<bean class="net.shibboleth.ext.spring.config.IdentifiableBeanPostProcessor" />
+
+	<bean id="InitializeProfileRequestContext"
+		class="net.shibboleth.idp.profile.impl.InitializeProfileRequestContext"
+		scope="prototype" p:profileId="test_flow" />
+
+	<bean id="ResolveAttributes" class="net.shibboleth.idp.profile.impl.ResolveAttributes"
+		scope="prototype" c:resolverService-ref="shibboleth.AttributeResolverService" />
+
+	<bean id="FilterAttributes" class="net.shibboleth.idp.profile.impl.FilterAttributes"
+		scope="prototype" c:filterService-ref="shibboleth.AttributeFilterService" />
+
+	<bean id="SAMLMetadataLookup"
+		class="net.shibboleth.idp.profile.impl.WebFlowMessageHandlerAdaptor"
+		scope="prototype" c:executionDirection="INBOUND">
+		<constructor-arg name="messageHandler">
+			<bean
+				class="org.opensaml.saml.common.binding.impl.SAMLMetadataLookupHandler"
+				scope="prototype">
+				<property name="roleDescriptorResolver">
+					<bean
+						class="org.opensaml.saml.metadata.resolver.impl.BasicRoleDescriptorResolver"
+						c:mdResolver-ref="shibboleth.MetadataResolver" />
+				</property>
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<bean id="SAMLPopulateACS"
+		class="net.shibboleth.idp.profile.impl.WebFlowMessageHandlerAdaptor"
+		scope="prototype" c:executionDirection="INBOUND">
+		<constructor-arg name="messageHandler">
+			<bean
+				class="org.opensaml.saml.common.binding.impl.SAMLAddAttributeConsumingServiceHandler"
+				scope="prototype" />
+		</constructor-arg>
+	</bean>
+
+	<!-- Common test flow bean -->
+	<bean id="PopulateResolution" class="net.shibboleth.idp.test.flows.SetupForResolver"
+		scope="prototype" />
+
+
+	<!-- Specific test flow beans -->
+    <bean id="SetupSAMLMessage" class="net.shibboleth.idp.test.flows.mapper.SpoofSAMLMessage"
+        scope="prototype" />
+	
+	
+	<bean id="TestAfterFilter" class="net.shibboleth.idp.test.flows.mapper.TestAfterFilter"
+		scope="prototype" />
+
+
+
+</beans>

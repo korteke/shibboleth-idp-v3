@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Licensed to the University Corporation for Advanced Internet
+     Development, Inc. (UCAID) under one or more contributor license
+     agreements.  See the NOTICE file distributed with this work for
+     additional information regarding copyright ownership. The UCAID
+     licenses this file to You under the Apache License, Version 2.0
+     (the 'License'); you may not use this file except in compliance
+     with the License.  You may obtain a copy of the License at
+     
+     http://www.apache.org/licenses/LICENSE-2.0
+     
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an 'AS IS' BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+     implied.  See the License for the specific language governing
+     permissions and limitations under the License.  -->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:fw="http://schemas.microsoft.com/wix/FirewallExtension">
+    <?define ServiceStart="auto"?>
+    <?define ServiceName="shibd_idp"?>
+    <Fragment>
+        <DirectoryRef Id="PROCRUNROOT">
+            <Directory Id="dir64" Name="amd64" />
+            <Directory Id="diria64" Name="ia64" />
+        </DirectoryRef>
+        <Binary Id="DoRandomSrc" SourceFile="scripts\shib_random.vbs" />
+        <CustomAction Id="MakeRandom" BinaryKey="DoRandomSrc" VBScriptCall="" Execute="immediate" />
+        <InstallExecuteSequence>
+            <Custom Action="MakeRandom" Before="WriteRegistryValues">NOT Installed</Custom>
+        </InstallExecuteSequence>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="ProcrunGroup">
+            <Component Id="procrun_license" Directory="PROCRUNROOT" Guid="{97B4CECC-5D1E-47BB-87B9-8F9FCEBB8158}">
+                <File Id="file_procrun_license" KeyPath="yes" Source="$(var.ProcrunSrc)\LICENSE.txt" />
+            </Component>
+            <Component Id="procrun_notice" Directory="PROCRUNROOT" Guid="{C1F42755-C7A8-437F-9965-95FF22F94CDC}">
+                <File Id="file_procrun_notice" KeyPath="yes" Source="$(var.ProcrunSrc)\NOTICE.txt" />
+            </Component>
+            <Component Id="procrun_mgr" Directory="PROCRUNROOT" Guid="{E24E17EE-684F-42E0-B481-1CBBC084A861}">
+                <File Id="file_procrun_mgr" KeyPath="yes" Source="$(var.ProcrunSrc)\prunmgr.exe" Name="$(var.ServiceName)w.exe" />
+            </Component>
+            <Component Id="procrun_relnotes" Directory="PROCRUNROOT" Guid="{F0B94ECE-2029-43E6-B9AE-11A6C782D7D5}">
+                <File Id="procrun_relnotes" KeyPath="yes" Source="$(var.ProcrunSrc)\RELEASE-NOTES.txt" />
+            </Component>
+            <!-- Install the service.  The X64 case is cumbersome since in that case we want to install both the 32 and 64 bit exe
+	    
+		Any 64 bit architecture - do not install the 32 bit service, otherwise do
+		X64 install the 32 bit file and the x64 service
+		IA64 install the ia64 service
+	    
+	    -->
+            <Component Id="procrun_32_service" Directory="PROCRUNROOT" Guid="{544A5D33-CF99-4384-A74D-79FB29DE904D}">
+                <File Id="file_procrun_32_service" KeyPath="yes" Source="$(var.ProcrunSrc)\prunsrv.exe" Name="$(var.ServiceName).exe" />
+                <fw:FirewallException Id="Win32Shibd_idp" Program="[#file_procrun_32_service]" Name="Win32Shibd_idp" Description="The Shibboleth IdP" Protocol="tcp" Scope="any" />
+                <?if $(var.msitype) = "x86" ?>
+                <ServiceInstall Id="Service32" Name="$(var.ServiceName)" DisplayName="Shibboleth 3 IdP Daemon" Description="Runs the Jetty Container" Arguments="service $(var.ServiceName)" Type="ownProcess" Start="$(var.ServiceStart)" ErrorControl="normal" />
+                <?endif ?>
+            </Component>
+
+            <Component Id="procrun_AMD64_service" Directory="dir64" Guid="{2673BCBE-3659-4AC6-B39C-DF1EEDF72C0E}">
+                <Condition>VersionNT64 And Not Intel64</Condition>
+                <File Id="file_procrun_AMD64_service" KeyPath="yes" Source="$(var.ProcrunSrc)\amd64\prunsrv.exe" Name="$(var.ServiceName).exe" />
+                <fw:FirewallException Id="Win64Shibd_idp" Program="[#file_procrun_AMD64_service]" Name="Win64Shibd_idp" Description="The Shibboleth IdP" Protocol="tcp" Scope="any" />
+                <?if $(var.msitype) != "x86" ?>
+                <ServiceInstall Id="ServiceX64" Name="$(var.ServiceName)" DisplayName="Shibboleth 3 IdP Daemon" Description="Runs the Jetty Container" Arguments="service $(var.ServiceName)" Type="ownProcess" Start="$(var.ServiceStart)" ErrorControl="normal" />
+                <?endif ?>
+            </Component>
+            <Component Id="procrun_IA64_servce" Directory="diria64" Guid="{38261437-73B7-4E9A-BB6A-B1752157D379}">
+                <Condition>Intel64</Condition>
+                <File Id="file_procrun_IA64_service" KeyPath="yes" Source="$(var.ProcrunSrc)\ia64\prunsrv.exe" Name="$(var.ServiceName).exe" />
+                <fw:FirewallException Id="WinIA64Shibd_idp" Program="[#file_procrun_IA64_service]" Name="WinIA64Shibd_idp" Description="The Shibboleth IdP" Protocol="tcp" Scope="any" />
+                <?if $(var.msitype) != "x86" ?>
+                <ServiceInstall Id="ServiceIA" Name="$(var.ServiceName)" DisplayName="Shibboleth 3 IdP Daemon" Description="Runs the Jetty Container" Arguments="service $(var.ServiceName)" Type="ownProcess" Start="$(var.ServiceStart)" ErrorControl="normal" />
+                <?endif ?>
+            </Component>
+
+            <!-- Configure the service -->
+
+            <Component Id="ServiceParameters" Directory="PROCRUNROOT" Guid="{EC1EA760-0113-4CAD-9719-ADFF1885FC53}" KeyPath="yes">
+                <!-- Start component here - that way if the start fails the user will be prompted and things will continue with the service declared. -->
+                <RegistryKey ForceCreateOnInstall="yes" Key="SYSTEM\CurrentControlSet\services\$(var.ServiceName)\Parameters" Root="HKLM" />
+                <ServiceControl Id="controlService" Name="$(var.ServiceName)" Stop="both" Remove="uninstall" Start="install" Wait="no" />
+            </Component>
+            <Component Id="cmp92C942ECAFC0924D02B9B447DB497D3A" Directory="PROCRUNROOT" Guid="{F4D1B5FA-F7CC-4693-9123-84B960DB98B0}" KeyPath="yes">
+                <!-- ForceDeleteOnUninstall stops us accumulating Stop keys -->
+                <RegistryKey ForceDeleteOnUninstall="yes" ForceCreateOnInstall="yes" Key="SOFTWARE\Apache Software Foundation\Procrun 2.0\$(var.ServiceName)\Parameters\Start" Root="HKLM">
+                    <Permission User="Administrators" GenericAll="yes" />
+                    <Permission User="SYSTEM" GenericAll="yes" />
+                    <RegistryValue Name="Class" Value="$(var.JettyClass)" Type="string">
+                        <Permission User="Administrators" GenericAll="yes" />
+                        <Permission User="SYSTEM" GenericAll="yes" />
+                    </RegistryValue>
+                    <RegistryValue Name="Mode" Value="jvm" Type="string">
+                        <Permission User="Administrators" GenericAll="yes" />
+                        <Permission User="SYSTEM" GenericAll="yes" />
+                    </RegistryValue>
+                    <RegistryValue Name="Params" Type="multiString" Action="append">
+                        <Permission User="Administrators" GenericAll="yes" />
+                        <Permission User="SYSTEM" GenericAll="yes" />
+                        <MultiStringValue>STOP.PORT=8963</MultiStringValue>
+                        <MultiStringValue>STOP.Key=[JETTY_PASS]</MultiStringValue>
+                    </RegistryValue>
+                </RegistryKey>
+            </Component>
+            <Component Id="cmpF05C4062771C368BB8F3DD6673EECF15" Directory="PROCRUNROOT" Guid="{BB7062F1-573B-40BF-A761-21C31A897881}" KeyPath="yes">
+                <RegistryKey ForceDeleteOnUninstall="yes" ForceCreateOnInstall="yes" Key="SOFTWARE\Apache Software Foundation\Procrun 2.0\$(var.ServiceName)\Parameters\Stop" Root="HKLM">
+                    <Permission User="Administrators" GenericAll="yes" />
+                    <Permission User="SYSTEM" GenericAll="yes" />
+                    <RegistryValue Name="Class" Value="$(var.JettyClass)" Type="string">
+                        <Permission User="Administrators" GenericAll="yes" />
+                        <Permission User="SYSTEM" GenericAll="yes" />
+                    </RegistryValue>
+                    <RegistryValue Name="Mode" Value="jvm" Type="string">
+                        <Permission User="Administrators" GenericAll="yes" />
+                        <Permission User="SYSTEM" GenericAll="yes" />
+                    </RegistryValue>
+                    <RegistryValue Name="Params" Type="multiString" Action="append">
+                        <Permission User="Administrators" GenericAll="yes" />
+                        <Permission User="SYSTEM" GenericAll="yes" />
+                        <MultiStringValue>--stop</MultiStringValue>
+                        <MultiStringValue>STOP.PORT=8963</MultiStringValue>
+                        <MultiStringValue>STOP.Key=[JETTY_PASS]</MultiStringValue>
+                    </RegistryValue>
+                </RegistryKey>
+            </Component>
+            <Component Id="cmpBE4E97DA105319AE7A75741FACA90364" Directory="PROCRUNROOT" Guid="{0FA07510-6387-4D0D-8984-86C17759B745}" KeyPath="yes">
+                <RegistryKey Key="SOFTWARE\Apache Software Foundation\Procrun 2.0\$(var.ServiceName)\Parameters\Log" Root="HKLM">
+                    <RegistryValue Name="Path" Value="[PROCRUNROOT]\log" Type="string" />
+                    <RegistryValue Name="StdError" Value="auto" Type="string" />
+                    <RegistryValue Name="StdOutput" Value="auto" Type="string" />
+                </RegistryKey>
+            </Component>
+            <Component Id="cmpD450CE822D5D1E635C3D66423D0E27B8" Directory="PROCRUNROOT" Guid="{62BACF23-6B8B-43C6-9B37-3992D6B86E5C}" KeyPath="yes">
+                <RegistryKey Key="SOFTWARE\Apache Software Foundation\Procrun 2.0\$(var.ServiceName)\Parameters\Java" Root="HKLM">
+                    <RegistryValue Name="JavaHome" Value="[%JAVA_HOME]" Type="string" />
+                    <RegistryValue Name="Jvm" Value="auto" Type="string" />
+                    <RegistryValue Name="Classpath" Value="[JETTYROOT]\start.jar" Type="string" />
+                    <RegistryValue Name="JvmMs" Value="256" Type="integer" />
+                </RegistryKey>
+            </Component>
+        </ComponentGroup>
+
+    </Fragment>
+</Wix>

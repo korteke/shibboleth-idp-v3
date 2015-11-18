@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resolver:AttributeResolver 
+            xmlns="http://www.springframework.org/schema/beans"
+            xmlns:p="http://www.springframework.org/schema/p"
+            xmlns:resolver="urn:mace:shibboleth:2.0:resolver" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xmlns:dc="urn:mace:shibboleth:2.0:resolver:dc" xmlns:enc="urn:mace:shibboleth:2.0:attribute:encoder" 
+            xsi:schemaLocation="urn:mace:shibboleth:2.0:resolver http://shibboleth.net/schema/idp/shibboleth-attribute-resolver.xsd
+                                urn:mace:shibboleth:2.0:resolver:dc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-dc.xsd">
+
+    <resolver:DataConnector id="myLDAP" xsi:type="dc:LDAPDirectory"
+        ldapURL="ldap://localhost:10389" 
+        baseDN="ou=people,dc=shibboleth,dc=net" 
+        principal="cn=Directory Manager"
+        principalCredential="password"
+        useStartTLS="true"
+        noResultIsError="true"
+        multipleResultsIsError="true"
+        noRetryDelay="PT5M">
+        <dc:FilterTemplate>
+            <![CDATA[
+                (uid=${resolutionContext.principal})
+            ]]>
+        </dc:FilterTemplate>
+        <dc:LDAPProperty name="name1" value="value1"/>
+        <dc:LDAPProperty name="name2" value="value2"/>
+        <dc:StartTLSTrustCredential xsi:type="security:X509Inline" xmlns:security="urn:mace:shibboleth:2.0:security" id="LDAPtoIdPCredential">
+            <security:Certificate>
+              MIICATCCAWoCCQCZy4ovDlQTvDANBgkqhkiG9w0BAQUFADBFMRMwEQYKCZImiZPy
+              LGQBGRYDbmV0MRowGAYKCZImiZPyLGQBGRYKc2hpYmJvbGV0aDESMBAGA1UEAxMJ
+              bG9jYWxob3N0MB4XDTEzMDkyMDA0NDE1OFoXDTIzMDkxODA0NDE1OFowRTETMBEG
+              CgmSJomT8ixkARkWA25ldDEaMBgGCgmSJomT8ixkARkWCnNoaWJib2xldGgxEjAQ
+              BgNVBAMTCWxvY2FsaG9zdDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA+Pj+
+              Rk0FosrK8tdNJLASSbfRFEJDf0498bnwtor76PONwkTLjnm7paTMAy7oGIAccuBf
+              n7183mlo/yh22x+7Fdux4ESvdp1FWl7nGlBBWUrLZzXwwGybC0qv3/Cmvfkvm6zh
+              zgY7YyQYlA/RCjTk/pUfrXaIIaKwd+B2miBDrDUCAwEAATANBgkqhkiG9w0BAQUF
+              AAOBgQCKQsndxYjsGIvK3lnlztIuKQmRlj7IHL/T6abBYwmQcyMa5o3hv6/Rx+Ze
+              NSRfyhakPY4v5yUBi1fyIVIGcAbnak+GQIfsO8uDhzZt6DwshzHrnCbHTLQx6NTB
+              4mvLjAdt7riBIl5y5n3tbtrZdpTgFhQxjLWTBpWIO0XKxqtBhw==
+            </security:Certificate>
+        </dc:StartTLSTrustCredential>
+        <dc:StartTLSAuthenticationCredential xsi:type="security:X509ResourceBacked" xmlns:security="urn:mace:shibboleth:2.0:security" id="IdPtoLDAPCredential">
+            <security:PrivateKey>src/test/resources/net/shibboleth/idp/attribute/resolver/spring/dc/ldap/client.key</security:PrivateKey>
+            <security:Certificate>src/test/resources/net/shibboleth/idp/attribute/resolver/spring/dc/ldap/client.crt</security:Certificate>
+        </dc:StartTLSAuthenticationCredential>
+        <dc:ConnectionPool
+            minPoolSize="5"
+            maxPoolSize="10"
+            blockWaitTime="PT5S"
+            expirationTime="PT10M"
+            validatePeriodically="true"
+            validateTimerPeriod="PT15M"
+            validateDN="dc=shibboleth,dc=net"
+            validateFilter="(ou=people)"
+            failFastInitialize="false" />
+        <dc:Column columnName="homephone" attributeID="phonenumber" />
+        <dc:ResultCache
+            elementTimeToLive="PT10S"
+            maximumCachedElements="25"/>
+    </resolver:DataConnector>
+    
+</resolver:AttributeResolver>

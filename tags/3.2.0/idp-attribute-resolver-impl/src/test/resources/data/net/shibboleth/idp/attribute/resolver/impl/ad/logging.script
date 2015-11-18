@@ -1,0 +1,8 @@
+importPackage(Packages.org.slf4j);
+
+logger = LoggerFactory.getLogger("net.shibboleth.idp.attribute");
+
+Scripted.addValue("foo");
+Scripted.addValue("bar");
+
+ logger.error("Values of scriptTest were: {} ", Scripted.getValues());

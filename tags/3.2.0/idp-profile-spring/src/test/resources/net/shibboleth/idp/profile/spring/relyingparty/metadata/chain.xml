@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata:MetadataProvider xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+	xmlns:metadata="urn:mace:shibboleth:2.0:metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:metadata http://shibboleth.net/schema/idp/shibboleth-metadata.xsd
+                       urn:oasis:names:tc:SAML:2.0:metadata http://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd"
+
+	id="chain" xsi:type="metadata:ChainingMetadataProvider">
+
+	<metadata:MetadataProvider id="entity"
+		xsi:type="metadata:InlineMetadataProvider">
+		<EntityDescriptor entityID="https://idp.example.org/idp/shibboleth">
+			<IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+				<SingleSignOnService
+					Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+					Location="https://idp.example.org/idp/profile/SAML2/Redirect/SSO" />
+			</IDPSSODescriptor>
+		</EntityDescriptor>
+	</metadata:MetadataProvider>
+	
+	<metadata:MetadataProvider id="entities"
+		xsi:type="metadata:InlineMetadataProvider">
+		<EntitiesDescriptor>
+
+			<EntityDescriptor ID="uk001502"
+				entityID="https://sp.example.org/sp/shibboleth">
+
+				<SPSSODescriptor
+					protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:1.0:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+
+					<AssertionConsumerService
+						Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign"
+						Location="https://sp.example.org/Shibboleth.sso/SAML2/POST-SimpleSign"
+						index="5" />
+				</SPSSODescriptor>
+			</EntityDescriptor>
+		</EntitiesDescriptor>
+
+	</metadata:MetadataProvider>
+</metadata:MetadataProvider>                                   

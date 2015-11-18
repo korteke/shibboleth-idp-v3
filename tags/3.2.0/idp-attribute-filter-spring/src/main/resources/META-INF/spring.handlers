@@ -1,0 +1,3 @@
+urn\:mace\:shibboleth\:2.0\:afp = net.shibboleth.idp.attribute.filter.spring.impl.AttributeFilterNamespaceHandler
+urn\:mace\:shibboleth\:2.0\:afp\:mf\:basic = net.shibboleth.idp.attribute.filter.spring.basic.impl.AttributeFilterBasicNamespaceHandler
+urn\:mace\:shibboleth\:2.0\:afp\:mf\:saml = net.shibboleth.idp.attribute.filter.spring.saml.impl.AttributeFilterSAMLNamespaceHandler

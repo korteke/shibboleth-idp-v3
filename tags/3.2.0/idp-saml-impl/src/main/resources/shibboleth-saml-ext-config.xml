@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMLTooling xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:shibdel="urn:mace:shibboleth:delegation:1.0" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:encoder="urn:mace:shibboleth:2.0:attribute:encoder" xmlns="http://www.opensaml.org/xmltooling-config" xsi:schemaLocation="http://www.opensaml.org/xmltooling-config ../../src/schema/xmltooling-config.xsd">
+
+    <!-- Shibboleth Extensions Object providers -->
+    <ObjectProviders>
+    
+        <!-- DelegationPolicy provider -->
+        <ObjectProvider qualifiedName="shibdel:DelegationPolicy">
+            <BuilderClass className="net.shibboleth.idp.saml.xmlobject.impl.DelegationPolicyBuilder"/>
+            <MarshallingClass className="net.shibboleth.idp.saml.xmlobject.impl.DelegationPolicyMarshaller"/>
+            <UnmarshallingClass className="net.shibboleth.idp.saml.xmlobject.impl.DelegationPolicyUnmarshaller"/>
+        </ObjectProvider>
+		
+        <!-- Scope provider -->
+        <ObjectProvider qualifiedName="shibmd:Scope">
+            <BuilderClass className="net.shibboleth.idp.saml.xmlobject.impl.ScopeBuilder"/>
+            <MarshallingClass className="net.shibboleth.idp.saml.xmlobject.impl.ScopeMarshaller"/>
+            <UnmarshallingClass className="net.shibboleth.idp.saml.xmlobject.impl.ScopeUnmarshaller"/>
+        </ObjectProvider>
+        
+        <!-- KeyAuthority provider -->
+        <ObjectProvider qualifiedName="shibmd:KeyAuthority">
+            <BuilderClass className="net.shibboleth.idp.saml.xmlobject.impl.KeyAuthorityBuilder"/>
+            <MarshallingClass className="net.shibboleth.idp.saml.xmlobject.impl.KeyAuthorityMarshaller"/>
+            <UnmarshallingClass className="net.shibboleth.idp.saml.xmlobject.impl.KeyAuthorityUnmarshaller"/>
+        </ObjectProvider>
+        
+        <!-- ScopedValue provider -->
+        <ObjectProvider qualifiedName="encoder:ScopedValue">
+            <BuilderClass className="net.shibboleth.idp.saml.xmlobject.impl.ScopedValueBuilder"/>
+            <MarshallingClass className="net.shibboleth.idp.saml.xmlobject.impl.ScopedValueMarshaller"/>
+            <UnmarshallingClass className="net.shibboleth.idp.saml.xmlobject.impl.ScopedValueUnmarshaller"/>
+        </ObjectProvider>
+        
+    </ObjectProviders>
+</XMLTooling>

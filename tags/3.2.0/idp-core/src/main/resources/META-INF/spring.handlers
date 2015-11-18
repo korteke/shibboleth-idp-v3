@@ -1,0 +1,1 @@
+urn\:mace\:shibboleth\:2.0\:services = net.shibboleth.idp.spring.service.ServiceNamespaceHandler

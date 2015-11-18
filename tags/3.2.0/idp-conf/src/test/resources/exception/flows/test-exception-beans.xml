@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+    default-init-method="initialize" default-destroy-method="destroy">
+
+    <bean class="net.shibboleth.ext.spring.config.IdentifiableBeanPostProcessor" />
+
+    <bean id="InitializeProfileRequestContext"
+        class="net.shibboleth.idp.profile.impl.InitializeProfileRequestContext"
+        scope="prototype" p:profileId="test_flow" />
+
+    <bean id="ThrowException"
+        class="net.shibboleth.idp.test.flows.exception.ThrowException" scope="prototype"
+        c:commit="false" />
+
+    <bean id="ThrowExceptionAfterResponse"
+        class="net.shibboleth.idp.test.flows.exception.ThrowException" scope="prototype"
+        c:commit="true" />
+
+</beans>

@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<EntitiesDescriptor 
+   xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+   xmlns:ds="http://www.w3.org/2000/09/xmldsig#" 
+   xmlns:elab="http://eduserv.org.uk/labels" 
+   xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol"
+   xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init" 
+   xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi" 
+   xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" 
+   xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" 
+   xmlns:ukfedlabel="http://ukfederation.org.uk/2006/11/label" 
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<EntityDescriptor entityID="https://swamid.user.uu.se/idp/shibboleth">
+
+<Extensions>
+  <mdrpi:RegistrationInfo registrationAuthority="http://www.swamid.se/">
+    <mdrpi:RegistrationPolicy xml:lang="en">http://www.swamid.se/download/18.248ad5af12aa8136533800012293/SWAMID+Metadata+Registration+Practice+Statement-20110714.pdf</mdrpi:RegistrationPolicy>
+  </mdrpi:RegistrationInfo>
+</Extensions>
+<IDPSSODescriptor protocolSupportEnumeration="urn:mace:shibboleth:1.0 urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+	<Extensions>
+	<shibmd:Scope regexp="false">user.uu.se</shibmd:Scope>
+	<mdui:UIInfo>
+		<mdui:DisplayName xml:lang="sv">Uppsala universitet</mdui:DisplayName>
+		<mdui:DisplayName xml:lang="en">Uppsala University</mdui:DisplayName>
+		<mdui:Description xml:lang="sv">Identity Provider för anställda, studenter och övriga verksamma vid Uppsala universitet.</mdui:Description>
+		<mdui:Description xml:lang="en">The Uppsala University Identity Provider is used by employees and students at the university.</mdui:Description>
+		<mdui:InformationURL xml:lang="sv">https://cas.user.uu.se/cas/om.html</mdui:InformationURL>
+		<mdui:InformationURL xml:lang="en">https://cas.user.uu.se/cas/about.html</mdui:InformationURL>
+		<mdui:Logo height="125" width="125">https://cas.user.uu.se/cas/uu_img/125_uu_logo_white.gif</mdui:Logo>
+	</mdui:UIInfo>
+	<mdui:DiscoHints>
+		<mdui:DomainHint>uu.se</mdui:DomainHint>
+		<mdui:IPHint>130.238.0.0/18</mdui:IPHint>
+		<mdui:IPHint>130.238.64.0/19</mdui:IPHint>
+		<mdui:IPHint>130.238.128.0/17</mdui:IPHint>
+		<mdui:IPHint>130.242.96.0/20</mdui:IPHint>
+		<mdui:IPHint>130.243.128.0/17</mdui:IPHint>
+		<mdui:IPHint>212.25.130.0/24</mdui:IPHint>
+		<mdui:IPHint>212.25.144.0/21</mdui:IPHint>
+		<mdui:IPHint>2001:6b0:B::/48</mdui:IPHint>
+		<mdui:IPHint>2001:6b0:C::/48</mdui:IPHint>
+		<mdui:GeolocationHint>geo:59.857583,17.629500</mdui:GeolocationHint>
+	</mdui:DiscoHints>
+	</Extensions>
+	<KeyDescriptor use="signing">
+	<ds:KeyInfo>
+		<ds:X509Data>
+		<ds:X509Certificate>
+MIIDMDCCAhigAwIBAgIVAPqNghQPfCgNNR69QmGvhnv2+MJSMA0GCSqGSIb3DQEB
+BQUAMBwxGjAYBgNVBAMTEXN3YW1pZC51c2VyLnV1LnNlMB4XDTEwMDIyMzEyMzg1
+M1oXDTMwMDIyMzEyMzg1M1owHDEaMBgGA1UEAxMRc3dhbWlkLnVzZXIudXUuc2Uw
+ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC0rygeUgY9WEbkLe+IWLwo
+BF1qc8RA0kusBjjaw0Oxz03yxde5xqimaajD4J+qPIusKiyxTbc+9EwbNuuqFjxd
+u8orHU1rm+yMsMqnNOC1SQWEkMIVEPs4H4x6oVmKptDiXiY7yRhA0cRXr5RHulbw
+W2JCV+2yjOYlbacHJilmq2Qne6jqfcGpeFkNrNJsQrPTF396s3xt2+47GKpDC96U
+Ts8/3S2B9IWGnhdTTPSzk71bIClX+rPlGoK2mtfZ83SNJO5/vWze7Onslp5hfYxY
+gseuGLf1knlRLAVAeY7mbbwdNVUa/0MM0aRYp5N7XLRhUL2rHE7n/mX25k1S5pnT
+AgMBAAGjaTBnMEYGA1UdEQQ/MD2CEXN3YW1pZC51c2VyLnV1LnNlhihodHRwczov
+L3N3YW1pZC51c2VyLnV1LnNlL2lkcC9zaGliYm9sZXRoMB0GA1UdDgQWBBRF76Ds
+kiLuwuqhAdDXiefnXgsEeTANBgkqhkiG9w0BAQUFAAOCAQEAVkgHOAmDQh0f85ZQ
+qkuSu8h3RYKWbd/bPGDRtoJuoo/AM3OHAo2iMndMNS37B0MF0ethPU3t5mjHl+gx
+HDHEdG/3q2daaPLeehp46CXR1QLyYYB32pJpZyf85lCmtdXf8UZC682n3gYCL2k0
+Lg5a8sRosZsnCPolLGLyy9OPcmjTQPQhO7QHH6fMjm3ob3Hyfdbuyw/J/CRJp8Rj
+lC2c5ZX/5/3+uelyIlLOK5N1daJ3oYtSooXIkaAa8GRQR6C/UAfrp41cBuclYRzW
+L+FrdTBecYrIv0m4n8mAdQeJPBH7G/4mg+FFHS8gqf97m3JPwtGlF10V5KVt5jhl
+2DlT+A==
+</ds:X509Certificate>
+		</ds:X509Data>
+	</ds:KeyInfo>
+	</KeyDescriptor>
+	<ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding" Location="https://swamid.user.uu.se:8443/idp/profile/SAML1/SOAP/ArtifactResolution" index="1"/>
+	<ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://swamid.user.uu.se:8443/idp/profile/SAML2/SOAP/ArtifactResolution" index="2"/>
+	<NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
+	<NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+	<SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="https://swamid.user.uu.se/idp/profile/Shibboleth/SSO"/>
+	<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://swamid.user.uu.se/idp/profile/SAML2/POST/SSO"/>
+	<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://swamid.user.uu.se/idp/profile/SAML2/POST-SimpleSign/SSO"/>
+	<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://swamid.user.uu.se/idp/profile/SAML2/Redirect/SSO"/>
+</IDPSSODescriptor>
+<AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+	<Extensions>
+	<shibmd:Scope regexp="false">user.uu.se</shibmd:Scope>
+	</Extensions>
+	<KeyDescriptor use="signing">
+	<ds:KeyInfo>
+		<ds:X509Data>
+		<ds:X509Certificate>
+MIIDMDCCAhigAwIBAgIVAPqNghQPfCgNNR69QmGvhnv2+MJSMA0GCSqGSIb3DQEB
+BQUAMBwxGjAYBgNVBAMTEXN3YW1pZC51c2VyLnV1LnNlMB4XDTEwMDIyMzEyMzg1
+M1oXDTMwMDIyMzEyMzg1M1owHDEaMBgGA1UEAxMRc3dhbWlkLnVzZXIudXUuc2Uw
+ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC0rygeUgY9WEbkLe+IWLwo
+BF1qc8RA0kusBjjaw0Oxz03yxde5xqimaajD4J+qPIusKiyxTbc+9EwbNuuqFjxd
+u8orHU1rm+yMsMqnNOC1SQWEkMIVEPs4H4x6oVmKptDiXiY7yRhA0cRXr5RHulbw
+W2JCV+2yjOYlbacHJilmq2Qne6jqfcGpeFkNrNJsQrPTF396s3xt2+47GKpDC96U
+Ts8/3S2B9IWGnhdTTPSzk71bIClX+rPlGoK2mtfZ83SNJO5/vWze7Onslp5hfYxY
+gseuGLf1knlRLAVAeY7mbbwdNVUa/0MM0aRYp5N7XLRhUL2rHE7n/mX25k1S5pnT
+AgMBAAGjaTBnMEYGA1UdEQQ/MD2CEXN3YW1pZC51c2VyLnV1LnNlhihodHRwczov
+L3N3YW1pZC51c2VyLnV1LnNlL2lkcC9zaGliYm9sZXRoMB0GA1UdDgQWBBRF76Ds
+kiLuwuqhAdDXiefnXgsEeTANBgkqhkiG9w0BAQUFAAOCAQEAVkgHOAmDQh0f85ZQ
+qkuSu8h3RYKWbd/bPGDRtoJuoo/AM3OHAo2iMndMNS37B0MF0ethPU3t5mjHl+gx
+HDHEdG/3q2daaPLeehp46CXR1QLyYYB32pJpZyf85lCmtdXf8UZC682n3gYCL2k0
+Lg5a8sRosZsnCPolLGLyy9OPcmjTQPQhO7QHH6fMjm3ob3Hyfdbuyw/J/CRJp8Rj
+lC2c5ZX/5/3+uelyIlLOK5N1daJ3oYtSooXIkaAa8GRQR6C/UAfrp41cBuclYRzW
+L+FrdTBecYrIv0m4n8mAdQeJPBH7G/4mg+FFHS8gqf97m3JPwtGlF10V5KVt5jhl
+2DlT+A==
+</ds:X509Certificate>
+		</ds:X509Data>
+	</ds:KeyInfo>
+	</KeyDescriptor>
+	<AttributeService Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding" Location="https://swamid.user.uu.se:8443/idp/profile/SAML1/SOAP/AttributeQuery"/>
+	<AttributeService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://swamid.user.uu.se:8443/idp/profile/SAML2/SOAP/AttributeQuery"/>
+	<NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
+	<NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+</AttributeAuthorityDescriptor>
+
+
+<Organization>
+	<OrganizationName xml:lang="en">UU</OrganizationName>
+	<OrganizationDisplayName xml:lang="en">Uppsala universitet</OrganizationDisplayName>
+	<OrganizationURL xml:lang="en">http://www.uu.se</OrganizationURL>
+</Organization><ContactPerson contactType="technical">
+	<Company>Uppsala universitet</Company>
+	<SurName>AKKA SAML2</SurName>
+	<EmailAddress>mailto:akka-datordrift@its.uu.se</EmailAddress>
+</ContactPerson></EntityDescriptor>
+
+
+<EntityDescriptor entityID="https://wiki.ligo.org/shibboleth-sp">
+<Extensions>
+		<mdrpi:RegistrationInfo registrationAuthority="https://incommon.org"/>
+
+</Extensions>
+<SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+	<Extensions>
+	<idpdisc:DiscoveryResponse Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://wiki.ligo.org/Shibboleth.sso/Login" index="1"/>
+	<mdui:UIInfo>
+		<mdui:DisplayName xml:lang="en">LIGO Wiki</mdui:DisplayName>
+		<mdui:Description xml:lang="en">Primary LIGO Scientific Collaboration wiki</mdui:Description>
+		<mdui:InformationURL xml:lang="en">https://wiki.ligo.org/Main/SPInformationURL</mdui:InformationURL>
+		<mdui:PrivacyStatementURL xml:lang="en">https://dcc.ligo.org/cgi-bin/DocDB/ShowDocument?docid=89243</mdui:PrivacyStatementURL>
+		<mdui:Logo height="60" width="80" xml:lang="en">https://login.ligo.org/SAML2/metadata/ui/ligologo80x60.png</mdui:Logo>
+	</mdui:UIInfo>
+	</Extensions>
+	<KeyDescriptor>
+	<ds:KeyInfo>
+		<ds:X509Data>
+<!-- Serial No. 1, expires on Mon Feb  3 20:02:10 2020 GMT -->
+		<ds:X509Certificate>
+MIIEVjCCAz6gAwIBAgIBATANBgkqhkiG9w0BAQUFADCBhzETMBEGCgmSJomT8ixk
+ARkWA29yZzEUMBIGCgmSJomT8ixkARkWBGxpZ28xDTALBgNVBAoTBExJR08xIDAe
+BgNVBAsTF0NlcnRpZmljYXRlIEF1dGhvcml0aWVzMRUwEwYDVQQLEwxXZWIgU2Vy
+dmljZXMxEjAQBgNVBAMTCUxJR08gQ0EgMTAeFw0xMDAyMDMyMDAyMTBaFw0yMDAy
+MDMyMDAyMTBaMGkxEzARBgoJkiaJk/IsZAEZFgNvcmcxFDASBgoJkiaJk/IsZAEZ
+FgRsaWdvMQ0wCwYDVQQKEwRMSUdPMRUwEwYDVQQLEwxXZWIgU2VydmljZXMxFjAU
+BgNVBAMTDXdpa2kubGlnby5vcmcwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+AoIBAQCsizfsa9/YZeLqX0vLLrPxFG0M1cRzSOGOpfxwo3iYPbsw08uFuYjufCaT
+fDQr9T+ZimAlpBP4+yETnYa9R/A65Zmv7ydyge8SfKIdMRY2U23PSBQKMRTp/EdC
++LFAVZQWlKNmfb9ajrFo776dWU1ZU9NHFkX3dMTeH+BI+kRIMZnlPp7urSutuLMj
+DhoT41XufOUeJUwFm+7g1lf+cbCSPmgRGEa46gHBI+572mOCck7GN0+Zj0H74o5i
+esZrMDf08E6qsH6KnahuMuZH22L25KHULq4P9ByNFGDScvgj34HlLo91J4SzHTjS
+wx/JNBwg4V1bV4o9SGvCrRLBrSr/AgMBAAGjgekwgeYwDAYDVR0TAQH/BAIwADAO
+BgNVHQ8BAf8EBAMCBLAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMBkG
+A1UdIAQSMBAwDgYMKwYBBAGB+kYCAQIBMDkGA1UdHwQyMDAwLqAsoCqGKGh0dHA6
+Ly9jYS5saWdvLm9yZy81NDE0MDRjMy81NDE0MDRjMy5jcmwwHwYDVR0jBBgwFoAU
+Um7de6pvhVwIItOXn61/I1YeatEwMAYDVR0RBCkwJ4INd2lraS5saWdvLm9yZ4EW
+c2NvdHQua29yYW5kYUBMSUdPLk9SRzANBgkqhkiG9w0BAQUFAAOCAQEAnrDCVAKE
+sv/StHC2c6VwYtrW14rgn/gmOYTWvfioYmteCuS5bqADuCN1qdNxi5nHsgXhX7UE
+aaLeOKBqhNbqu+YiS/va0Kk3Azq7BS+KC0iBhHMM+ZZ86jl93ItV/xsuBc5v/AWx
+jqqsEN8CN35bvZaNwm0mBARfhVll2b2T3r80mdmVbekcJKEry4H0ogGgYWNkcBt3
+rlVaEUap5FC3UzyTmKCkL65y0emhsR+6CEnmyTq5qOlMeyrgKlIJ8YXf/xj6oUaD
+6Zqf7DNzVW6gez9VkUlhivSgXaAfAZ9aJJn/aOsK3BUjJTmUCvps1F6THRr4tc0+
+fMO5DI9dhv07eg==
+</ds:X509Certificate>
+		</ds:X509Data>
+	</ds:KeyInfo>
+	</KeyDescriptor>
+	<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://wiki.ligo.org/Shibboleth.sso/SAML2/POST" index="1"/>
+	<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://wiki.ligo.org/Shibboleth.sso/SAML2/POST-SimpleSign" index="2"/>
+	<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://wiki.ligo.org/Shibboleth.sso/SAML2/Artifact" index="3"/>
+	<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://wiki.ligo.org/Shibboleth.sso/SAML2/ECP" index="4"/>
+	<AttributeConsumingService index="1">
+	<ServiceName xml:lang="en">LIGO Wiki</ServiceName>
+	<ServiceDescription xml:lang="en">Primary LIGO Scientific Collaboration wiki</ServiceDescription>
+	<RequestedAttribute FriendlyName="eduPersonPrincipalName" Name="urn:mace:dir:attribute-def:eduPersonPrincipalName" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri"/>
+	<RequestedAttribute FriendlyName="eduPersonPrincipalName" Name="urn:oid:1.3.6.1.4.1.5923.1.1.1.6" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+	<RequestedAttribute FriendlyName="mail" Name="urn:mace:dir:attribute-def:mail" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri"/>
+	<RequestedAttribute FriendlyName="mail" Name="urn:oid:0.9.2342.19200300.100.1.3" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+	</AttributeConsumingService>
+</SPSSODescriptor>
+<Organization>
+	<OrganizationName xml:lang="en">LIGO Scientific Collaboration</OrganizationName>
+	<OrganizationDisplayName xml:lang="en">LIGO Scientific Collaboration</OrganizationDisplayName>
+	<OrganizationURL xml:lang="en">http://www.ligo.caltech.edu/</OrganizationURL>
+</Organization>
+
+
+
+</EntityDescriptor>
+
+<EntityDescriptor entityID="https://sp-test.swamid.se/shibboleth">
+<Extensions><mdrpi:RegistrationInfo registrationAuthority="http://www.swamid.se/"><mdrpi:RegistrationPolicy xml:lang="en">http://www.swamid.se/download/18.248ad5af12aa8136533800012293/SWAMID+Metadata+Registration+Practice+Statement-20110714.pdf</mdrpi:RegistrationPolicy></mdrpi:RegistrationInfo>
+
+</Extensions>
+<SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:1.0:protocol">
+	<Extensions>
+	<idpdisc:DiscoveryResponse Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://sp-test.swamid.se/Shibboleth.sso/DS" index="1"/>
+	<idpdisc:DiscoveryResponse Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://sp-test.swamid.se/Shibboleth.sso/DS/ds.swamid.se" index="2"/>
+	<idpdisc:DiscoveryResponse Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://sp-test.swamid.se/Shibboleth.sso/DS/ds.sunet.se" index="3"/>
+	<idpdisc:DiscoveryResponse Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://sp-test.swamid.se/Shibboleth.sso/DS/test-ds.nordu.net" index="4"/>
+	<idpdisc:DiscoveryResponse Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://sp-test.swamid.se/Shibboleth.sso/DS/kalmar2" index="5"/>
+	<mdui:UIInfo>
+		<mdui:DisplayName xml:lang="sv">SWAMID Test SP</mdui:DisplayName>
+		<mdui:DisplayName xml:lang="en">SWAMID Test SP</mdui:DisplayName>
+		<mdui:Description xml:lang="sv">Detta är en applikation som låter dig testa federerad inloggning.</mdui:Description>
+		<mdui:Description xml:lang="en">This is an application for testing federated authentication.</mdui:Description>
+		<mdui:InformationURL xml:lang="sv">http://www.swamid.se</mdui:InformationURL>
+		<mdui:InformationURL xml:lang="en">http://www.swamid.se</mdui:InformationURL>
+	</mdui:UIInfo>
+	</Extensions>
+	<KeyDescriptor use="signing">
+	<ds:KeyInfo>
+
+		<ds:X509Data>
+
+		<ds:X509Certificate>
+MIIC+jCCAeKgAwIBAgIJAO0UNmz1orzrMA0GCSqGSIb3DQEBBQUAMBwxGjAYBgNV
+BAMTEXNwLXRlc3Quc3dhbWlkLnNlMB4XDTA5MTAyNzE0NTkzOFoXDTE5MTAyNTE0
+NTkzOFowHDEaMBgGA1UEAxMRc3AtdGVzdC5zd2FtaWQuc2UwggEiMA0GCSqGSIb3
+DQEBAQUAA4IBDwAwggEKAoIBAQC9292zBRgCYnJeviTmWQ9gDjqjtQwnvzTpZMVa
+o2gmEb8NQOPwGqDAZ8kHhhjsqXd37VjOcQc5KyfxdKnwS8zzb0GFqTyVXtJ1wjZb
+WPkOgRw1c0u7RuRgzn/vWMDLIRtymm2stX2hu1E2qctQ2zSEhiNrWdMNNArh/IKP
++MNT1a1w5QR3fbv7/Q+7T3VF2vyzFMo44FDId9kApN3/TSnJRaQ0tQQBgnZtrIAk
+vjR6B/R9qowuwK/0QIifM1KrVT9OYHA0GP708IAdEzzuzLU5vyJuAzDhBNirPtFv
+QcAKI8RfYBiwdJ29QkMAWHlNW3oP8KpUJzJ3r3KOcIHMwfSbAgMBAAGjPzA9MBwG
+A1UdEQQVMBOCEXNwLXRlc3Quc3dhbWlkLnNlMB0GA1UdDgQWBBS0j9yIqP5DvTEl
+YHt7Ugh3BTVX/TANBgkqhkiG9w0BAQUFAAOCAQEANL4WmGSMJws0XzNxcodD3TVV
+yvLOLmFy8cNhB7cmz3rqoZebUqN9yWaCmZjCOMQ8Ghw++ITk/Ol0uXuCf7vKvXpW
+7AEPL12mGVfH82PhyxYnY9BZNpfAsGWpM1Nvfz7AOkngD/G8Ws2+Bf4xS4PVHzgm
+yEth2XQtHlSquOj2abA/wjguZvN0PGFUJl+ZxXxZ5mkyFmjQ+wnvF1BUlMD7qBF8
+WUA9TiYEiXgsASTgW/F038f4VNecqrBpJHU4TILmEtioGEFVLipU8huAzbcBCPYb
+0z3axBqiW0bRmgvql97lV3HRRkwGKLV1T8oiau31qQU2zzBt6jC2AQgXWjjvSg==
+</ds:X509Certificate>
+		</ds:X509Data>
+	</ds:KeyInfo>
+	</KeyDescriptor>
+	<KeyDescriptor use="encryption">
+	<ds:KeyInfo>
+
+		<ds:X509Data>
+
+		<ds:X509Certificate>
+MIIC+jCCAeKgAwIBAgIJAO0UNmz1orzrMA0GCSqGSIb3DQEBBQUAMBwxGjAYBgNV
+BAMTEXNwLXRlc3Quc3dhbWlkLnNlMB4XDTA5MTAyNzE0NTkzOFoXDTE5MTAyNTE0
+NTkzOFowHDEaMBgGA1UEAxMRc3AtdGVzdC5zd2FtaWQuc2UwggEiMA0GCSqGSIb3
+DQEBAQUAA4IBDwAwggEKAoIBAQC9292zBRgCYnJeviTmWQ9gDjqjtQwnvzTpZMVa
+o2gmEb8NQOPwGqDAZ8kHhhjsqXd37VjOcQc5KyfxdKnwS8zzb0GFqTyVXtJ1wjZb
+WPkOgRw1c0u7RuRgzn/vWMDLIRtymm2stX2hu1E2qctQ2zSEhiNrWdMNNArh/IKP
++MNT1a1w5QR3fbv7/Q+7T3VF2vyzFMo44FDId9kApN3/TSnJRaQ0tQQBgnZtrIAk
+vjR6B/R9qowuwK/0QIifM1KrVT9OYHA0GP708IAdEzzuzLU5vyJuAzDhBNirPtFv
+QcAKI8RfYBiwdJ29QkMAWHlNW3oP8KpUJzJ3r3KOcIHMwfSbAgMBAAGjPzA9MBwG
+A1UdEQQVMBOCEXNwLXRlc3Quc3dhbWlkLnNlMB0GA1UdDgQWBBS0j9yIqP5DvTEl
+YHt7Ugh3BTVX/TANBgkqhkiG9w0BAQUFAAOCAQEANL4WmGSMJws0XzNxcodD3TVV
+yvLOLmFy8cNhB7cmz3rqoZebUqN9yWaCmZjCOMQ8Ghw++ITk/Ol0uXuCf7vKvXpW
+7AEPL12mGVfH82PhyxYnY9BZNpfAsGWpM1Nvfz7AOkngD/G8Ws2+Bf4xS4PVHzgm
+yEth2XQtHlSquOj2abA/wjguZvN0PGFUJl+ZxXxZ5mkyFmjQ+wnvF1BUlMD7qBF8
+WUA9TiYEiXgsASTgW/F038f4VNecqrBpJHU4TILmEtioGEFVLipU8huAzbcBCPYb
+0z3axBqiW0bRmgvql97lV3HRRkwGKLV1T8oiau31qQU2zzBt6jC2AQgXWjjvSg==
+</ds:X509Certificate>
+		</ds:X509Data>
+	</ds:KeyInfo>
+	</KeyDescriptor>
+	<ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://sp-test.swamid.se/Shibboleth.sso/Artifact/SOAP" index="1"/>
+	<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://sp-test.swamid.se/Shibboleth.sso/SLO/SOAP"/>
+	<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://sp-test.swamid.se/Shibboleth.sso/SLO/Redirect"/>
+	<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://sp-test.swamid.se/Shibboleth.sso/SLO/POST"/>
+	<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://sp-test.swamid.se/Shibboleth.sso/SLO/Artifact"/>
+	<ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://sp-test.swamid.se/Shibboleth.sso/NIM/SOAP"/>
+	<ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://sp-test.swamid.se/Shibboleth.sso/NIM/Redirect"/>
+	<ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://sp-test.swamid.se/Shibboleth.sso/NIM/POST"/>
+	<ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://sp-test.swamid.se/Shibboleth.sso/NIM/Artifact"/>
+	<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://sp-test.swamid.se/Shibboleth.sso/SAML2/POST" index="1"/>
+	<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://sp-test.swamid.se/Shibboleth.sso/SAML2/POST-SimpleSign" index="2"/>
+	<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://sp-test.swamid.se/Shibboleth.sso/SAML2/Artifact" index="3"/>
+	<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://sp-test.swamid.se/Shibboleth.sso/SAML2/ECP" index="4"/>
+	<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="https://sp-test.swamid.se/Shibboleth.sso/SAML/POST" index="5"/>
+	<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01" Location="https://sp-test.swamid.se/Shibboleth.sso/SAML/Artifact" index="6"/>
+</SPSSODescriptor>
+<Organization>
+	<OrganizationName xml:lang="en">SWAMID</OrganizationName>
+	<OrganizationDisplayName xml:lang="en">Swedish Academic Identity Federation (SWAMID)</OrganizationDisplayName>
+	<OrganizationURL xml:lang="en">http://www.swamid.se</OrganizationURL>
+</Organization><ContactPerson contactType="technical"><EmailAddress>mailto:operations@swamid.se</EmailAddress></ContactPerson></EntityDescriptor>
+
+<EntityDescriptor ID="uk001502" entityID="https://issues.shibboleth.net/shibboleth">
+	<!--
+		This is a Shibboleth Federated Issue Tracking Shibboleth SP for JISC Collections and Janet Limited. 
+	-->
+	<Extensions>
+<!-- REMOVED FOR TESTING		<mdrpi:RegistrationInfo registrationAuthority="http://ukfederation.org.uk"/>  -->
+		<ukfedlabel:UKFederationMember/>
+
+
+		<DigestMethod xmlns="urn:oasis:names:tc:SAML:metadata:algsupport" Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/>
+		<DigestMethod xmlns="urn:oasis:names:tc:SAML:metadata:algsupport" Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha384"/>
+		<DigestMethod xmlns="urn:oasis:names:tc:SAML:metadata:algsupport" Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+		<DigestMethod xmlns="urn:oasis:names:tc:SAML:metadata:algsupport" Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha224"/>
+		<DigestMethod xmlns="urn:oasis:names:tc:SAML:metadata:algsupport" Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+		<SigningMethod xmlns="urn:oasis:names:tc:SAML:metadata:algsupport" Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/>
+		<SigningMethod xmlns="urn:oasis:names:tc:SAML:metadata:algsupport" Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha384"/>
+		<SigningMethod xmlns="urn:oasis:names:tc:SAML:metadata:algsupport" Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+		<SigningMethod xmlns="urn:oasis:names:tc:SAML:metadata:algsupport" Algorithm="http://www.w3.org/2009/xmldsig11#dsa-sha256"/>
+		<SigningMethod xmlns="urn:oasis:names:tc:SAML:metadata:algsupport" Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+		<SigningMethod xmlns="urn:oasis:names:tc:SAML:metadata:algsupport" Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+	</Extensions>
+	<SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:1.0:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+		<Extensions>
+			<init:RequestInitiator Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/EDS"/>
+			<init:RequestInitiator Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/Login"/>
+			<idpdisc:DiscoveryResponse Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/EDS" index="1"/>
+			<idpdisc:DiscoveryResponse Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/Login" index="2"/>
+			<mdui:UIInfo>
+				<mdui:DisplayName xml:lang="en">Shibboleth.net Issue Tracking</mdui:DisplayName>
+				<mdui:Description xml:lang="en">
+					The issue (improvements, bugs, tasks) tracking system used by the Shibboleth project.
+					Unauthenticated users may view submitted issues.  Authenticated users may submit new
+					issues and comment on existing ones.
+				</mdui:Description>
+				<mdui:Logo height="82" width="64">https://shibboleth.net/images/gryphon_64x82.png</mdui:Logo>
+			</mdui:UIInfo>
+		</Extensions>
+		<KeyDescriptor>
+			<ds:KeyInfo>
+				<ds:X509Data>
+					<ds:X509Certificate>
+						MIIDRjCCAi6gAwIBAgIJAPpEsjMpUtq9MA0GCSqGSIb3DQEBBQUAMFExEzARBgoJ
+						kiaJk/IsZAEZFgNuZXQxGjAYBgoJkiaJk/IsZAEZFgpzaGliYm9sZXRoMR4wHAYD
+						VQQDExVpc3N1ZXMuc2hpYmJvbGV0aC5uZXQwHhcNMTEwMTA3MTg0MTQ4WhcNMTQw
+						MTA2MTg0MTQ4WjBRMRMwEQYKCZImiZPyLGQBGRYDbmV0MRowGAYKCZImiZPyLGQB
+						GRYKc2hpYmJvbGV0aDEeMBwGA1UEAxMVaXNzdWVzLnNoaWJib2xldGgubmV0MIIB
+						IjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtb4jIloWGvHJsSeq0PMjkWDA
+						+hseZ6/6/cEJKPk245f6hktC2k3z0AqJL8Kw9OudOjDx2op2jKm45TuIA46ti6VP
+						f4stLIi7mO1B4A6jTWThCwU0DjMCwBXLhANdBQloyUYJU/usN8RBXlPnWZAV1dVb
+						ygb7GUorkMON+wnFd7nhBePmQdJfbsqvKN8MykWfQ56chS+0lCYhyT7qql2bskJ4
+						y621WSo47php2NyyU1KNcaFBLoao+UTH7KZ9qHOWJyGJGuWKwgZmCiVd0LQhWywP
+						3M/JxZvpTr2Bs/J5d8BzZGSFUaHrVcPzIX+5c3sdK4d1wXUur1XE++bh9F9TjwID
+						AQABoyEwHzAdBgNVHQ4EFgQUHtV8GWr64AIUV634b9YBlMEpHOwwDQYJKoZIhvcN
+						AQEFBQADggEBAEzcImXrjUNZF/8AbpcDOqlBO/neTxE0Lcnv4HevHmjqVaemxXK5
+						E2pAIJexcyCnp4EV7EK+5hpkr5J26iESHr3w4u/BvUvgSLNjlrIFw58mpBM9f+Qe
+						q5bQWff+dmkhrxdhaIVraH70bsuxVKwycmUS0L11nOTxAQbh85wJbIwqH4fKAzQm
+						jPp4VbLesRmUyDV+fY4YrZXHYosfuZLEexJgmgcRgZFug6NbWTclKnxKPhquYjem
+						oHlA8E0OvkQswalMPLfSzhgftYNHohjdQ2oMBUC4uMk9T+r7ZeKkeCiXIzUzEh8M
+						uQfWf/K4Fj4CqCzMOU3mmvy7ricwz/4Kzas=
+					</ds:X509Certificate>
+				</ds:X509Data>
+			</ds:KeyInfo>
+
+
+
+
+
+
+		</KeyDescriptor>
+		<ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/Artifact/SOAP" index="0"/>
+		<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SLO/Artifact"/>
+		<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SLO/POST"/>
+		<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SLO/Redirect"/>
+		<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SLO/SOAP"/>
+		<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SAML/Artifact" index="0"/>
+		<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SAML/POST" index="1"/>
+		<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SAML2/Artifact" index="2"/>
+		<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SAML2/ECP" index="3"/>
+		<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SAML2/POST" index="4"/>
+		<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://issues.shibboleth.net/jira/Shibboleth.sso/SAML2/POST-SimpleSign" index="5"/>
+		<AttributeConsumingService index="1">
+			<ServiceName xml:lang="en">Shibboleth.net Issue Tracking</ServiceName>
+			<ServiceDescription xml:lang="en">
+				The issue (improvements, bugs, tasks) tracking system used by the Shibboleth project.
+				Unauthenticated users may view submitted issues.  Authenticated users may submit new
+				issues and comment on existing ones.
+			</ServiceDescription>
+			<RequestedAttribute FriendlyName="eduPersonPrincipalName" Name="urn:oid:1.3.6.1.4.1.5923.1.1.1.6" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+			<RequestedAttribute FriendlyName="eduPersonTargetedID" Name="urn:oid:1.3.6.1.4.1.5923.1.1.1.10" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+			<RequestedAttribute FriendlyName="mail" Name="urn:oid:0.9.2342.19200300.100.1.3" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+			<RequestedAttribute FriendlyName="displayName" Name="urn:oid:2.16.840.1.113730.3.1.241" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+			<RequestedAttribute FriendlyName="cn" Name="urn:oid:2.5.4.3" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+			<RequestedAttribute FriendlyName="eduPersonPrincipalName" Name="urn:mace:dir:attribute-def:eduPersonPrincipalName" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri"/>
+			<RequestedAttribute FriendlyName="eduPersonTargetedID" Name="urn:oid:1.3.6.1.4.1.5923.1.1.1.10" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri"/>
+			<RequestedAttribute FriendlyName="mail" Name="urn:mace:dir:attribute-def:mail" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri"/>
+			<RequestedAttribute FriendlyName="displayName" Name="urn:mace:dir:attribute-def:displayName" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri"/>
+			<RequestedAttribute FriendlyName="cn" Name="urn:mace:dir:attribute-def:cn" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri"/>
+		</AttributeConsumingService>
+	</SPSSODescriptor>
+	<Organization>
+		<OrganizationName xml:lang="en">JISC Collections and Janet Limited</OrganizationName>
+		<OrganizationDisplayName xml:lang="en">Shibboleth Federated Issue Tracking</OrganizationDisplayName>
+		<OrganizationURL xml:lang="en">http://www.shibboleth.net/</OrganizationURL>
+	</Organization>
+	<ContactPerson contactType="support">
+		<GivenName>Shibboleth.Net Technical Support</GivenName>
+		<EmailAddress>mailto:contact@shibboleth.net</EmailAddress>
+	</ContactPerson>
+	<ContactPerson contactType="technical">
+		<GivenName>Scott</GivenName>
+		<SurName>Cantor</SurName>
+		<EmailAddress>mailto:cantor.2@osu.edu</EmailAddress>
+	</ContactPerson>
+	<ContactPerson contactType="technical">
+		<GivenName>Ian</GivenName>
+		<SurName>Young</SurName>
+		<EmailAddress>mailto:ukfed@iay.org.uk</EmailAddress>
+	</ContactPerson>
+
+
+</EntityDescriptor>
+
+</EntitiesDescriptor>

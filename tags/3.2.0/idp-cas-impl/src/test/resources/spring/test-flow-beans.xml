@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-init-method="initialize"
+       default-destroy-method="destroy">
+
+    <bean class="net.shibboleth.ext.spring.config.IdentifiableBeanPostProcessor" />
+    <bean class="net.shibboleth.idp.profile.impl.ProfileActionBeanPostProcessor" />
+
+    <bean id="conversionService"
+          class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="net.shibboleth.ext.spring.config.DurationToLongConverter" />
+                <bean class="net.shibboleth.ext.spring.config.StringToIPRangeConverter" />
+                <bean class="net.shibboleth.ext.spring.config.BooleanToPredicateConverter" />
+                <bean class="net.shibboleth.ext.spring.config.StringBooleanToPredicateConverter" />
+                <bean class="net.shibboleth.ext.spring.config.StringToResourceConverter" />
+            </set>
+        </property>
+    </bean>
+
+    <bean id="shibboleth.StorageService"
+          class="org.opensaml.storage.impl.MemoryStorageService" />
+
+    <bean id="shibboleth.HttpServletRequest"
+          class="net.shibboleth.utilities.java.support.net.ThreadLocalHttpServletRequestProxy" />
+
+    <bean id="shibboleth.HttpServletResponse"
+          class="net.shibboleth.utilities.java.support.net.ThreadLocalHttpServletResponseProxy" />
+
+    <bean id="shibboleth.CookieManager"
+          class="net.shibboleth.utilities.java.support.net.CookieManager"
+          p:httpServletRequest-ref="shibboleth.HttpServletRequest"
+          p:httpServletResponse-ref="shibboleth.HttpServletResponse"
+          p:secure="false" />
+
+    <bean id="shibboleth.SessionIDGenerator"
+          class="net.shibboleth.utilities.java.support.security.SecureRandomIdentifierGenerationStrategy"
+          c:identifierSize="32" />
+
+    <bean id="shibboleth.SessionManager"
+          class="net.shibboleth.idp.session.impl.StorageBackedSessionManager"
+          p:cookieManager-ref="shibboleth.CookieManager"
+          p:storageService-ref="shibboleth.StorageService"
+          p:httpServletRequest-ref="shibboleth.HttpServletRequest"
+          p:httpServletResponse-ref="shibboleth.HttpServletResponse"
+          p:consistentAddress="true"
+          p:sessionTimeout="PT60M"
+          p:sessionSlop="0"
+          p:maskStorageFailure="false"
+          p:trackSPSessions="false"
+          p:secondaryServiceIndex="false"
+          p:IDGenerator-ref="shibboleth.SessionIDGenerator" />
+
+    <bean id="cas.TicketService"
+          class="net.shibboleth.idp.cas.ticket.impl.SimpleTicketService"
+          c:service-ref="shibboleth.StorageService" />
+
+    <bean id="cas.ServiceRegistry"
+          class="net.shibboleth.idp.cas.service.PatternServiceRegistry">
+        <property name="definitions">
+            <list>
+                <bean class="net.shibboleth.idp.cas.service.ServiceDefinition"
+                      c:regex="https://([A-Za-z0-9_-]+\.)*example\.org(:\d+)?/.*"
+                      p:group="allowedToProxy"
+                      p:authorizedToProxy="true" />
+                <bean class="net.shibboleth.idp.cas.service.ServiceDefinition"
+                      c:regex="http://([A-Za-z0-9_-]+\.)*example\.org(:\d+)?/.*"
+                      p:group="notAllowedToProxy"
+                      p:authorizedToProxy="false" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="cas.ProxyAuthenticator"
+          class="net.shibboleth.idp.cas.proxy.impl.HttpClientProxyAuthenticator" />
+
+
+    <!-- Flow beans -->
+    <bean id="buildProxyChainAction"
+          class="net.shibboleth.idp.cas.flow.impl.BuildProxyChainAction"
+          c:ticketService-ref="cas.TicketService" />
+
+    <bean id="buildRelyingPartyContextAction"
+          class="net.shibboleth.idp.cas.flow.impl.BuildRelyingPartyContextAction"
+          c:registry-ref="cas.ServiceRegistry"/>
+
+    <bean id="buildSAMLMetadataContextAction"
+          class="net.shibboleth.idp.cas.flow.impl.BuildSAMLMetadataContextAction" />
+
+    <bean id="checkProxyAuthorizationAction"
+          class="net.shibboleth.idp.cas.flow.impl.CheckProxyAuthorizationAction" />
+
+    <bean id="grantProxyTicketAction"
+          class="net.shibboleth.idp.cas.flow.impl.GrantProxyTicketAction"
+          c:ticketService-ref="cas.TicketService" />
+
+    <bean id="grantServiceTicketAction"
+          class="net.shibboleth.idp.cas.flow.impl.GrantServiceTicketAction"
+          c:ticketService-ref="cas.TicketService" />
+
+    <bean id="validateIdPSessionAction"
+          class="net.shibboleth.idp.cas.flow.impl.ValidateIdpSessionAction"
+          c:resolver-ref="shibboleth.SessionManager" />
+
+    <bean id="validateProxyCallbackAction"
+          class="net.shibboleth.idp.cas.flow.impl.ValidateProxyCallbackAction"
+          c:proxyAuthenticator-ref="cas.ProxyAuthenticator"
+          c:ticketService-ref="cas.TicketService" />
+
+    <bean id="validateRenewAction"
+          class="net.shibboleth.idp.cas.flow.impl.ValidateRenewAction" />
+
+    <bean id="validateTicketAction"
+          class="net.shibboleth.idp.cas.flow.impl.ValidateTicketAction"
+          c:ticketService-ref="cas.TicketService" />
+</beans>

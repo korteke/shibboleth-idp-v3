@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+    default-init-method="initialize"
+    default-destroy-method="destroy">
+
+    <bean class="net.shibboleth.idp.profile.impl.ProfileActionBeanPostProcessor" />
+    <bean class="net.shibboleth.ext.spring.config.IdentifiableBeanPostProcessor" />
+
+    <bean
+        id="IdPActionWithDefaultID"
+        class="net.shibboleth.idp.profile.impl.ProfileActionBeanPostProcessorTest$MockIdPAction"
+        scope="prototype" />
+
+    <bean
+        id="OpenSAMLActionWithDefaultID"
+        class="net.shibboleth.idp.profile.impl.ProfileActionBeanPostProcessorTest$MockOpenSAMLAction"
+        scope="prototype" />
+
+    <bean
+        id="OpenSAMLExceptionAction"
+        class="net.shibboleth.idp.profile.impl.ProfileActionBeanPostProcessorTest$MockOpenSAMLExceptionAction"
+        scope="prototype" />
+
+</beans>

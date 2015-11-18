@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+
+       default-init-method="initialize" default-destroy-method="destroy">
+
+    <bean id="shibboleth.UnverifiedRelyingParty" parent="RelyingParty">
+        <property name="profileConfigurations">
+            <list />
+        </property>
+    </bean>
+
+    <bean id="shibboleth.DefaultRelyingParty" parent="RelyingParty">
+        <property name="profileConfigurations">
+            <list>
+                <ref bean="CAS.LoginConfiguration" />
+                <ref bean="CAS.ProxyConfiguration" />
+                <ref bean="CAS.ValidateConfiguration" />
+            </list>
+        </property>
+    </bean>
+
+    <util:list id="shibboleth.RelyingPartyOverrides">
+        <bean parent="RelyingPartyByName" c:relyingPartyIds="https://alt-username.example.org/">
+            <property name="profileConfigurations">
+                <list>
+                    <ref bean="CAS.LoginConfiguration" />
+                    <ref bean="CAS.ProxyConfiguration" />
+                    <bean parent="CAS.ValidateConfiguration" p:userAttribute="mail" />
+                </list>
+            </property>
+        </bean>
+        <bean parent="RelyingPartyByName" c:relyingPartyIds="https://no-attrs.example.org/">
+            <property name="profileConfigurations">
+                <list>
+                    <ref bean="CAS.LoginConfiguration" />
+                    <ref bean="CAS.ProxyConfiguration" />
+                    <bean parent="CAS.ValidateConfiguration" p:resolveAttributes="false" />
+                </list>
+            </property>
+        </bean>
+    </util:list>
+
+</beans>

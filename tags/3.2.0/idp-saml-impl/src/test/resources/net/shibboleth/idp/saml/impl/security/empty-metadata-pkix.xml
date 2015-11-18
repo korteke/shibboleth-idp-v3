@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" Name="example.org">
+   
+   <Extensions>
+      
+      <shibmd:KeyAuthority xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" VerifyDepth="5">
+         <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+         </ds:KeyInfo>
+      </shibmd:KeyAuthority>
+      
+   </Extensions>
+
+   <EntityDescriptor entityID="http://foo.example.org/shibboleth">
+      <!-- Protocol BLUE -->
+      <IDPSSODescriptor protocolSupportEnumeration="PROTOCOL_BLUE">
+         <KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+               <ds:KeyName>foo.example.org</ds:KeyName>
+            </ds:KeyInfo>
+         </KeyDescriptor>
+         <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="https://foo.example.org/shibboleth/SSO_FOO"/>
+      </IDPSSODescriptor>
+      
+      <!-- Protocol GREEN -->
+      <IDPSSODescriptor protocolSupportEnumeration="PROTOCOL_GREEN">
+         <!-- Note no 'use' specified. -->
+         <KeyDescriptor>
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+               <ds:KeyName>CN=foo.example.org,O=Internet2</ds:KeyName>
+            </ds:KeyInfo>
+         </KeyDescriptor>
+         <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="https://foo.example.org/shibboleth/SSO_BAR"/>
+      </IDPSSODescriptor>
+      
+      <AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol">
+         <KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+               <ds:KeyName>foo.example.org</ds:KeyName>
+            </ds:KeyInfo>
+         </KeyDescriptor>
+         <AttributeService Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding" Location="https://idp.example.org:8443/shibboleth/AA"/>
+      </AttributeAuthorityDescriptor>
+      
+   </EntityDescriptor>
+   
+
+   <EntityDescriptor entityID="http://bar.example.org/shibboleth">
+      
+      <SPSSODescriptor protocolSupportEnumeration="PROTOCOL_BLUE PROTOCOL_GREEN">
+         <KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+               <ds:KeyName>bar.example.org</ds:KeyName>
+            </ds:KeyInfo>
+         </KeyDescriptor>
+         <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="https://bar.example.org/Shibboleth.sso/POST" index="0"/>
+      </SPSSODescriptor>
+      
+   </EntityDescriptor>
+
+</EntitiesDescriptor>

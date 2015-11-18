@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Licensed to the University Corporation for Advanced Internet
+     Development, Inc. (UCAID) under one or more contributor license
+     agreements.  See the NOTICE file distributed with this work for
+     additional information regarding copyright ownership. The UCAID
+     licenses this file to You under the Apache License, Version 2.0
+     (the 'License'); you may not use this file except in compliance
+     with the License.  You may obtain a copy of the License at
+     
+     http://www.apache.org/licenses/LICENSE-2.0
+     
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an 'AS IS' BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+     implied.  See the License for the specific language governing
+     permissions and limitations under the License.  -->
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+    <!-- Explicit delete behind ourselves on installs -->
+    <Fragment>
+        <ComponentGroup Id="DeleteFiles">
+            <Component Id="RemoveOldWebApp" Guid="{923639F2-93DB-4A07-A864-BB6857257900}" Win64="no" Directory="INSTALLDIR">
+                <RegistryValue Id="RemoveOldWebApp" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="RemoveOldWebApp" Value="TRUE" Type="string" KeyPath="yes" />
+                <util:RemoveFolderEx On="install" Property="OldWebAPP" />
+            </Component>
+            <Component Id="RemoveOldSystem" Guid="{F66C4612-715A-499F-ABC0-73B399AE02ED}" Win64="no" Directory="INSTALLDIR">
+                <RegistryValue Id="RemoveOldSystem" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="RemoveOldSystem" Value="TRUE" Type="string" KeyPath="yes" />
+                <util:RemoveFolderEx On="install" Property="OldSystem" />
+            </Component>
+
+            <Component Id="RemoveOldBinLib" Guid="{209E678E-C54F-49DC-9FCE-CD368991FD45}" Win64="no" Directory="INSTALLDIR">
+                <RegistryValue Id="RemoveBinLib" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="RemoveBinLib" Value="TRUE" Type="string" KeyPath="yes" />
+                <util:RemoveFolderEx On="install" Property="OldBinLib" />
+            </Component>
+
+            <Component Id="RemoveOldJettyBaseEtc" Guid="{D98798EB-445C-425B-BBAA-9992F04B67EC}" Win64="no" Directory="INSTALLDIR">
+                <RegistryValue Id="RemoveOldJettyBaseEtc" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="RemoveOldJettyBaseEtc" Value="TRUE" Type="string" KeyPath="yes" />
+                <util:RemoveFolderEx On="install" Property="OldJettyBaseEtc" />
+            </Component>
+
+            <Component Id="RemoveOldJettyBaseLib" Guid="{7360D58D-30CD-4782-A8F5-66275C4FA15B}" Win64="no" Directory="INSTALLDIR">
+                <RegistryValue Id="RemoveOldJettyBaseLib" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="RemoveOldJettyBaseLib" Value="TRUE" Type="string" KeyPath="yes" />
+                <util:RemoveFolderEx On="install" Property="OldJettyBaseLib" />
+            </Component>
+
+            <Component Id="RemoveOldJettyBaseResources" Guid="{19AE423B-7F36-491A-9FE8-C0B1216E3EF5}" Win64="no" Directory="INSTALLDIR">
+                <RegistryValue Id="RemoveJettyBaseResources" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="RemoveOldJettyBaseResources" Value="TRUE" Type="string" KeyPath="yes" />
+                <util:RemoveFolderEx On="install" Property="OldJettyBaseResources" />
+            </Component>
+
+            <Component Id="RemoveOldJettyBaseWebapps" Guid="{CE03E32C-D5B2-46E6-B337-40CF206A997F}" Win64="no" Directory="INSTALLDIR">
+                <RegistryValue Id="RemoveOldJettyBaseWebapps" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="RemoveOldJettyBaseWebapps" Value="TRUE" Type="string" KeyPath="yes" />
+                <util:RemoveFolderEx On="install" Property="OldJettyBaseWebapps" />
+            </Component>
+
+            <Component Id="RemoveJettyDir" Guid="{557F0D43-F730-4912-BFE6-1905E69644A8}" Win64="no" Directory="TARGETDIR">
+                <RegistryValue Id="RemoveJettyDir" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="JettyDir" Value="TRUE" Type="string" KeyPath="yes" />
+                <util:RemoveFolderEx On="install" Property="JettyDir" />
+            </Component>
+
+            <Component Id="RemoveProcRunDir" Guid="{B77CAD20-5CCF-4DFC-A197-59859D0DF1C8}" Win64="no" Directory="TARGETDIR">
+                <RegistryValue Id="RemoveProcRunDir" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="ProcRunDir" Value="TRUE" Type="string" KeyPath="yes" />
+                <util:RemoveFolderEx On="install" Property="ProcRunDir" />
+            </Component>
+
+        </ComponentGroup>
+        <CustomAction Id="SetOldSystem" Property="OldSystem" Value="[INSTALLDIR]\System" />
+        <CustomAction Id="SetOldWebApp" Property="OldWebAPP" Value="[INSTALLDIR]\WebApp" />
+        <CustomAction Id="SetOldBinLib" Property="OldBinLib" Value="[INSTALLDIR]\bin\lib" />
+        <CustomAction Id="SetOldJettyBaseEtc" Property="OldJettyBaseEtc" Value="[INSTALLDIR]\jetty-base\etc" />
+        <CustomAction Id="SetOldJettyBaseLib" Property="OldJettyBaseLib" Value="[INSTALLDIR]\jetty-base\lib" />
+        <CustomAction Id="SetOldJettyBaseResources" Property="OldJettyBaseResources" Value="[INSTALLDIR]\jetty-base\resources" />
+        <CustomAction Id="SetOldJettyBaseWebapps" Property="OldJettyBaseWebapps" Value="[INSTALLDIR]\jetty-base\webapps" />
+        <CustomAction Id="SetProcRunDir" Property="ProcRunDir" Value="[SHIBBOLETHDIR]\ProcRun" />
+        <CustomAction Id="SetJettyDir" Property="JettyDir" Value="[SHIBBOLETHDIR]\Jetty" />
+
+        <InstallExecuteSequence>
+            <Custom Action="SetOldSystem" After="InheritInstallJetty" />
+            <Custom Action="SetOldWebApp" After="InheritInstallJetty" />
+            <Custom Action="SetOldBinLib" After="InheritInstallJetty" />
+            <Custom Action="SetOldJettyBaseEtc" After="InheritInstallJetty" />
+            <Custom Action="SetOldJettyBaseLib" After="InheritInstallJetty" />
+            <Custom Action="SetOldJettyBaseResources" After="InheritInstallJetty" />
+            <Custom Action="SetOldJettyBaseWebapps" After="InheritInstallJetty" />
+            <Custom Action="SetProcRunDir" After="AppSearch" />
+            <Custom Action="SetJettyDir" After="AppSearch" />
+        </InstallExecuteSequence>
+
+    </Fragment>
+</Wix>

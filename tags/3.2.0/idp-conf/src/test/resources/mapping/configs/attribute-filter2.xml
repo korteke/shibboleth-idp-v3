@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part two of a two part filter files. -->
+<afp:AttributeFilterPolicyGroup id="ShibbolethFilterPolicy"
+	xmlns:afp="urn:mace:shibboleth:2.0:afp" xmlns:basic="urn:mace:shibboleth:2.0:afp:mf:basic"
+	xmlns:saml="urn:mace:shibboleth:2.0:afp:mf:saml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:afp http://shibboleth.net/schema/idp/shibboleth-afp.xsd
+                                                    urn:mace:shibboleth:2.0:afp:mf:basic http://shibboleth.net/schema/idp/shibboleth-afp-mf-basic.xsd
+                                                    urn:mace:shibboleth:2.0:afp:mf:saml http://shibboleth.net/schema/idp/shibboleth-afp-mf-saml.xsd">
+
+ <afp:AttributeFilterPolicy id="EANOTKFILTER">
+        <afp:PolicyRequirementRule id="prrEA2" xsi:type="saml:EntityAttributeExactMatch"
+            attributeName="http://macedir.org/entity-category"
+            attributeValue="http://example.org/category" />
+
+        <afp:AttributeRule attributeID="IdPNotOK">
+            <afp:PermitValueRule xsi:type="basic:ANY"/>
+        </afp:AttributeRule>
+
+    </afp:AttributeFilterPolicy> 
+
+</afp:AttributeFilterPolicyGroup>

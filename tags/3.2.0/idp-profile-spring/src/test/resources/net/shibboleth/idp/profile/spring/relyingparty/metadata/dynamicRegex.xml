@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata:MetadataProvider xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+	xmlns:metadata="urn:mace:shibboleth:2.0:metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:metadata http://shibboleth.net/schema/idp/shibboleth-metadata.xsd
+                       urn:oasis:names:tc:SAML:2.0:metadata http://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd"
+
+	id="dynamicRegex" xsi:type="metadata:DynamicHTTPMetadataProvider" >
+    
+        <!-- Attempt to pluck out the domain name and return in match group $1. -->
+        <metadata:Regex match="^https?://([a-zA-Z0-9\\.]+).*$">
+           http://svn.shibboleth.net/view/java-identity-provider/trunk/idp-profile-spring/src/test/resources/net/shibboleth/idp/profile/spring/relyingparty/metadata/$1.xml?view=co
+        </metadata:Regex>
+
+</metadata:MetadataProvider>
+                                   

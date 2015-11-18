@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+	default-init-method="initialize" default-destroy-method="destroy">
+
+	<context:property-placeholder
+		location="classpath:/net/shibboleth/idp/profile/spring/relyingparty/file.properties" />
+
+	<!-- This BeanPostProcessor auto-sets identifiable beans with the bean name 
+		(if not already set). -->
+	<bean class="net.shibboleth.ext.spring.config.IdentifiableBeanPostProcessor" />
+
+	<!-- The profile defaults. Firstly the artifact and InbouldFlowId parameters -->
+
+    <!--  SAML2 -->
+    <bean id="shibboleth.SAML2.Artifact.InboundFlowId" class="java.lang.String"
+        c:_0="security-policy/saml-soap" />
+		
+	<bean id="shibboleth.SAML2.Logout.ArtifactServiceIndex" class="java.lang.String"
+		c:_0="3214" />
+    <bean id="shibboleth.SAML2.Logout.InboundFlowId" class="java.lang.String"
+        c:_0="security-policy/saml2-slo" />
+
+    <bean id="shibboleth.SAML2.AttributeQuery.ArtifactServiceIndex" class="java.lang.String"
+        c:_0="2143" />
+    <bean id="shibboleth.SAML2.AttributeQuery.InboundFlowId" class="java.lang.String"
+        c:_0="security-policy/saml-soap" />
+
+	<bean id="shibboleth.SAML2.BrowserSSO.ArtifactServiceIndex" class="java.lang.String"
+		c:_0="1111" />
+    <bean id="shibboleth.SAML2.BrowserSSO.InboundFlowId" class="java.lang.String"
+        c:_0="security-policy/saml2-sso" />
+		
+    <bean id="shibboleth.SAML2.ECP.InboundFlowId" class="java.lang.String"
+        c:_0="security-policy/saml2-ecp" />
+
+    <!--  SAML2 - Liberty -->
+    <bean id="shibboleth.SAML2.SSOS.InboundFlowId" class="java.lang.String"
+        c:_0="security-policy/saml2-ssos" />
+
+    <!--  SAML1 -->
+    <bean id="shibboleth.SAML1.Artifact.InboundFlowId" class="java.lang.String"
+        c:_0="security-policy/saml-soap" />
+		
+    <bean id="shibboleth.SAML1.AttributeQuery.ArtifactServiceIndex" class="java.lang.String"
+        c:_0="432100" />
+    <bean id="shibboleth.SAML1.AttributeQuery.InboundFlowId" class="java.lang.String"
+        c:_0="security-policy/saml-soap" />
+		
+	<bean id="shibboleth.SAML1.BrowserSSO.ArtifactServiceIndex" class="java.lang.String"
+		c:_0="1111" />
+    <bean id="shibboleth.SAML1.BrowserSSO.InboundFlowId" class="java.lang.String"
+        c:_0="security-policy/shibboleth-sso" />
+		
+	<bean id="shibboleth.ParserPool"
+		class="net.shibboleth.utilities.java.support.xml.BasicParserPool"
+		p:maxPoolSize="100" p:coalescing="true" p:ignoreComments="true"
+		p:ignoreElementContentWhitespace="true" p:namespaceAware="true" />
+
+
+	<bean id="myParserPool"
+		class="net.shibboleth.utilities.java.support.xml.BasicParserPool"
+		p:maxPoolSize="1000" p:coalescing="true" p:ignoreComments="true"
+		p:ignoreElementContentWhitespace="true" p:namespaceAware="true" />
+
+	<bean id="shibboleth.SchemaBuilder" class="org.opensaml.saml.common.xml.SAMLSchemaBuilder"
+		c:ver="SAML_11" />
+
+    <!--  for SSOS -->
+    <bean id="jimmy" factory-method="alwaysTrue" class="com.google.common.base.Predicates"/>
+    
+    <bean id="dummyPredicate" class="net.shibboleth.idp.profile.spring.logic.DummyPredicate"/>
+
+    <!-- Trust Engines -->
+    
+    <!-- These are hacked to use static resolvers to avoid a dependency on metadata, just so the tests load. -->
+
+    <bean id="shibboleth.KeyInfoCredentialResolver" class="org.opensaml.xmlsec.config.DefaultSecurityConfigurationBootstrap"
+        factory-method="buildBasicInlineKeyInfoCredentialResolver" />
+
+    <bean id="shibboleth.StaticCredentialResolver" class="org.opensaml.xmlsec.keyinfo.impl.StaticKeyInfoCredentialResolver">
+        <constructor-arg>
+            <bean class="org.opensaml.security.x509.BasicX509Credential">
+                <constructor-arg name="entityCertificate">
+                    <bean class="net.shibboleth.ext.spring.factory.X509CertificateFactoryBean"
+                        p:resource="classpath:net/shibboleth/idp/profile/spring/relyingparty/security/credential/cert.pem" />
+                </constructor-arg>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <bean id="shibboleth.StaticPKIXValidationInformationResolver"
+            class="org.opensaml.security.x509.impl.StaticPKIXValidationInformationResolver"
+            c:info="#{null}" c:names="#{null}" />
+
+    <bean id="shibboleth.SignatureTrustEngine"
+            class="org.opensaml.xmlsec.signature.support.impl.ChainingSignatureTrustEngine">
+        <constructor-arg>
+            <list>
+                <bean class="org.opensaml.xmlsec.signature.support.impl.ExplicitKeySignatureTrustEngine"
+                    c:resolver-ref="shibboleth.StaticCredentialResolver"
+                    c:keyInfoResolver-ref="shibboleth.KeyInfoCredentialResolver" />
+                <bean class="org.opensaml.xmlsec.signature.support.impl.PKIXSignatureTrustEngine" 
+                    c:resolver-ref="shibboleth.StaticPKIXValidationInformationResolver"
+                    c:keyInfoResolver-ref="shibboleth.KeyInfoCredentialResolver" />
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="shibboleth.X509TrustEngine" class="org.opensaml.security.trust.impl.ChainingTrustEngine">
+        <constructor-arg>
+            <list>
+                <bean class="org.opensaml.security.trust.impl.ExplicitX509CertificateTrustEngine"
+                    c:resolver-ref="shibboleth.StaticCredentialResolver" />
+                <bean class="org.opensaml.security.x509.impl.PKIXX509CredentialTrustEngine"
+                    c:resolver-ref="shibboleth.StaticPKIXValidationInformationResolver" />
+            </list>
+        </constructor-arg>
+    </bean>
+           
+    <bean id="shibboleth.MetadataSignatureValidationStaticCriteria" 
+            class="net.shibboleth.idp.profile.spring.relyingparty.metadata.filter.impl.SignatureValidationCriteriaSetFactoryBean" 
+            p:includeOpenSAMLGlobalConfig="true">
+        <property name="signatureValidationConfigurations">
+            <util:list>
+                <bean class="org.opensaml.xmlsec.impl.BasicSignatureValidationConfiguration">
+                    <property name="whitelistedAlgorithms">
+                        <list>
+                        </list>
+                    </property>
+                    <property name="blacklistedAlgorithms">
+                        <list>
+                            <value>foo</value>
+                            <value>bar</value>
+                            <value>baz</value>
+                        </list>
+                    </property>
+                </bean>
+            </util:list>
+        </property>
+    </bean>
+
+</beans>
+                            
