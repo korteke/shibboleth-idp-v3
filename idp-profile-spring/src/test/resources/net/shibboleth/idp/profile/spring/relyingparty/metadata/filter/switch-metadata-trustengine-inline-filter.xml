@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata:MetadataProvider xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+	xmlns:metadata="urn:mace:shibboleth:2.0:metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="urn:mace:shibboleth:2.0:security"
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:metadata http://shibboleth.net/schema/idp/shibboleth-metadata.xsd
+                        urn:oasis:names:tc:SAML:2.0:metadata http://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd
+                        urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd"
+
+	requireValidMetadata="false" failFastInitialization="false" id="signed"
+	xsi:type="metadata:FilesystemMetadataProvider" metadataFile="%{DIR}/filter/metadata.switchaai_signed.xml">
+
+	<metadata:MetadataFilter xsi:type="metadata:SignatureValidation">
+        <security:TrustEngine id="MyTrustEngine" xsi:type="security:StaticExplicitKeySignature">
+            <security:Credential id="IdPCredential" xsi:type="security:X509Filesystem">
+                <security:Certificate>%{DIR}/filter/switch.pem</security:Certificate>
+            </security:Credential>
+        </security:TrustEngine>
+</metadata:MetadataFilter>    
+
+</metadata:MetadataProvider>

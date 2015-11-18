@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rp:RelyingParty xmlns:rp="urn:mace:shibboleth:2.0:relying-party"
+	id="rp" provider="provider" xmlns:saml="urn:mace:shibboleth:2.0:relying-party:saml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:relying-party http://shibboleth.net/schema/idp/shibboleth-relying-party.xsd
+                        urn:mace:shibboleth:2.0:relying-party:saml http://shibboleth.net/schema/idp/shibboleth-relying-party-saml.xsd"
+	nameIDFormatPrecedence="three four"
+	defaultAuthenticationMethod="urn:oasis:names:tc:SAML:2.0:ac:classes:Password">
+	<rp:ProfileConfiguration xsi:type="saml:SAML2ECPProfile"
+		includeAttributeStatement="false" securityPolicyRef="ignore"
+		maximumSPSessionLifetime="1" skipEndpointValidationWhenSigned="true"
+		artifactType="5437">
+	</rp:ProfileConfiguration>
+
+</rp:RelyingParty>

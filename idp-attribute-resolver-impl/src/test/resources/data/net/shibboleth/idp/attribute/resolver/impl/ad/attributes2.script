@@ -1,0 +1,8 @@
+values = at1.getValues().iterator();
+val = values.next();
+Scripted.addValue(val);
+    if (values.hasNext()) {
+        val = values.next();
+        Scripted.addValue(val);
+    }
+    

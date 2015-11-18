@@ -1,0 +1,36 @@
+dn: dc=shibboleth,dc=net
+dc: shibboleth
+objectClass: dcObject
+objectClass: organization
+o: Shibboleth, Inc.
+
+dn: ou=people,dc=shibboleth,dc=net
+ou: people
+description: All people in organization
+objectclass: organizationalunit
+
+dn: cn=Peter Principal,ou=people,dc=shibboleth,dc=net
+objectclass: inetOrgPerson
+cn: Peter Principal
+cn: Peter J Principal
+cn: pete principal
+mail:
+sn: Principal
+uid: PETER_THE_PRINCIPAL
+userpassword: changeit
+homephone: 555-111-2222
+mail: peter.principal@shibboleth.net
+mail: ""
+mail: peterprincipal@shibboleth.net
+description: test principal
+
+dn: cn=Paul Principal,ou=people,dc=shibboleth,dc=net
+objectclass: inetOrgPerson
+cn: Paul Principal
+sn: Principal
+uid: PAUL_THE_PRINCIPAL
+userpassword: changeit
+homephone: 555-111-3333
+mail: paul.principal@shibboleth.net
+mail: paulprincipal@shibboleth.net
+description: test principal

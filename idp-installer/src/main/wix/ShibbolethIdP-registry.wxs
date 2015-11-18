@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Licensed to the University Corporation for Advanced Internet
+     Development, Inc. (UCAID) under one or more contributor license
+     agreements.  See the NOTICE file distributed with this work for
+     additional information regarding copyright ownership. The UCAID
+     licenses this file to You under the Apache License, Version 2.0
+     (the 'License'); you may not use this file except in compliance
+     with the License.  You may obtain a copy of the License at
+     
+     http://www.apache.org/licenses/LICENSE-2.0
+     
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an 'AS IS' BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+     implied.  See the License for the specific language governing
+     permissions and limitations under the License.  -->
+
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+    <!-- to do with the IdP Registry -->
+
+    <?if $(var.msitype) != "x86" ?>
+    <?define isWin64="yes" ?>
+    <?else ?>
+    <?define isWin64="no" ?>
+    <?endif ?>
+    <?define ServiceName="shibd_idp"?>
+    <Fragment>
+        <ComponentGroup Id="SaveRegistry">
+            <Component Id="SaveTarget" Guid="{32A39FB0-21E4-475E-891A-C9901D3548A3}" Directory="INSTALLDIR" Win64="no">
+                <RegistryValue Id="targetReg" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="InstallDir" Value="[INSTALLDIR]" Type="string" KeyPath="yes" />
+                <RegistryValue Id="targetRegJetty" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="InstallJetty" Value="[INSTALL_JETTY]" Type="string" />
+            </Component>
+            <!-- pretty icon for the "install programs" page -->
+            <Component Id="shib.ico" Guid="{7F4CE60B-A27B-4E07-8DD9-19F16B008C56}" Directory="TARGETDIR" Win64="$(var.isWin64)">
+                <File KeyPath="yes" Source="$(var.ProjectDir)\shib.ico" />
+                <RegistryValue Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductCode]" Name="DisplayIcon" Value="[#shib.ico],0" Type="string" />
+            </Component>
+            <!-- Jetty Configuration-->
+            <Component Id="JettyConfig" Directory="INSTALLDIR" Guid="{FE729EF2-8293-493A-80C9-69CF54DC4565}" KeyPath="yes" Win64="no">
+                <RegistryKey Key="SOFTWARE\Apache Software Foundation\Procrun 2.0\$(var.ServiceName)\Parameters\Java" Root="HKLM" ForceCreateOnInstall="yes">
+                    <Permission User="Administrators" GenericAll="yes" />
+                    <Permission User="SYSTEM" GenericAll="yes" />
+                    <RegistryValue Name="Options" Type="multiString">
+                        <Permission User="Administrators" GenericAll="yes" />
+                        <Permission User="SYSTEM" GenericAll="yes" />
+                        <MultiStringValue>-Didp.home=[JAVA_IDP_HOME]</MultiStringValue>
+                    </RegistryValue>
+                    <RegistryValue Name="JvmMx" Value="[JAVA_JVMMX]" Type="string">
+                        <!-- Its an integer, but we added the # -->
+                        <Permission User="Administrators" GenericAll="yes" />
+                        <Permission User="SYSTEM" GenericAll="yes" />
+                    </RegistryValue>
+                </RegistryKey>
+                <RegistryKey Key="SOFTWARE\Apache Software Foundation\Procrun 2.0\$(var.ServiceName)\Parameters\Start" Root="HKLM" ForceCreateOnInstall="yes">
+                    <Permission User="Administrators" GenericAll="yes" />
+                    <Permission User="SYSTEM" GenericAll="yes" />
+                    <RegistryValue Name="Params" Type="multiString" Action="append">
+                        <Permission User="Administrators" GenericAll="yes" />
+                        <Permission User="SYSTEM" GenericAll="yes" />
+                        <MultiStringValue>jetty.base=[INSTALLDIR]\jetty-base</MultiStringValue>
+                        <MultiStringValue>jetty.logs=[INSTALLDIR]\jetty-base\logs</MultiStringValue>
+                    </RegistryValue>
+                </RegistryKey>
+                <RegistryKey Key="SOFTWARE\Apache Software Foundation\Procrun 2.0\$(var.ServiceName)\Parameters\Stop" Root="HKLM" ForceCreateOnInstall="yes">
+                    <Permission User="Administrators" GenericAll="yes" />
+                    <Permission User="SYSTEM" GenericAll="yes" />
+                    <RegistryValue Name="Params" Type="multiString" Action="append">
+                        <Permission User="Administrators" GenericAll="yes" />
+                        <Permission User="SYSTEM" GenericAll="yes" />
+                        <MultiStringValue>jetty.base=[INSTALLDIR]\jetty-base</MultiStringValue>
+                        <MultiStringValue>jetty.logs=[INSTALLDIR]\jetty-base\logs</MultiStringValue>
+                    </RegistryValue>
+                </RegistryKey>
+                <Condition>INSTALL_JETTY</Condition>
+            </Component>
+        </ComponentGroup>
+
+        <Property Id="OLD_INSTALLDIR" Secure="yes">
+            <RegistrySearch Id="OldInstallDir" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="InstallDir" Type="directory" Win64="no" />
+        </Property>
+        <Property Id="OLD_INSTALL_JETTY" Secure="yes">
+            <RegistrySearch Id="OldInstallJetty" Root="HKLM" Key="SOFTWARE\Shibboleth\IdP" Name="InstallJetty" Type="raw" Win64="no" />
+        </Property>
+
+        <Property Id="JAVA_JVMMX" Secure="yes">
+            <RegistrySearch Id="JvmMx" Root="HKLM" Key="SOFTWARE\Apache Software Foundation\Procrun 2.0\shibd_idp\Parameters\Java" Name="JvmMx" Type="raw" Win64="no" />
+        </Property>
+
+        <!-- Make a best effort to find where the Quick Installer was installed to -->
+        <Property Id="QI_INSTALL_DIR" Secure="yes">
+            <RegistrySearch Id="OldQIDir" Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{D54EF89F-F134-450C-A64D-593F5602F175}" Name="InstallLocation" Type="raw" Win64="no" />
+        </Property>
+
+    </Fragment>
+</Wix>

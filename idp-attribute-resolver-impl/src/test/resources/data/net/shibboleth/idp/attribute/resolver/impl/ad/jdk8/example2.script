@@ -1,0 +1,32 @@
+load('nashorn:mozilla_compat.js')
+importPackage(Packages.edu.internet2.middleware.shibboleth.common.attribute.provider);
+ 
+// Create attribute to be returned from definition DO NOT DO FOR NASHORHN 
+if (null == eduPersonAffiliation) {
+    eduPersonAffiliation = new BasicAttribute("eduPersonAffiliation");
+}
+ 
+// Add at least one value
+eduPersonAffiliation.getValues().add("affiliate");
+ 
+// If the user has group membership
+if (typeof memberOf != "undefined" && memberOf != null ){
+    // The go through each group membership and add the appropriate affiliation
+    // The IdP will remove duplicate values so we don't need to worry about that here
+    for ( i = 0; memberOf != null && i < memberOf.getValues().size(); i++ ){
+        value = memberOf.getValues().get(i);
+ 
+        if (value.indexOf("OU=Students") > 0){
+            eduPersonAffiliation.getValues().add("student");
+        }
+ 
+        if (value.indexOf("OU=Teachers") > 0){
+            eduPersonAffiliation.getValues().add("faculty");
+            eduPersonAffiliation.getValues().add("staff");
+        }
+ 
+        if (value.indexOf("OU=Staff") > 0){
+            eduPersonAffiliation.getValues().add("staff");
+        }
+    }
+}

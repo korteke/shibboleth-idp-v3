@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:samlsec="urn:mace:shibboleth:2.0:security:saml" xmlns:sec="urn:mace:shibboleth:2.0:security" targetNamespace="urn:mace:shibboleth:2.0:security:saml" elementFormDefault="qualified">
+
+    <import namespace="urn:mace:shibboleth:2.0:security" schemaLocation="http://shibboleth.net/schema/idp/shibboleth-security.xsd"/>
+    
+    <complexType name="ProtocolWithXMLSignature">
+        <annotation>
+            <documentation>
+                A rule that checks the signature on SAML protocol messages.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="sec:SecurityPolicyRuleType">
+                <attribute name="trustEngineRef" type="string" use="required">
+                    <annotation>
+                        <documentation>
+                            Reference to the trust engine used to validate the signature. 
+                        </documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+    
+    <complexType name="SAML2AuthnRequestsSigned">
+        <annotation>
+            <documentation>
+                A rule that requires that an incoming SAML 2 AuthnRequest be signed
+                if this requirement is indicated in metadata via the request issuer's 
+                SPSSODescriptor AuthnRequestsSigned attribute value.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="sec:SecurityPolicyRuleType"/>
+        </complexContent>
+    </complexType>
+    
+    <complexType name="SAML2HTTPPostSimpleSign">
+        <annotation>
+            <documentation>
+                A rule that checks the signature on SAML protocol messages.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="sec:SecurityPolicyRuleType">
+                <attribute name="trustEngineRef" type="string" use="required">
+                    <annotation>
+                        <documentation>
+                            Reference to the trust engine used to validate the signature. 
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="parserPoolRef" type="string" default="shibboleth.ParserPool">
+                    <annotation>
+                        <documentation>
+                            Reference to the parser pool used to parse incoming XML message.
+                        </documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+    
+    <complexType name="SAML2HTTPRedirectSimpleSign">
+        <annotation>
+            <documentation>
+                A rule that checks the signature on SAML protocol messages.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="sec:SecurityPolicyRuleType">
+                <attribute name="trustEngineRef" type="string" use="required">
+                    <annotation>
+                        <documentation>
+                            Reference to the trust engine used to validate the signature. 
+                        </documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+    
+    <complexType name="MandatoryIssuer">
+        <annotation>
+            <documentation>
+                A rule that requires that the issuer of the inbound SAML message, within the message context, be
+                populated.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="sec:SecurityPolicyRuleType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="IssueInstant">
+        <annotation>
+            <documentation>
+                A rule that inspects the message issue instant and ensures that it is within a certain timeframe.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="sec:SecurityPolicyRuleType">
+                <attribute name="expirationThreshold" type="string">
+                    <annotation>
+                        <documentation>
+                            Time after a message is issued before it is considered expired.
+                            
+                            Threshold is expressed in ISO8601 duration notation.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="clockSkew" type="string">
+                    <annotation>
+                        <documentation>
+                            Defines the valid life time of a message issue instant as: (instant - skew) &lt; now &gt;
+                            (instant + expirationThreshold + skew)
+                            
+                            Skew is expressed in ISO8601 duration notation.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="required" type="string">
+                    <annotation>
+                        <documentation>
+                            A boolean flag indicating whether this rule is required to be evaluated.
+                        </documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Replay">
+        <annotation>
+            <documentation>
+                A security policy rule that ensure a received SAML message has not already been processed.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="sec:SecurityPolicyRuleType">
+                <attribute name="replayCacheRef" type="string" default="shibboleth.ReplayCache">
+                    <annotation>
+                        <documentation>Name of the replay cache to use.</documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="required" type="string">
+                    <annotation>
+                        <documentation>
+                            A boolean flag indicating whether this rule is required to be evaluated.
+                        </documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+</schema>

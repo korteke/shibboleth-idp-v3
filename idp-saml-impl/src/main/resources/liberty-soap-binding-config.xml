@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMLTooling xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.opensaml.org/xmltooling-config ../../src/schema/xmltooling-config.xsd"
+ xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+ xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/"
+ xmlns:wsa="http://www.w3.org/2005/08/addressing"
+ xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+ xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+ xmlns:sec="urn:liberty:security:2006-08"
+ xmlns:sa="urn:liberty:sa:2006-08"
+ xmlns:sb="urn:liberty:sb:2006-08"
+ xmlns:sbf="urn:liberty:sb"
+ xmlns="http://www.opensaml.org/xmltooling-config">
+    
+    <!-- This is a copy of OpenLiberty idwsfconsumer's soap-binding-xmltooling-config.xml, with some non-Liberty
+         provider configs removed, which clash with impls supplied now in OpenWS. -->
+    <ObjectProviders>
+    
+        <ObjectProvider qualifiedName="sbf:Framework">
+            <BuilderClass className="org.openliberty.xmltooling.soapbinding.Framework$Builder" />
+            <MarshallingClass className="org.openliberty.xmltooling.soapbinding.Framework$Marshaller" />
+            <UnmarshallingClass className="org.openliberty.xmltooling.soapbinding.Framework$Unmarshaller" />
+        </ObjectProvider>
+        
+        <ObjectProvider qualifiedName="sb:Consent">
+            <BuilderClass className="org.openliberty.xmltooling.soapbinding.Consent$Builder" />
+            <MarshallingClass className="org.openliberty.xmltooling.soapbinding.Consent$Marshaller" />
+            <UnmarshallingClass className="org.openliberty.xmltooling.soapbinding.Consent$Unmarshaller" />
+        </ObjectProvider>
+        
+        <ObjectProvider qualifiedName="sb:EndpointUpdate">
+            <BuilderClass className="org.openliberty.xmltooling.soapbinding.EndpointUpdate$Builder" />
+            <MarshallingClass className="org.openliberty.xmltooling.soapbinding.EndpointUpdate$Marshaller" />
+            <UnmarshallingClass className="org.openliberty.xmltooling.soapbinding.EndpointUpdate$Unmarshaller" />
+        </ObjectProvider>
+                        
+        <ObjectProvider qualifiedName="sb:InteractionService">
+            <BuilderClass className="org.openliberty.xmltooling.soapbinding.InteractionService$Builder" />
+            <MarshallingClass className="org.openliberty.xmltooling.soapbinding.InteractionService$Marshaller" />
+            <UnmarshallingClass className="org.openliberty.xmltooling.soapbinding.InteractionService$Unmarshaller" />
+        </ObjectProvider>
+
+        <ObjectProvider qualifiedName="sb:ProcessingContext">
+            <BuilderClass className="org.openliberty.xmltooling.soapbinding.ProcessingContext$Builder" />
+            <MarshallingClass className="org.openliberty.xmltooling.soapbinding.ProcessingContext$Marshaller" />
+            <UnmarshallingClass className="org.openliberty.xmltooling.soapbinding.ProcessingContext$Unmarshaller" />
+        </ObjectProvider>      
+
+        <ObjectProvider qualifiedName="sb:RedirectRequest">
+            <BuilderClass className="org.openliberty.xmltooling.soapbinding.RedirectRequest$Builder" />
+            <MarshallingClass className="org.openliberty.xmltooling.soapbinding.RedirectRequest$Marshaller" />
+            <UnmarshallingClass className="org.openliberty.xmltooling.soapbinding.RedirectRequest$Unmarshaller" />
+        </ObjectProvider>      
+       
+        <ObjectProvider qualifiedName="sb:SecurityMechID">
+            <BuilderClass className="org.openliberty.xmltooling.soapbinding.SecurityMechID$Builder" />
+            <MarshallingClass className="org.openliberty.xmltooling.soapbinding.SecurityMechID$Marshaller" />
+            <UnmarshallingClass className="org.openliberty.xmltooling.soapbinding.SecurityMechID$Unmarshaller" />
+        </ObjectProvider>     
+         
+        <ObjectProvider qualifiedName="sb:Sender">
+            <BuilderClass className="org.openliberty.xmltooling.soapbinding.Sender$Builder" />
+            <MarshallingClass className="org.openliberty.xmltooling.soapbinding.Sender$Marshaller" />
+            <UnmarshallingClass className="org.openliberty.xmltooling.soapbinding.Sender$Unmarshaller" />
+        </ObjectProvider>     
+
+        <ObjectProvider qualifiedName="sb:TargetIdentity">
+            <BuilderClass className="org.openliberty.xmltooling.soapbinding.TargetIdentity$Builder" />
+            <MarshallingClass className="org.openliberty.xmltooling.soapbinding.TargetIdentity$Marshaller" />
+            <UnmarshallingClass className="org.openliberty.xmltooling.soapbinding.TargetIdentity$Unmarshaller" />
+        </ObjectProvider>         
+
+        <ObjectProvider qualifiedName="sb:Timeout">
+            <BuilderClass className="org.openliberty.xmltooling.soapbinding.Timeout$Builder" />
+            <MarshallingClass className="org.openliberty.xmltooling.soapbinding.Timeout$Marshaller" />
+            <UnmarshallingClass className="org.openliberty.xmltooling.soapbinding.Timeout$Unmarshaller" />
+        </ObjectProvider> 
+                  
+        <ObjectProvider qualifiedName="sb:UsageDirective">
+            <BuilderClass className="org.openliberty.xmltooling.soapbinding.UsageDirective$Builder" />
+            <MarshallingClass className="org.openliberty.xmltooling.soapbinding.UsageDirective$Marshaller" />
+            <UnmarshallingClass className="org.openliberty.xmltooling.soapbinding.UsageDirective$Unmarshaller" />
+        </ObjectProvider>
+
+        <ObjectProvider qualifiedName="sb:UserInteraction">
+            <BuilderClass className="org.openliberty.xmltooling.soapbinding.UserInteraction$Builder" />
+            <MarshallingClass className="org.openliberty.xmltooling.soapbinding.UserInteraction$Marshaller" />
+            <UnmarshallingClass className="org.openliberty.xmltooling.soapbinding.UserInteraction$Unmarshaller" />
+        </ObjectProvider>       
+       
+    </ObjectProviders>
+
+</XMLTooling>

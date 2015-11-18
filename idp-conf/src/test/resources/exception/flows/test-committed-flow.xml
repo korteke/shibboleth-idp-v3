@@ -1,0 +1,28 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+    <on-start>
+        <evaluate expression="InitializeProfileRequestContext" />
+    </on-start>
+
+    <action-state id="ThrowExceptionAfterResponse">
+        <evaluate expression="ThrowExceptionAfterResponse" />
+        <evaluate expression="'proceed'" />
+        
+        <transition on="proceed" to="end" />
+    </action-state>
+
+    <end-state id="end" />
+
+    <end-state id="ErrorView" view="error">
+        <exception-handler bean="RethrowingFlowExecutionExceptionHandler"/>
+    </end-state>
+
+    <global-transitions>
+        <transition on-exception="java.lang.RuntimeException" to="ErrorView" />
+    </global-transitions>
+
+    <bean-import resource="test-exception-beans.xml" />
+
+</flow>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:saml="urn:mace:shibboleth:2.0:afp:mf:saml" xmlns:afp="urn:mace:shibboleth:2.0:afp" targetNamespace="urn:mace:shibboleth:2.0:afp:mf:saml" elementFormDefault="qualified">
+
+    <import namespace="urn:mace:shibboleth:2.0:afp" schemaLocation="http://shibboleth.net/schema/idp/shibboleth-afp.xsd"/>
+
+    <annotation>
+        <documentation>
+            A set of SAML specific match functions. These match functions only operate against a
+            SAMLFilterContext.
+        </documentation>
+    </annotation>
+
+    <complexType name="AttributeIssuerEntityAttributeExactMatch">
+        <annotation>
+            <documentation>
+                A match function that checks if the attribute issuer contains an entity attribute with the
+                specified value.
+                
+                Not supported in V3. 
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="saml:EntityAttributeExactMatchType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="EntityAttributeExactMatch">
+        <annotation>
+            <documentation>
+                A match function that checks if the attribute requester contains an entity attribute with the
+                specified value.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="saml:EntityAttributeExactMatchType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="AttributeRequesterEntityAttributeExactMatch">
+        <annotation>
+            <documentation>
+                A match function that checks if the attribute requester contains an entity attribute with the
+                specified value.
+                
+                Deprecated in favor of "EntityAttributeExactMatch".
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="saml:EntityAttributeExactMatchType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="EntityAttributeExactMatchType" abstract="true">
+        <complexContent>
+            <extension base="afp:MatchFunctorType">
+                <attribute name="attributeName" type="string" use="required">
+                    <annotation>
+                        <documentation>The name of the entity attribute to match.</documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="attributeNameFormat" type="string" use="optional">
+                    <annotation>
+                        <documentation>The name format of the entity attribute to match.</documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="attributeValue" type="string" use="required">
+                    <annotation>
+                        <documentation>The value of the entity attribute to match.</documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="AttributeIssuerEntityAttributeRegexMatch">
+        <annotation>
+            <documentation>
+                A match function that checks if the attribute issuer contains an entity attribute with a
+                value that matches the given regular expression.
+                
+                Not supported in V3.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="saml:EntityAttributeRegexMatchType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="EntityAttributeRegexMatch">
+        <annotation>
+            <documentation>
+                A match function that checks if the attribute requester contains an entity attribute with a
+                value that matches the given regular expression.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="saml:EntityAttributeRegexMatchType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="AttributeRequesterEntityAttributeRegexMatch">
+        <annotation>
+            <documentation>
+                A match function that checks if the attribute requester contains an entity attribute with a
+                value that matches the given regular expression.
+                
+                Deprecated in favor of "EntityAttributeRegexMatch".
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="saml:EntityAttributeRegexMatchType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="EntityAttributeRegexMatchType" abstract="true">
+        <complexContent>
+            <extension base="afp:MatchFunctorType">
+                <attribute name="attributeName" type="string" use="required">
+                    <annotation>
+                        <documentation>The name of the entity attribute to match.</documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="attributeNameFormat" type="string" use="optional">
+                    <annotation>
+                        <documentation>The name format of the entity attribute to match.</documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="attributeValueRegex" type="string" use="required">
+                    <annotation>
+                        <documentation>The regular expression that must match the value of the entity attribute to
+                            match.</documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="AttributeIssuerNameIDFormatExactMatch">
+        <annotation>
+            <documentation>
+                A match function that evaluates to true if the attribute issuer supports a specified
+                NameID format.
+                
+                Not supported in V3.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="saml:NameIDFormatExactMatchType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="NameIDFormatExactMatch">
+        <annotation>
+            <documentation>
+                A match function that evaluates to true if the attribute requester supports a specified
+                NameID format.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="saml:NameIDFormatExactMatchType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="AttributeRequesterNameIDFormatExactMatch">
+        <annotation>
+            <documentation>
+                A match function that evaluates to true if the attribute requester supports a specified
+                NameID format.
+                
+                Deprecated in favor of "NameIDFormatExactMatch".
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="saml:NameIDFormatExactMatchType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="NameIDFormatExactMatchType" abstract="true">
+        <complexContent>
+            <extension base="afp:MatchFunctorType">
+                <attribute name="nameIdFormat" type="string" use="required">
+                    <annotation>
+                        <documentation>The NameID format that needs to be supported by the entity.</documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="AttributeRequesterInEntityGroup">
+        <annotation>
+            <documentation>
+                A match function that evaluates to true if the attribute requester is found in metadata and
+                is a member of the given entity group.
+                
+                Deprecated in favor of "InEntityGroup".
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="saml:EntityGroupMatchType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="InEntityGroup">
+        <annotation>
+            <documentation>
+                A match function that evaluates to true if the attribute requester is found in metadata and
+                is a member of the given entity group.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="saml:EntityGroupMatchType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="AttributeIssuerInEntityGroup">
+        <annotation>
+            <documentation>
+                A match function that evaluates to true if the attribute issuer is found in metadata and is a
+                member of the given entity group.
+                
+                Not supported in V3.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="saml:EntityGroupMatchType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="EntityGroupMatchType" abstract="true">
+        <complexContent>
+            <extension base="afp:MatchFunctorType">
+                <attribute name="groupID" type="string" use="required">
+                    <annotation>
+                        <documentation>The entity group ID that an entity must be in.</documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="AttributeScopeMatchesShibMDScope">
+        <annotation>
+            <documentation>
+                A match function that ensures that an attribute value's scope matches a scope given in
+                metadata for the entity or role.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="afp:MatchFunctorType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="RegistrationAuthority">
+        <annotation>
+            <documentation>
+                A match function that matches the SP (requester) MDRPI against a list of potential values.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="afp:MatchFunctorType">
+                <attribute name="registrars" type="saml:anyURIListType" use="required">
+                    <annotation>
+                        <documentation>The string values to match.</documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="matchIfMetadataSilent" type="string">
+                    <annotation>
+                        <documentation>
+                            A boolean flag indicating whether a match should occur if the metadata does
+                            not contain an MDRPI statement (coded) default is false.
+                        </documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="AttributeInMetadataType" abstract="true">
+        <annotation>
+            <documentation>
+                Functions that evaluate to true if an attribute (or specific values) is specified by
+                supplied metadata.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="afp:MatchFunctorType">
+                <attribute name="attributeID" type="string">
+                    <annotation>
+                        <documentation>
+                            The ID of the attribute whose value should be matched. If no attribute ID is specified the
+                            ID of the containing attribute rule is assumed.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="onlyIfRequired" type="string">
+                    <annotation>
+                        <documentation>
+                            A boolean flag indicating whether attributes noted as optional should match.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="matchIfMetadataSilent" type="string">
+                    <annotation>
+                        <documentation>
+                            A boolean flag indicating whether a match should occur if (after mapping)
+                            the metadata does not contain and Attributes.
+                        </documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="AttributeInMetadata">
+        <annotation>
+            <documentation>
+                A match function that evaluates to true if an attribute (or specific values) is specified by
+                the requesting entity's AttributeConsumingService SP metadata.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="saml:AttributeInMetadataType">
+                <attribute name="attributeName" type="string" use="optional">
+                    <annotation>
+                        <documentation>The name of a requested attribute to look for.</documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="attributeNameFormat" type="string" use="optional">
+                    <annotation>
+                        <documentation>The name format of a requested attribute to look for.</documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="MappedAttributeInMetadata">
+        <annotation>
+            <documentation>
+                A match function that evaluates to true if a mapped attribute (or specific values) is specified by
+                the requesting entity's AttributeConsumingService SP metadata.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="saml:AttributeInMetadataType" />
+        </complexContent>
+    </complexType>
+
+    <simpleType name="anyURIListType">
+        <list itemType="string"/>
+    </simpleType>
+    
+</schema>

@@ -1,0 +1,9 @@
+load('nashorn:mozilla_compat.js')
+importPackage(Packages.edu.internet2.middleware.shibboleth.common.attribute.provider);
+if (eduPersonAffiliation == null) { 
+  eduPersonAffiliation = new BasicAttribute("eduPersonAffiliation"); 
+}
+is_Staff = memberOf != null && memberOf.getValues().contains("CN=All-Staff,OU=Groups and Resources,DC=EXAMPLE,DC=ORG");
+
+if (is_Staff) { eduPersonAffiliation.getValues().add("staff"); };
+if (is_Staff) { eduPersonAffiliation.getValues().add("member"); };

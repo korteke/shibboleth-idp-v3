@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" Name="GroupTop" validUntil="2100-01-01T00:00:00Z">
+
+    <Extensions>
+        <shibmd:KeyAuthority xmlns:shibmd="urn:mace:shibboleth:metadata:1.0">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>
+                        MIIDgzCCAmugAwIBAgIBADANBgkqhkiG9w0BAQQFADAtMRIwEAYDVQQKEwlJbnRl
+                        cm5ldDIxFzAVBgNVBAMTDlRlc3QgUm9vdCBDQSAxMB4XDTA4MDIxNjAyNDUyNloX
+                        DTMzMDIwOTAyNDUyNlowLTESMBAGA1UEChMJSW50ZXJuZXQyMRcwFQYDVQQDEw5U
+                        ZXN0IFJvb3QgQ0EgMTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMV5
+                        6dwqZGkiVx5/v9ULicAen3RuSRpd+SJ46p6RgXxWRA2WlHZYMW7pMTeN/KvbHKEk
+                        IkAu5fh19iLW+XkhWHGVTm7pPoZ7AdzJ4PfJId290T80/uS/kZT3coOeiqZy6dQ6
+                        659tVXCH9K0X/S5et6i+BS+gHPF/RvxnuVKTBrlHfToxwtN7GtkKRlvGHo9l83p3
+                        yoOEH83gBHBy3Hd2HUSSCH6c/rh/3u2pCzojQA2H8+L9/C3qG/OuLEtmVpaV7flz
+                        THLKQN6diK6NSS2ViEF0ymbb7ZO2caG1fwOLfeBU+Kbmre8XVJTmSAhG4ox8XLmr
+                        4/ugZnU50D1IaCbfhxECAwEAAaOBrTCBqjAPBgNVHRMBAf8EBTADAQH/MBEGCWCG
+                        SAGG+EIBAQQEAwIABzAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0OBBYEFI9bMgOQsY4J
+                        bO1yrcG6nWgVhy3iMFUGA1UdIwROMEyAFI9bMgOQsY4JbO1yrcG6nWgVhy3ioTGk
+                        LzAtMRIwEAYDVQQKEwlJbnRlcm5ldDIxFzAVBgNVBAMTDlRlc3QgUm9vdCBDQSAx
+                        ggEAMA0GCSqGSIb3DQEBBAUAA4IBAQBaf7gv/KYn5THGUJNczro8erZajPVqL678
+                        Jf1lv/oShdDesD0kXjxUIe9OSC2yhqFlZ3Ls8iB8D2naisWgo58Yty9r6nLJtEnB
+                        INrUSpAX1XmIeR/PgbPT+3ZRqWvb2hnkCM8HtfRPZLZCB/Leg4KHQMN0HTyZueCP
+                        K+RZkomQ5ir6O821za9SMboSDGGMr4KqbLFOrIBes+lOwEXVP84J1vi6qj0cWvmh
+                        /r4X3UV0D7qf508NrEvPlw/jTUzEHOf64a1g68V8xWrbef1MKvLZzcD5/meJ3Gpd
+                        V+AEfwI5bBmfpUetZsnLDqz5LX+qu0ORP6kRjS30u/0PNHNzdKtn
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </shibmd:KeyAuthority>
+        <shibmd:KeyAuthority xmlns:shibmd="urn:mace:shibboleth:metadata:1.0">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>
+                        MIIDgzCCAmugAwIBAgIBADANBgkqhkiG9w0BAQQFADAtMRIwEAYDVQQKEwlJbnRl
+                        cm5ldDIxFzAVBgNVBAMTDlRlc3QgUm9vdCBDQSAxMB4XDTA4MDIxNjAyNDUyNloX
+                        DTMzMDIwOTAyNDUyNlowLTESMBAGA1UEChMJSW50ZXJuZXQyMRcwFQYDVQQDEw5U
+                        ZXN0IFJvb3QgQ0EgMTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMV5
+                        6dwqZGkiVx5/v9ULicAen3RuSRpd+SJ46p6RgXxWRA2WlHZYMW7pMTeN/KvbHKEk
+                        IkAu5fh19iLW+XkhWHGVTm7pPoZ7AdzJ4PfJId290T80/uS/kZT3coOeiqZy6dQ6
+                        659tVXCH9K0X/S5et6i+BS+gHPF/RvxnuVKTBrlHfToxwtN7GtkKRlvGHo9l83p3
+                        yoOEH83gBHBy3Hd2HUSSCH6c/rh/3u2pCzojQA2H8+L9/C3qG/OuLEtmVpaV7flz
+                        THLKQN6diK6NSS2ViEF0ymbb7ZO2caG1fwOLfeBU+Kbmre8XVJTmSAhG4ox8XLmr
+                        4/ugZnU50D1IaCbfhxECAwEAAaOBrTCBqjAPBgNVHRMBAf8EBTADAQH/MBEGCWCG
+                        SAGG+EIBAQQEAwIABzAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0OBBYEFI9bMgOQsY4J
+                        bO1yrcG6nWgVhy3iMFUGA1UdIwROMEyAFI9bMgOQsY4JbO1yrcG6nWgVhy3ioTGk
+                        LzAtMRIwEAYDVQQKEwlJbnRlcm5ldDIxFzAVBgNVBAMTDlRlc3QgUm9vdCBDQSAx
+                        ggEAMA0GCSqGSIb3DQEBBAUAA4IBAQBaf7gv/KYn5THGUJNczro8erZajPVqL678
+                        Jf1lv/oShdDesD0kXjxUIe9OSC2yhqFlZ3Ls8iB8D2naisWgo58Yty9r6nLJtEnB
+                        INrUSpAX1XmIeR/PgbPT+3ZRqWvb2hnkCM8HtfRPZLZCB/Leg4KHQMN0HTyZueCP
+                        K+RZkomQ5ir6O821za9SMboSDGGMr4KqbLFOrIBes+lOwEXVP84J1vi6qj0cWvmh
+                        /r4X3UV0D7qf508NrEvPlw/jTUzEHOf64a1g68V8xWrbef1MKvLZzcD5/meJ3Gpd
+                        V+AEfwI5bBmfpUetZsnLDqz5LX+qu0ORP6kRjS30u/0PNHNzdKtn
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </shibmd:KeyAuthority>
+    </Extensions>
+    
+
+    <EntityDescriptor entityID="https://idp-top.example.org">
+        <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:mace:shibboleth:1.0">
+            <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="https://idp.example.org/idp/Shibboleth/SSO"/>
+        </IDPSSODescriptor>
+    </EntityDescriptor>
+
+    <EntitiesDescriptor Name="GroupSub1" validUntil="2100-01-01T00:00:00Z">
+
+        <Extensions>
+            <shibmd:KeyAuthority xmlns:shibmd="urn:mace:shibboleth:metadata:1.0">
+                <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                    <ds:X509Data>
+                        <ds:X509Certificate>
+                            MIIDgzCCAmugAwIBAgIBADANBgkqhkiG9w0BAQQFADAtMRIwEAYDVQQKEwlJbnRl
+                            cm5ldDIxFzAVBgNVBAMTDlRlc3QgUm9vdCBDQSAxMB4XDTA4MDIxNjAyNDUyNloX
+                            DTMzMDIwOTAyNDUyNlowLTESMBAGA1UEChMJSW50ZXJuZXQyMRcwFQYDVQQDEw5U
+                            ZXN0IFJvb3QgQ0EgMTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMV5
+                            6dwqZGkiVx5/v9ULicAen3RuSRpd+SJ46p6RgXxWRA2WlHZYMW7pMTeN/KvbHKEk
+                            IkAu5fh19iLW+XkhWHGVTm7pPoZ7AdzJ4PfJId290T80/uS/kZT3coOeiqZy6dQ6
+                            659tVXCH9K0X/S5et6i+BS+gHPF/RvxnuVKTBrlHfToxwtN7GtkKRlvGHo9l83p3
+                            yoOEH83gBHBy3Hd2HUSSCH6c/rh/3u2pCzojQA2H8+L9/C3qG/OuLEtmVpaV7flz
+                            THLKQN6diK6NSS2ViEF0ymbb7ZO2caG1fwOLfeBU+Kbmre8XVJTmSAhG4ox8XLmr
+                            4/ugZnU50D1IaCbfhxECAwEAAaOBrTCBqjAPBgNVHRMBAf8EBTADAQH/MBEGCWCG
+                            SAGG+EIBAQQEAwIABzAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0OBBYEFI9bMgOQsY4J
+                            bO1yrcG6nWgVhy3iMFUGA1UdIwROMEyAFI9bMgOQsY4JbO1yrcG6nWgVhy3ioTGk
+                            LzAtMRIwEAYDVQQKEwlJbnRlcm5ldDIxFzAVBgNVBAMTDlRlc3QgUm9vdCBDQSAx
+                            ggEAMA0GCSqGSIb3DQEBBAUAA4IBAQBaf7gv/KYn5THGUJNczro8erZajPVqL678
+                            Jf1lv/oShdDesD0kXjxUIe9OSC2yhqFlZ3Ls8iB8D2naisWgo58Yty9r6nLJtEnB
+                            INrUSpAX1XmIeR/PgbPT+3ZRqWvb2hnkCM8HtfRPZLZCB/Leg4KHQMN0HTyZueCP
+                            K+RZkomQ5ir6O821za9SMboSDGGMr4KqbLFOrIBes+lOwEXVP84J1vi6qj0cWvmh
+                            /r4X3UV0D7qf508NrEvPlw/jTUzEHOf64a1g68V8xWrbef1MKvLZzcD5/meJ3Gpd
+                            V+AEfwI5bBmfpUetZsnLDqz5LX+qu0ORP6kRjS30u/0PNHNzdKtn
+                        </ds:X509Certificate>
+                    </ds:X509Data>
+                </ds:KeyInfo>
+            </shibmd:KeyAuthority>
+        </Extensions>
+    
+        <EntityDescriptor entityID="https://idp-sub1.example.org">
+            <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:mace:shibboleth:1.0">
+                <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="https://idp.example.org/idp/Shibboleth/SSO"/>
+            </IDPSSODescriptor>
+        </EntityDescriptor>
+    </EntitiesDescriptor>
+
+    <EntitiesDescriptor Name="GroupSub2" validUntil="2100-01-01T00:00:00Z">
+
+        <Extensions>
+            <shibmd:KeyAuthority xmlns:shibmd="urn:mace:shibboleth:metadata:1.0">
+                <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                    <ds:X509Data>
+                        <ds:X509Certificate>
+                            MIIDgzCCAmugAwIBAgIBADANBgkqhkiG9w0BAQQFADAtMRIwEAYDVQQKEwlJbnRl
+                            cm5ldDIxFzAVBgNVBAMTDlRlc3QgUm9vdCBDQSAxMB4XDTA4MDIxNjAyNDUyNloX
+                            DTMzMDIwOTAyNDUyNlowLTESMBAGA1UEChMJSW50ZXJuZXQyMRcwFQYDVQQDEw5U
+                            ZXN0IFJvb3QgQ0EgMTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMV5
+                            6dwqZGkiVx5/v9ULicAen3RuSRpd+SJ46p6RgXxWRA2WlHZYMW7pMTeN/KvbHKEk
+                            IkAu5fh19iLW+XkhWHGVTm7pPoZ7AdzJ4PfJId290T80/uS/kZT3coOeiqZy6dQ6
+                            659tVXCH9K0X/S5et6i+BS+gHPF/RvxnuVKTBrlHfToxwtN7GtkKRlvGHo9l83p3
+                            yoOEH83gBHBy3Hd2HUSSCH6c/rh/3u2pCzojQA2H8+L9/C3qG/OuLEtmVpaV7flz
+                            THLKQN6diK6NSS2ViEF0ymbb7ZO2caG1fwOLfeBU+Kbmre8XVJTmSAhG4ox8XLmr
+                            4/ugZnU50D1IaCbfhxECAwEAAaOBrTCBqjAPBgNVHRMBAf8EBTADAQH/MBEGCWCG
+                            SAGG+EIBAQQEAwIABzAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0OBBYEFI9bMgOQsY4J
+                            bO1yrcG6nWgVhy3iMFUGA1UdIwROMEyAFI9bMgOQsY4JbO1yrcG6nWgVhy3ioTGk
+                            LzAtMRIwEAYDVQQKEwlJbnRlcm5ldDIxFzAVBgNVBAMTDlRlc3QgUm9vdCBDQSAx
+                            ggEAMA0GCSqGSIb3DQEBBAUAA4IBAQBaf7gv/KYn5THGUJNczro8erZajPVqL678
+                            Jf1lv/oShdDesD0kXjxUIe9OSC2yhqFlZ3Ls8iB8D2naisWgo58Yty9r6nLJtEnB
+                            INrUSpAX1XmIeR/PgbPT+3ZRqWvb2hnkCM8HtfRPZLZCB/Leg4KHQMN0HTyZueCP
+                            K+RZkomQ5ir6O821za9SMboSDGGMr4KqbLFOrIBes+lOwEXVP84J1vi6qj0cWvmh
+                            /r4X3UV0D7qf508NrEvPlw/jTUzEHOf64a1g68V8xWrbef1MKvLZzcD5/meJ3Gpd
+                            V+AEfwI5bBmfpUetZsnLDqz5LX+qu0ORP6kRjS30u/0PNHNzdKtn
+                        </ds:X509Certificate>
+                    </ds:X509Data>
+                </ds:KeyInfo>
+            </shibmd:KeyAuthority>
+            <shibmd:KeyAuthority xmlns:shibmd="urn:mace:shibboleth:metadata:1.0">
+                <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                    <ds:X509Data>
+                        <ds:X509Certificate>
+                            MIIDgzCCAmugAwIBAgIBADANBgkqhkiG9w0BAQQFADAtMRIwEAYDVQQKEwlJbnRl
+                            cm5ldDIxFzAVBgNVBAMTDlRlc3QgUm9vdCBDQSAxMB4XDTA4MDIxNjAyNDUyNloX
+                            DTMzMDIwOTAyNDUyNlowLTESMBAGA1UEChMJSW50ZXJuZXQyMRcwFQYDVQQDEw5U
+                            ZXN0IFJvb3QgQ0EgMTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMV5
+                            6dwqZGkiVx5/v9ULicAen3RuSRpd+SJ46p6RgXxWRA2WlHZYMW7pMTeN/KvbHKEk
+                            IkAu5fh19iLW+XkhWHGVTm7pPoZ7AdzJ4PfJId290T80/uS/kZT3coOeiqZy6dQ6
+                            659tVXCH9K0X/S5et6i+BS+gHPF/RvxnuVKTBrlHfToxwtN7GtkKRlvGHo9l83p3
+                            yoOEH83gBHBy3Hd2HUSSCH6c/rh/3u2pCzojQA2H8+L9/C3qG/OuLEtmVpaV7flz
+                            THLKQN6diK6NSS2ViEF0ymbb7ZO2caG1fwOLfeBU+Kbmre8XVJTmSAhG4ox8XLmr
+                            4/ugZnU50D1IaCbfhxECAwEAAaOBrTCBqjAPBgNVHRMBAf8EBTADAQH/MBEGCWCG
+                            SAGG+EIBAQQEAwIABzAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0OBBYEFI9bMgOQsY4J
+                            bO1yrcG6nWgVhy3iMFUGA1UdIwROMEyAFI9bMgOQsY4JbO1yrcG6nWgVhy3ioTGk
+                            LzAtMRIwEAYDVQQKEwlJbnRlcm5ldDIxFzAVBgNVBAMTDlRlc3QgUm9vdCBDQSAx
+                            ggEAMA0GCSqGSIb3DQEBBAUAA4IBAQBaf7gv/KYn5THGUJNczro8erZajPVqL678
+                            Jf1lv/oShdDesD0kXjxUIe9OSC2yhqFlZ3Ls8iB8D2naisWgo58Yty9r6nLJtEnB
+                            INrUSpAX1XmIeR/PgbPT+3ZRqWvb2hnkCM8HtfRPZLZCB/Leg4KHQMN0HTyZueCP
+                            K+RZkomQ5ir6O821za9SMboSDGGMr4KqbLFOrIBes+lOwEXVP84J1vi6qj0cWvmh
+                            /r4X3UV0D7qf508NrEvPlw/jTUzEHOf64a1g68V8xWrbef1MKvLZzcD5/meJ3Gpd
+                            V+AEfwI5bBmfpUetZsnLDqz5LX+qu0ORP6kRjS30u/0PNHNzdKtn
+                        </ds:X509Certificate>
+                    </ds:X509Data>
+                </ds:KeyInfo>
+            </shibmd:KeyAuthority>
+        </Extensions>
+    
+    
+        <EntityDescriptor entityID="https://idp-sub2.example.org">
+            <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:mace:shibboleth:1.0">
+                <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="https://idp.example.org/idp/Shibboleth/SSO"/>
+            </IDPSSODescriptor>
+        </EntityDescriptor>
+
+        <EntitiesDescriptor Name="GroupSub2A" validUntil="2100-01-01T00:00:00Z">
+
+            <Extensions>
+                <shibmd:KeyAuthority xmlns:shibmd="urn:mace:shibboleth:metadata:1.0">
+                    <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                        <ds:X509Data>
+                            <ds:X509Certificate>
+                                MIIDgzCCAmugAwIBAgIBADANBgkqhkiG9w0BAQQFADAtMRIwEAYDVQQKEwlJbnRl
+                                cm5ldDIxFzAVBgNVBAMTDlRlc3QgUm9vdCBDQSAxMB4XDTA4MDIxNjAyNDUyNloX
+                            	DTMzMDIwOTAyNDUyNlowLTESMBAGA1UEChMJSW50ZXJuZXQyMRcwFQYDVQQDEw5U
+                            	ZXN0IFJvb3QgQ0EgMTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMV5
+                            	6dwqZGkiVx5/v9ULicAen3RuSRpd+SJ46p6RgXxWRA2WlHZYMW7pMTeN/KvbHKEk
+                            	IkAu5fh19iLW+XkhWHGVTm7pPoZ7AdzJ4PfJId290T80/uS/kZT3coOeiqZy6dQ6
+                            	659tVXCH9K0X/S5et6i+BS+gHPF/RvxnuVKTBrlHfToxwtN7GtkKRlvGHo9l83p3
+                            	yoOEH83gBHBy3Hd2HUSSCH6c/rh/3u2pCzojQA2H8+L9/C3qG/OuLEtmVpaV7flz
+                            	THLKQN6diK6NSS2ViEF0ymbb7ZO2caG1fwOLfeBU+Kbmre8XVJTmSAhG4ox8XLmr
+                            	4/ugZnU50D1IaCbfhxECAwEAAaOBrTCBqjAPBgNVHRMBAf8EBTADAQH/MBEGCWCG
+                            	SAGG+EIBAQQEAwIABzAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0OBBYEFI9bMgOQsY4J
+                            	bO1yrcG6nWgVhy3iMFUGA1UdIwROMEyAFI9bMgOQsY4JbO1yrcG6nWgVhy3ioTGk
+                            	LzAtMRIwEAYDVQQKEwlJbnRlcm5ldDIxFzAVBgNVBAMTDlRlc3QgUm9vdCBDQSAx
+                            	ggEAMA0GCSqGSIb3DQEBBAUAA4IBAQBaf7gv/KYn5THGUJNczro8erZajPVqL678
+                            	Jf1lv/oShdDesD0kXjxUIe9OSC2yhqFlZ3Ls8iB8D2naisWgo58Yty9r6nLJtEnB
+                            	INrUSpAX1XmIeR/PgbPT+3ZRqWvb2hnkCM8HtfRPZLZCB/Leg4KHQMN0HTyZueCP
+                            	K+RZkomQ5ir6O821za9SMboSDGGMr4KqbLFOrIBes+lOwEXVP84J1vi6qj0cWvmh
+                            	/r4X3UV0D7qf508NrEvPlw/jTUzEHOf64a1g68V8xWrbef1MKvLZzcD5/meJ3Gpd
+                            	V+AEfwI5bBmfpUetZsnLDqz5LX+qu0ORP6kRjS30u/0PNHNzdKtn
+                        </ds:X509Certificate>
+                    </ds:X509Data>
+                </ds:KeyInfo>
+            </shibmd:KeyAuthority>
+        </Extensions>
+        
+            <EntityDescriptor entityID="https://idp-sub2a.example.org">
+                <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:mace:shibboleth:1.0">
+                    <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="https://idp.example.org/idp/Shibboleth/SSO"/>
+                </IDPSSODescriptor>
+            </EntityDescriptor>
+        </EntitiesDescriptor>
+        
+    </EntitiesDescriptor>
+    
+</EntitiesDescriptor>

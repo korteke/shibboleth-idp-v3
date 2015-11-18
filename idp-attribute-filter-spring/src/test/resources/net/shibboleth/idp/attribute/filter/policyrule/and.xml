@@ -1,0 +1,12 @@
+<afp:AttributeFilterPolicy id="MostBasicExample"
+    	xmlns:basic="urn:mace:shibboleth:2.0:afp:mf:basic" xmlns:afp="urn:mace:shibboleth:2.0:afp"
+    	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:mace:shibboleth:2.0:afp http://shibboleth.net/schema/idp/shibboleth-afp.xsd
+                            urn:mace:shibboleth:2.0:afp:mf:basic http://shibboleth.net/schema/idp/shibboleth-afp-mf-basic.xsd">
+	<afp:PolicyRequirementRule xsi:type="basic:AND">
+		<basic:Rule xsi:type="basic:NOT">
+			<basic:Rule xsi:type="basic:ANY" />
+		</basic:Rule>
+		<basic:Rule xsi:type="basic:ANY" />
+	</afp:PolicyRequirementRule>
+</afp:AttributeFilterPolicy>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+
+       default-init-method="initialize" default-destroy-method="destroy">
+
+    <bean id="shibboleth.SessionManager" class="net.shibboleth.idp.session.impl.StorageBackedSessionManager"
+          depends-on="shibboleth.OpenSAMLConfig"
+          p:httpServletRequest-ref="shibboleth.HttpServletRequest"
+          p:httpServletResponse-ref="shibboleth.HttpServletResponse"
+          p:authenticationFlowDescriptors="#{@'shibboleth.AvailableAuthenticationFlows'.?[id matches 'authn/(' + '%{idp.authn.flows:}'.trim() + ')']}"
+          p:cookieManager-ref="shibboleth.CookieManager"
+          p:storageService-ref="shibboleth.StorageService"
+          p:consistentAddress="%{idp.session.consistentAddress:true}"
+          p:sessionTimeout="%{idp.session.timeout:PT60M}"
+          p:sessionSlop="%{idp.session.slop:PT0S}"
+          p:maskStorageFailure="%{idp.session.maskStorageFailure:false}"
+          p:trackSPSessions="true"
+          p:secondaryServiceIndex="%{idp.session.secondaryServiceIndex:false}"
+          p:IDGenerator-ref="shibboleth.SessionIDGenerator"
+          p:SPSessionSerializerRegistry-ref="shibboleth.SPSessionSerializerRegistry" />
+
+    <util:list id="shibboleth.RelyingPartyResolverResources">
+        <value>classpath:/test/test-relying-party-cas.xml</value>
+        <value>classpath:/system/conf/relying-party-system.xml</value>
+        <value>classpath:/conf/credentials.xml</value>
+    </util:list>
+
+    <util:list id ="shibboleth.AttributeFilterResources">
+        <value>classpath:/test/test-attribute-filter-cas.xml</value>
+    </util:list>
+
+    <bean id="shibboleth.CASServiceRegistry"
+          class="net.shibboleth.idp.cas.service.PatternServiceRegistry">
+        <property name="definitions">
+            <list>
+                <bean class="net.shibboleth.idp.cas.service.ServiceDefinition"
+                      c:regex="https://slo\.example\.org(:\d+)?/.*"
+                      p:group="proxying-services"
+                      p:authorizedToProxy="true"
+                      p:singleLogoutParticipant="true" />
+                <bean class="net.shibboleth.idp.cas.service.ServiceDefinition"
+                      c:regex="https://([A-Za-z0-9_-]+\.)*example\.org(:\d+)?/.*"
+                      p:group="proxying-services"
+                      p:authorizedToProxy="true" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="cas.ProxyAuthenticator"
+          class="net.shibboleth.idp.test.flows.cas.TestProxyAuthenticator" />
+
+</beans>

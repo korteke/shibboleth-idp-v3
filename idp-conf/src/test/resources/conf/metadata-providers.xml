@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file is an EXAMPLE metadata configuration file. -->
+<MetadataProvider id="ShibbolethMetadata" xsi:type="ChainingMetadataProvider"
+	xmlns="urn:mace:shibboleth:2.0:metadata" xmlns:resource="urn:mace:shibboleth:2.0:resource"
+	xmlns:security="urn:mace:shibboleth:2.0:security"
+	xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+    xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:metadata http://shibboleth.net/schema/idp/shibboleth-metadata.xsd
+                        urn:mace:shibboleth:2.0:resource http://shibboleth.net/schema/idp/shibboleth-resource.xsd 
+                        urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd
+                        urn:oasis:names:tc:SAML:2.0:assertion http://docs.oasis-open.org/security/saml/v2.0/saml-schema-assertion-2.0.xsd
+                        urn:oasis:names:tc:SAML:2.0:metadata http://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd">
+                        
+	<!-- ========================================== -->
+	<!-- Metadata Configuration -->
+	<!-- ========================================== -->
+
+
+	<!-- Example metadata provider. -->
+
+    <MetadataProvider id="URLMD" xsi:type="ResourceBackedMetadataProvider" maxRefreshDelay="PT5M">
+        <MetadataFilter xsi:type="SignatureValidation" requireSignedRoot="false"> <!-- TODO -->
+            <PublicKey>
+                MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxg0TyQAP/tIvOH89EtaX
+                uRRn8SYzTj7W1TbNY4VvBmobjkRmSkki4hH9x4sQpi635wn6WtXTN/FNNmkTK3N/
+                LspmBWxfZS+n+cc7I82E5yvCAPX67QsZgqgglp2W5dvK/FsMMCS6X6SVqzBLMP88
+                NenXKxY+HMxMs0sT0UKYh1cAEqadrHRBO65aDBcm5a0sBVYt9K6pgaOHrp/zSIbh
+                nR5tFFLjBbtFktDpHL3AdGBH3OYidNGKBO3tJ3Ms7LeKXsM0+0Y4P+9fHZINL2X3
+                E2N6GVnKs5PZTg9sP0FtIpAbYm/+zCx7Yj1ET/Er8mDd6tNVGSQsn9s5xUBwGqn1
+                4wIDAQAB
+            </PublicKey>
+        </MetadataFilter>
+        <MetadataFilter xsi:type="SchemaValidation"/>
+        <MetadataFilter xsi:type="EntityRoleWhiteList">
+            <RetainedRole>md:SPSSODescriptor</RetainedRole>
+        </MetadataFilter>
+        <MetadataFilter xsi:type="EntityAttributes">
+            <saml:Attribute Name="https://sp.example.org/tagname">
+                <saml:AttributeValue>foo</saml:AttributeValue>
+            </saml:Attribute>
+            <saml:Attribute Name="https://sp.example.org/tagname2">
+                <saml:AttributeValue>foo</saml:AttributeValue>
+                <saml:AttributeValue>bar</saml:AttributeValue>
+            </saml:Attribute>
+            <Entity>https://sp.example.org</Entity>
+        </MetadataFilter>
+        <MetadataResource xsi:type="resource:ClasspathResource" file="/metadata/example-metadata.xml" />
+    </MetadataProvider>
+
+    <MetadataProvider id="SP123MD" xsi:type="ResourceBackedMetadataProvider" maxRefreshDelay="PT5M">
+        <MetadataResource xsi:type="resource:ClasspathResource" file="/metadata/example-sp123-metadata.xml" />
+    </MetadataProvider>
+
+</MetadataProvider>

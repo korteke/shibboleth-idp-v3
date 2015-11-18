@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+
+	default-init-method="initialize" default-destroy-method="destroy">
+
+	<bean id="shibboleth.ParserPool"
+		class="net.shibboleth.utilities.java.support.xml.BasicParserPool"
+		p:maxPoolSize="100"
+		p:coalescing="true" p:ignoreComments="true"
+		p:ignoreElementContentWhitespace="true" p:namespaceAware="true" />
+
+
+    <bean id="myParserPool"
+        class="net.shibboleth.utilities.java.support.xml.BasicParserPool"
+        p:maxPoolSize="1000"
+        p:coalescing="true" p:ignoreComments="true"
+        p:ignoreElementContentWhitespace="true" p:namespaceAware="true" />
+		
+	<bean id="shibboleth.SchemaBuilder" class="org.opensaml.saml.common.xml.SAMLSchemaBuilder" c:ver="SAML_11"/>
+    
+    <bean id="shibboleth.VelocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="overrideLogging" value="false"/>
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">UTF-8</prop>
+                <prop key="output.encoding">UTF-8</prop>
+                <prop key="resource.loader">classpath, string</prop>
+                <prop key="classpath.resource.loader.class">
+                    org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+                </prop>
+                <prop key="string.resource.loader.class">
+                    org.apache.velocity.runtime.resource.loader.StringResourceLoader
+                </prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="digester.SHA1HexLower" class="net.shibboleth.utilities.java.support.codec.StringDigester" 
+           c:_0="SHA-1"
+           c:_1="HEX_LOWER"/>
+            
+    <bean id="shibboleth.MetadataSignatureValidationStaticCriteria" 
+            class="net.shibboleth.idp.profile.spring.relyingparty.metadata.filter.impl.SignatureValidationCriteriaSetFactoryBean" 
+            p:includeOpenSAMLGlobalConfig="true">
+        <property name="signatureValidationConfigurations">
+            <util:list>
+                <bean class="org.opensaml.xmlsec.impl.BasicSignatureValidationConfiguration">
+                    <property name="whitelistedAlgorithms">
+                        <list>
+                        </list>
+                    </property>
+                    <property name="blacklistedAlgorithms">
+                        <list>
+                            <value>foo</value>
+                            <value>bar</value>
+                            <value>baz</value>
+                        </list>
+                    </property>
+                </bean>
+            </util:list>
+        </property>
+    </bean>
+            
+</beans>

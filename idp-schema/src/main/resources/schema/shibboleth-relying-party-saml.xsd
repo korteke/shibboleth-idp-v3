@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:samlrp="urn:mace:shibboleth:2.0:relying-party:saml" xmlns:rp="urn:mace:shibboleth:2.0:relying-party" targetNamespace="urn:mace:shibboleth:2.0:relying-party:saml" elementFormDefault="qualified">
+
+    <import namespace="urn:mace:shibboleth:2.0:relying-party" schemaLocation="http://shibboleth.net/schema/idp/shibboleth-relying-party.xsd"/>
+    
+    <complexType name="SAML2ArtifactResolutionProfile">
+        <annotation>
+            <documentation>SAML 2.0 artifact query communication profile configuration.</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="samlrp:SAML2ProfileConfigurationType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="SAML2AttributeQueryProfile">
+        <annotation>
+            <documentation>SAML 2.0 attribute query communication profile configuration.</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="samlrp:SAML2ProfileConfigurationType">
+                <attributeGroup ref="samlrp:artifactSettingsGroup"/>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="SAML2LogoutRequestProfile">
+        <annotation>
+            <documentation>SAML 2.0 logout request communication profile configuration.</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="samlrp:SAML2ProfileConfigurationType">
+                <attributeGroup ref="samlrp:artifactSettingsGroup"/>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="SAML2ECPProfile">
+        <annotation>
+            <documentation>SAML 2.0 ECP single sign-on communication profile configuration.</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="samlrp:SAML2SSOProfile"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="SAML2SSOSProfile">
+        <annotation>
+            <documentation>SAML 2.0 Liberty ID-WSF SSOS profile configuration.</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="samlrp:SAML2SSOProfile">
+                <attribute name="delegationPredicateRef" type="string">
+                    <annotation>
+                        <documentation>
+                            Reference to a predicate used to determine whether a delegated token presented
+                            to the IdP by another non-user entity may be used to complete SAML 2 SSO
+                            to this relying party.
+                        </documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="SAML2SSOProfile">
+        <annotation>
+            <documentation>SAML 2.0 single sign-on communication profile configuration.</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="samlrp:SAML2ProfileConfigurationType">
+                <attributeGroup ref="samlrp:artifactSettingsGroup"/>
+                <attribute name="allowDelegation" type="string">
+                    <annotation>
+                        <documentation>
+                            Whether produced assertions may be delegated.
+                            
+                            Mutually exclusive with allowDelegationPredicateRef.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="allowDelegationPredicateRef" type="string">
+                    <annotation>
+                        <documentation>
+                            Reference to a predicate use to determine whether produced assertions may be delegated.
+                            
+                            Mutually exclusive with allowDelegation.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="maximumTokenDelegationChainLength" type="string">
+                    <annotation>
+                        <documentation>
+                            Limits the total number of delegates that may be derived from the initial SAML token.
+                            The identity provider will not accept, and therefore will also not issue, Assertion tokens
+                            with a delegation chain length greater than this value.
+                            
+                            The length of a delegation chain is evaluated as the number of Delegate children within an
+                            Assertion's DelegationRestrictionType Condition element.
+                            
+                            The value used when applying the policy is determined by the value in effect for the
+                            relying party to which the initial SSO Assertion was issued.
+                            
+                            Defaults to 1. 
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="localityAddress" type="string">
+                    <annotation>
+                        <documentation>
+                            Deprecated, never implemented.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="localityDNSName" type="string">
+                    <annotation>
+                        <documentation>
+                            Deprecated, never implemented.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="includeAttributeStatement" type="string">
+                    <annotation>
+                        <documentation>
+                            Boolean flag indicating whether an attribute statement should be included with the
+                            authentication statement in the response sent back to the relying party.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="maximumSPSessionLifetime" type="string">
+                    <annotation>
+                        <documentation>
+                            The maximum amount of time the service provider should maintain a session
+                            for the user based on the authentication assertion.  This attribute is converted into the 
+                            SessionNotOnOrAfter attribute of the AuthnStatement. If no value is supplied then the
+                            SessionNotOnOrAfter attribute is not sent within the AuthnStatement.
+                            
+                            Lifetime is expressed in ISO8601 duration notation.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="skipEndpointValidationWhenSigned" type="string">
+                    <annotation>
+                        <documentation>
+                            If true, allows signed AuthnRequests to bypass validation of the response
+                            location against metadata, if a location is specified in the request.
+                        </documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="SAML2ProfileConfigurationType" abstract="true">
+        <annotation>
+            <documentation>Base type for SAML 2.0 communication profile configurations.</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="samlrp:SAMLProfileConfigurationType">
+                <sequence>
+                    <element name="ProxyAudience" type="string" minOccurs="0" maxOccurs="unbounded">
+                        <annotation>
+                            <documentation>List of audiences for proxied assertions.</documentation>
+                        </annotation>
+                    </element>
+                </sequence>
+                <attribute name="encryptionOptional" type="string">
+                    <annotation>
+                        <documentation>A flag indicating whether encryption is optional.</documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="encryptNameIds" type="string">
+                    <annotation>
+                        <documentation>
+                            A flag indicating whether NameIDs should be encrypted.
+                        
+                            One of "always", "conditional", "never"
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="encryptAssertions" type="string">
+                    <annotation>
+                        <documentation>
+                            A flag indicating whether assertions should be encrypted.
+                        
+                            One of "always", "conditional", "never"
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="encryptAttributes" type="string">
+                    <annotation>
+                        <documentation>
+                            A flag indicating whether attributes should be encrypted.
+
+                            One of "always", "conditional", "never"
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="assertionProxyCount" type="string">
+                    <annotation>
+                        <documentation>The maximum number of times an assertion may be proxied.</documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="SAML1ArtifactResolutionProfile">
+        <annotation>
+            <documentation>SAML 1.0 and 1.1 artifact query communication profile configurations.</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="samlrp:SAMLProfileConfigurationType"/>
+        </complexContent>
+    </complexType>
+
+    <complexType name="SAML1AttributeQueryProfile">
+        <annotation>
+            <documentation>SAML 1.0 and 1.1 attribute query communication profile configurations.</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="samlrp:SAMLProfileConfigurationType">
+                <attributeGroup ref="samlrp:artifactSettingsGroup"/>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="ShibbolethSSOProfile">
+        <annotation>
+            <documentation>Shibboleth 1 single sign-on communication profile configurations.</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="samlrp:SAMLProfileConfigurationType">
+                <attributeGroup ref="samlrp:artifactSettingsGroup"/>
+                <attribute name="localityAddress" type="string">
+                    <annotation>
+                        <documentation>
+                            Deprecated, never implemented.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="localityDNSName" type="string">
+                    <annotation>
+                        <documentation>
+                            Deprecated, never implemented.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="includeAttributeStatement" type="string">
+                    <annotation>
+                        <documentation>
+                            Boolean flag indicating whether an attribute statement should be included with the
+                            authentication statement in the response sent back to the relying party.
+                        </documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="SAMLProfileConfigurationType" abstract="true">
+        <annotation>
+            <documentation>Base type for SAML (1.0, 1.1, and 2.0) communication profile configurations.</documentation>
+        </annotation>
+        <complexContent>
+            <extension base="rp:ProfileConfigurationType">
+                <sequence>
+                    <choice>
+                        <element name="Audience" type="string" minOccurs="0" maxOccurs="unbounded">
+                            <annotation>
+                                <documentation>Additional audiences to which an assertion may be released.</documentation>
+                            </annotation>
+                        </element>
+                    </choice>
+                </sequence>
+                <attribute name="assertionLifetime" type="string">
+                    <annotation>
+                        <documentation>
+                            The amount of time before an issued assertion expires.
+                            
+                            Lifetime is expressed in ISO8601 duration notation.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="attributeAuthority" type="string">
+                    <annotation>
+                        <documentation>
+                            Deprecated in V3
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="includeConditionsNotBefore" type="string">
+                    <annotation>
+                        <documentation>
+                            Boolean flag indicating whether a NotBefore condition should be included in any
+                            assertions sent back to the relying party.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="outboundArtifactType" type="string">
+                    <annotation>
+                        <documentation>Deprecated in V3.</documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="securityPolicyRef" type="string">
+                    <annotation>
+                        <documentation>
+                            Deprecated in V3. 
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="signingCredentialRef" type="string">
+                    <annotation>
+                        <documentation>ID of the credential to use to sign SAML assertions.</documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="signAssertions" type="string">
+                    <annotation>
+                        <documentation>
+                            A flag indicating whether issued assertions should be signed. If no signing
+                            credential is provided on this configuration and no default signing credential is provided
+                            on the relying party configuration then signing will not occur regardless of this setting.
+
+                            One of "always", "conditional", "never"
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="signRequests" type="string">
+                    <annotation>
+                        <documentation>
+                            A flag indicating whether protocol requests should be signed. If no signing
+                            credential is provided on this configuration and no default signing credential is provided
+                            on the relying party configuration then signing will not occur regardless of this setting.
+
+                            One of "always", "conditional", "never"
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="signResponses" type="string">
+                    <annotation>
+                        <documentation>
+                            A flag indicating whether protocol responses should be signed. If no signing
+                            credential is provided on this configuration and no default signing credential is provided
+                            on the relying party configuration then signing will not occur regardless of this setting.
+                            
+                            One of "always", "conditional", "never"
+                        </documentation>
+                    </annotation>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+    
+    <attributeGroup name="artifactSettingsGroup">
+        <annotation>
+            <documentation>
+                Settings involved in artifact issuance for the subset of profiles that use them.
+            </documentation>
+        </annotation>
+        <attribute name="artifactType" type="string">
+            <annotation>
+                <documentation>An integral type code for the artifact type to issue.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="artifactResolutionServiceURL" type="string">
+            <annotation>
+                <documentation>
+                    The location, as a URL, of the issuer's resolution service endpoint.
+                </documentation>
+            </annotation>
+        </attribute>
+        <attribute name="artifactResolutionServiceIndex" type="string">
+            <annotation>
+                <documentation>
+                    The index of the issuer's resolution service endpoint, corresponding to its metadata.
+                </documentation>
+            </annotation>
+        </attribute>
+    </attributeGroup>
+    
+</schema>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata:MetadataProvider xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+	xmlns:metadata="urn:mace:shibboleth:2.0:metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:metadata http://shibboleth.net/schema/idp/shibboleth-metadata.xsd
+                       urn:oasis:names:tc:SAML:2.0:metadata http://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd"
+
+	id="dynamicTemplate" 
+    httpCaching="none"
+    xsi:type="metadata:DynamicHTTPMetadataProvider" >
+    
+    <!-- Note: use of the transformRef here is mostly just to facilitate testing. -->
+    <metadata:Template transformRef="digester.SHA1HexLower">
+        http://svn.shibboleth.net/view/java-opensaml/trunk/opensaml-saml-impl/src/test/resources/data/org/opensaml/saml/metadata/resolver/impl/${entityID}.xml?view=co
+    </metadata:Template>
+
+</metadata:MetadataProvider>
+                                   

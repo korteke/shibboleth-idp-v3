@@ -1,0 +1,2 @@
+importPackage(Packages.net.shibboleth.idp.attribute);
+Scripted.addValue(new StringAttributeValue("simple"));

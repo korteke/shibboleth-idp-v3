@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Example metadata for mock SPs with entityIDs of form 'https://sp[123].example.org'.
+ -->
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+                    xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui"
+                    xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+                    xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute">
+<EntityDescriptor entityID="https://sp1.example.org">
+    <Extensions>
+	    <mdattr:EntityAttributes xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
+	        <saml:Attribute Name="http://macedir.org/entity-category"
+	            NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+	            <saml:AttributeValue>http://refeds.org/category/research-and-scholarship
+	            </saml:AttributeValue>
+	        </saml:Attribute>
+	    </mdattr:EntityAttributes>
+    </Extensions>
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.1:protocol" AuthnRequestsSigned="false">
+        <Extensions>
+            <mdui:UIInfo>
+                <mdui:DisplayName xml:lang="en">TEST SP1 (display Name)</mdui:DisplayName>
+                <mdui:Description xml:lang="en">
+                TEST SP1 (description)Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.
+                </mdui:Description>
+                <mdui:InformationURL xml:lang="en">https://www.example.org</mdui:InformationURL>
+                <mdui:PrivacyStatementURL xml:lang="en">https://www.example.org/privacy</mdui:PrivacyStatementURL>
+                <mdui:Logo height="65" width="150">https://shibboleth.net/images/shibboleth.png</mdui:Logo>
+            </mdui:UIInfo>
+        </Extensions>
+        
+        <KeyDescriptor use="signing">
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <X509Data>
+                    <X509Certificate>
+MIIDDzCCAfegAwIBAgIJAN5ThWwNrvJxMA0GCSqGSIb3DQEBBQUAMCMxITAfBgNV
+BAMTGHNub3dkb2ctcHJvLmVsYW4ub3N1LmVkdTAeFw0xMzExMDYxNjUyMzBaFw0y
+MzExMDQxNjUyMzBaMCMxITAfBgNVBAMTGHNub3dkb2ctcHJvLmVsYW4ub3N1LmVk
+dTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAODCRHObLNAJ6xaxDmeA
+sJl2Mw3pTGCrWXe2H77n8TjZz68I9fgYLeamCONHFx1qaQUZXim/TANhzOSMCIs+
+/Ma/XVaB8H1lB2EJlob0gDa3wqpnd+ltUI+pirG0t1CDrP8RhBWaZWTRB8Oj9uMV
+lBarznvvSuJIOYnEt5OjLpHe3fbpstiI6dlkViB/jFMOT1G+MSfkPRXQopJ5PfnM
+LhrQa1iJ2hEwE4xviQUHbtqtIcw0xMOlse/GvdV6WMixxQ5Yr9tksb/hzOFG29Nk
+E+ZNxEoxeFQNl73pU3DuA8ogjBpGYDX9jGt0zvyDRlUyXferSIxZy4lauYaxw10o
+WyUCAwEAAaNGMEQwIwYDVR0RBBwwGoIYc25vd2RvZy1wcm8uZWxhbi5vc3UuZWR1
+MB0GA1UdDgQWBBS1KTq0OfsmdgBoqLkINa0wTnM9FzANBgkqhkiG9w0BAQUFAAOC
+AQEApclRWD8hdX+PvBS/8AZnMQFx0TP6UipoegT9GNiZTfbqUeaaepiUzLvrAa81
+IuxZKneg6deoeVhsvNxLAPlPR6OK32A3NadS4KU8d69H1zPKOd7nc+k9WzdFygwB
+DaWTdr2idWU2DpMkZpmDNnwsMpda3zONCJHiBqiCFbq2vsMhFa9X3SFasYIU0H9T
+osjFNFTQVwLeZyjf/fuKnfqbcs3JW+OM9fsxxAmUQQyLz8aKywOaMlQgTFTL9r9u
+Jnnr5zUpZZh6WVFIFS9QmNE4zJMZH6vIDk2zKsO0YJVaogxFML35hKlWen4DLbyT
+wJUl9NY7VG+HjvHrr6xeiDAq0g==
+                    </X509Certificate>
+                </X509Data>
+            </KeyInfo>
+        </KeyDescriptor>
+        
+        <KeyDescriptor>
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <X509Data>
+                    <X509Certificate>
+MIIDCTCCAfGgAwIBAgIJAN5X7xMzDu64MA0GCSqGSIb3DQEBBQUAMBkxFzAVBgNV
+BAMTDnNwLmV4YW1wbGUub3JnMB4XDTEzMDUyNDIxMzU0NloXDTIzMDUyMjIxMzU0
+NlowGTEXMBUGA1UEAxMOc3AuZXhhbXBsZS5vcmcwggEiMA0GCSqGSIb3DQEBAQUA
+A4IBDwAwggEKAoIBAQDAVA9a1ip1mvd5rQJe9xhL6TXvIHxPm+FLxabvQJA48sJh
+XsXmLAsyGzSm/HviqdkdR3VxyFhzLoj03TqqPP8/IoTFA2Lp+q9PnaeEHKaYeJGH
+g4RozQ0UKhiuyppWptO2Syls302haIaWWXz+p3iOgjuZKg/ESs1udGEJvAC/OUVu
+Eo08b6BuySxO/KsX9kWYoCF6vm+tN1kpOrMTceCqcJlRDyFzxUo4JTaku/81k88v
+iF+5/b0p7McB3IGqCFHR6MhZol880Dgxeze3o6/hmvXwGbJgOeWc46jgKareWwYn
+CSQ7/08TDvX0RhCca39IJXqSP/Wv4QOkALTdobQhAgMBAAGjVDBSMDEGA1UdEQQq
+MCiCDnNwLmV4YW1wbGUub3JnhhZodHRwczovL3NwLmV4YW1wbGUub3JnMB0GA1Ud
+DgQWBBQ1FR+wdqXqtICqb7G0fms7ELdt1zANBgkqhkiG9w0BAQUFAAOCAQEAoW/5
+uKnQMuQJfEx11uVCItAvRNmjWSmGFXpQ3rown3XbRkdX78PztcIdgwwtNZoTlMmA
+122Kdb8ViXw2tsZaB1iOaBiavMtLgdxbg9j6B6UmQrzERQm+zq5rBAzSTh6VRyDP
+kCMYnlX4+PyjWXGVADI65cRBbFBnED6By0NhJesDfaH8VpY19LN9AYpXVJRv4/Dc
+zlnQds4vPKzOaJGvt01Ni9jqZtcUDzKt9UdmDATbukoStvCKTwcr4gAPvfCfNZgo
+CUaW4GEmfyDkCahd5qNlWw0++Z2kNoSRyPA1PTJIkZhagv+VbO85ua2SDJWVgF4I
+h+XNZ5oAql/cjrwDWw==
+                    </X509Certificate>
+                </X509Data>
+            </KeyInfo>
+        </KeyDescriptor>
+        
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://localhost:8443/sp/sp1/SAML2/Redirect/SLO"/>
+        
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://localhost/sp/sp1/SAML2/POST/ACS" index="1"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://localhost:8443/sp/sp1/SAML2/POST/ACS" index="2"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://localhost/sp/sp1/SAML2/POST/ACS" index="3"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://localhost:8080/sp/sp1/SAML2/POST/ACS" index="4"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://localhost:8443/sp/sp1/SAML2/Artifact/ACS" index="5"/>
+
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://localhost:8443/sp/sp1/SAML2/PAOS/ACS" index="6"/>
+        
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="http://localhost:8080/sp/sp1/SAML1/POST/ACS" index="9"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="https://localhost:8443/sp/sp1/SAML1/POST/ACS" index="10"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01" Location="https://localhost:8443/sp/sp1/SAML1/Artifact/ACS" index="11"/>
+        <AttributeConsumingService isDefault="true" index="1">
+            <ServiceName xml:lang="en">Service Name</ServiceName>
+            <RequestedAttribute FriendlyName="displayName"
+                Name="urn:mace:dir:attribute-def:displayName" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri" />
+            <RequestedAttribute FriendlyName="displayName" isRequired="true"
+                Name="urn:oid:2.16.840.1.113730.3.1.241" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" />
+            <RequestedAttribute FriendlyName="eduPersonPrincipalName"
+                Name="urn:mace:dir:attribute-def:eduPersonPrincipalName" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri" />
+        </AttributeConsumingService>
+        
+    </SPSSODescriptor>
+    <Organization>
+        <OrganizationName xml:lang="en">TSC</OrganizationName>
+        <OrganizationDisplayName xml:lang="en">The Shibboleth Consortium</OrganizationDisplayName>
+        <OrganizationURL xml:lang="en">http://shibboleth.net/</OrganizationURL>
+    </Organization>
+    <ContactPerson contactType="support">
+        <GivenName>J Random</GivenName>
+        <SurName>Engineer</SurName>
+        <EmailAddress>mailto:jre@example.org</EmailAddress>
+    </ContactPerson>
+</EntityDescriptor>
+<EntityDescriptor entityID="https://sp2.example.org">
+    <Extensions>
+        <mdattr:EntityAttributes xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
+            <saml:Attribute Name="http://macedir.org/entity-category"
+                NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+                <saml:AttributeValue>http://refeds.org/category/research-and-scholarship
+                </saml:AttributeValue>
+            </saml:Attribute>
+        </mdattr:EntityAttributes>
+    </Extensions>
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.1:protocol" AuthnRequestsSigned="false">
+        <Extensions>
+            <mdui:UIInfo>
+                <mdui:DisplayName xml:lang="en">TEST SP2 (display Name)</mdui:DisplayName>
+                <mdui:Description xml:lang="en">
+                TEST SP2 (description)Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.
+                </mdui:Description>
+                <mdui:InformationURL xml:lang="en">https://www.example.org</mdui:InformationURL>
+                <mdui:PrivacyStatementURL xml:lang="en">https://www.example.org/privacy</mdui:PrivacyStatementURL>
+                <mdui:Logo height="65" width="150">https://shibboleth.net/images/shibboleth.png</mdui:Logo>
+            </mdui:UIInfo>
+        </Extensions>
+        
+        <KeyDescriptor use="signing">
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <X509Data>
+                    <X509Certificate>
+MIIDDzCCAfegAwIBAgIJAN5ThWwNrvJxMA0GCSqGSIb3DQEBBQUAMCMxITAfBgNV
+BAMTGHNub3dkb2ctcHJvLmVsYW4ub3N1LmVkdTAeFw0xMzExMDYxNjUyMzBaFw0y
+MzExMDQxNjUyMzBaMCMxITAfBgNVBAMTGHNub3dkb2ctcHJvLmVsYW4ub3N1LmVk
+dTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAODCRHObLNAJ6xaxDmeA
+sJl2Mw3pTGCrWXe2H77n8TjZz68I9fgYLeamCONHFx1qaQUZXim/TANhzOSMCIs+
+/Ma/XVaB8H1lB2EJlob0gDa3wqpnd+ltUI+pirG0t1CDrP8RhBWaZWTRB8Oj9uMV
+lBarznvvSuJIOYnEt5OjLpHe3fbpstiI6dlkViB/jFMOT1G+MSfkPRXQopJ5PfnM
+LhrQa1iJ2hEwE4xviQUHbtqtIcw0xMOlse/GvdV6WMixxQ5Yr9tksb/hzOFG29Nk
+E+ZNxEoxeFQNl73pU3DuA8ogjBpGYDX9jGt0zvyDRlUyXferSIxZy4lauYaxw10o
+WyUCAwEAAaNGMEQwIwYDVR0RBBwwGoIYc25vd2RvZy1wcm8uZWxhbi5vc3UuZWR1
+MB0GA1UdDgQWBBS1KTq0OfsmdgBoqLkINa0wTnM9FzANBgkqhkiG9w0BAQUFAAOC
+AQEApclRWD8hdX+PvBS/8AZnMQFx0TP6UipoegT9GNiZTfbqUeaaepiUzLvrAa81
+IuxZKneg6deoeVhsvNxLAPlPR6OK32A3NadS4KU8d69H1zPKOd7nc+k9WzdFygwB
+DaWTdr2idWU2DpMkZpmDNnwsMpda3zONCJHiBqiCFbq2vsMhFa9X3SFasYIU0H9T
+osjFNFTQVwLeZyjf/fuKnfqbcs3JW+OM9fsxxAmUQQyLz8aKywOaMlQgTFTL9r9u
+Jnnr5zUpZZh6WVFIFS9QmNE4zJMZH6vIDk2zKsO0YJVaogxFML35hKlWen4DLbyT
+wJUl9NY7VG+HjvHrr6xeiDAq0g==
+                    </X509Certificate>
+                </X509Data>
+            </KeyInfo>
+        </KeyDescriptor>
+        
+        <KeyDescriptor>
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <X509Data>
+                    <X509Certificate>
+MIIDCTCCAfGgAwIBAgIJAN5X7xMzDu64MA0GCSqGSIb3DQEBBQUAMBkxFzAVBgNV
+BAMTDnNwLmV4YW1wbGUub3JnMB4XDTEzMDUyNDIxMzU0NloXDTIzMDUyMjIxMzU0
+NlowGTEXMBUGA1UEAxMOc3AuZXhhbXBsZS5vcmcwggEiMA0GCSqGSIb3DQEBAQUA
+A4IBDwAwggEKAoIBAQDAVA9a1ip1mvd5rQJe9xhL6TXvIHxPm+FLxabvQJA48sJh
+XsXmLAsyGzSm/HviqdkdR3VxyFhzLoj03TqqPP8/IoTFA2Lp+q9PnaeEHKaYeJGH
+g4RozQ0UKhiuyppWptO2Syls302haIaWWXz+p3iOgjuZKg/ESs1udGEJvAC/OUVu
+Eo08b6BuySxO/KsX9kWYoCF6vm+tN1kpOrMTceCqcJlRDyFzxUo4JTaku/81k88v
+iF+5/b0p7McB3IGqCFHR6MhZol880Dgxeze3o6/hmvXwGbJgOeWc46jgKareWwYn
+CSQ7/08TDvX0RhCca39IJXqSP/Wv4QOkALTdobQhAgMBAAGjVDBSMDEGA1UdEQQq
+MCiCDnNwLmV4YW1wbGUub3JnhhZodHRwczovL3NwLmV4YW1wbGUub3JnMB0GA1Ud
+DgQWBBQ1FR+wdqXqtICqb7G0fms7ELdt1zANBgkqhkiG9w0BAQUFAAOCAQEAoW/5
+uKnQMuQJfEx11uVCItAvRNmjWSmGFXpQ3rown3XbRkdX78PztcIdgwwtNZoTlMmA
+122Kdb8ViXw2tsZaB1iOaBiavMtLgdxbg9j6B6UmQrzERQm+zq5rBAzSTh6VRyDP
+kCMYnlX4+PyjWXGVADI65cRBbFBnED6By0NhJesDfaH8VpY19LN9AYpXVJRv4/Dc
+zlnQds4vPKzOaJGvt01Ni9jqZtcUDzKt9UdmDATbukoStvCKTwcr4gAPvfCfNZgo
+CUaW4GEmfyDkCahd5qNlWw0++Z2kNoSRyPA1PTJIkZhagv+VbO85ua2SDJWVgF4I
+h+XNZ5oAql/cjrwDWw==
+                    </X509Certificate>
+                </X509Data>
+            </KeyInfo>
+        </KeyDescriptor>
+        
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://localhost:8443/sp/sp2/SAML2/Redirect/SLO"/>
+        
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://localhost/sp/sp2/SAML2/POST/ACS" index="1"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://localhost:8443/sp/sp2/SAML2/POST/ACS" index="2"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://localhost/sp/sp2/SAML2/POST/ACS" index="3"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://localhost:8080/sp/sp2/SAML2/POST/ACS" index="4"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://localhost:8443/sp/sp2/SAML2/Artifact/ACS" index="5"/>
+
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://localhost:8443/sp/sp2/SAML2/PAOS/ACS" index="6"/>
+        
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="http://localhost:8080/sp/sp2/SAML1/POST/ACS" index="9"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="https://localhost:8443/sp/sp2/SAML1/POST/ACS" index="10"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01" Location="https://localhost:8443/sp/sp2/SAML1/Artifact/ACS" index="11"/>
+        <AttributeConsumingService isDefault="true" index="1">
+            <ServiceName xml:lang="en">Service Name</ServiceName>
+            <RequestedAttribute FriendlyName="displayName"
+                Name="urn:mace:dir:attribute-def:displayName" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri" />
+            <RequestedAttribute FriendlyName="displayName" isRequired="true"
+                Name="urn:oid:2.16.840.1.113730.3.1.241" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" />
+            <RequestedAttribute FriendlyName="eduPersonPrincipalName"
+                Name="urn:mace:dir:attribute-def:eduPersonPrincipalName" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri" />
+        </AttributeConsumingService>
+        
+    </SPSSODescriptor>
+    <Organization>
+        <OrganizationName xml:lang="en">TSC</OrganizationName>
+        <OrganizationDisplayName xml:lang="en">The Shibboleth Consortium</OrganizationDisplayName>
+        <OrganizationURL xml:lang="en">http://shibboleth.net/</OrganizationURL>
+    </Organization>
+    <ContactPerson contactType="support">
+        <GivenName>J Random</GivenName>
+        <SurName>Engineer</SurName>
+        <EmailAddress>mailto:jre@example.org</EmailAddress>
+    </ContactPerson>
+</EntityDescriptor>
+<EntityDescriptor entityID="https://sp3.example.org">
+    <Extensions>
+        <mdattr:EntityAttributes xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
+            <saml:Attribute Name="http://macedir.org/entity-category"
+                NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+                <saml:AttributeValue>http://refeds.org/category/research-and-scholarship
+                </saml:AttributeValue>
+            </saml:Attribute>
+        </mdattr:EntityAttributes>
+    </Extensions>
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.1:protocol" AuthnRequestsSigned="false">
+        <Extensions>
+            <mdui:UIInfo>
+                <mdui:DisplayName xml:lang="en">TEST SP3 (display Name)</mdui:DisplayName>
+                <mdui:Description xml:lang="en">
+                TEST SP3 (description)Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.
+                </mdui:Description>
+                <mdui:InformationURL xml:lang="en">https://www.example.org</mdui:InformationURL>
+                <mdui:PrivacyStatementURL xml:lang="en">https://www.example.org/privacy</mdui:PrivacyStatementURL>
+                <mdui:Logo height="65" width="150">https://shibboleth.net/images/shibboleth.png</mdui:Logo>
+            </mdui:UIInfo>
+        </Extensions>
+        
+        <KeyDescriptor use="signing">
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <X509Data>
+                    <X509Certificate>
+MIIDDzCCAfegAwIBAgIJAN5ThWwNrvJxMA0GCSqGSIb3DQEBBQUAMCMxITAfBgNV
+BAMTGHNub3dkb2ctcHJvLmVsYW4ub3N1LmVkdTAeFw0xMzExMDYxNjUyMzBaFw0y
+MzExMDQxNjUyMzBaMCMxITAfBgNVBAMTGHNub3dkb2ctcHJvLmVsYW4ub3N1LmVk
+dTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAODCRHObLNAJ6xaxDmeA
+sJl2Mw3pTGCrWXe2H77n8TjZz68I9fgYLeamCONHFx1qaQUZXim/TANhzOSMCIs+
+/Ma/XVaB8H1lB2EJlob0gDa3wqpnd+ltUI+pirG0t1CDrP8RhBWaZWTRB8Oj9uMV
+lBarznvvSuJIOYnEt5OjLpHe3fbpstiI6dlkViB/jFMOT1G+MSfkPRXQopJ5PfnM
+LhrQa1iJ2hEwE4xviQUHbtqtIcw0xMOlse/GvdV6WMixxQ5Yr9tksb/hzOFG29Nk
+E+ZNxEoxeFQNl73pU3DuA8ogjBpGYDX9jGt0zvyDRlUyXferSIxZy4lauYaxw10o
+WyUCAwEAAaNGMEQwIwYDVR0RBBwwGoIYc25vd2RvZy1wcm8uZWxhbi5vc3UuZWR1
+MB0GA1UdDgQWBBS1KTq0OfsmdgBoqLkINa0wTnM9FzANBgkqhkiG9w0BAQUFAAOC
+AQEApclRWD8hdX+PvBS/8AZnMQFx0TP6UipoegT9GNiZTfbqUeaaepiUzLvrAa81
+IuxZKneg6deoeVhsvNxLAPlPR6OK32A3NadS4KU8d69H1zPKOd7nc+k9WzdFygwB
+DaWTdr2idWU2DpMkZpmDNnwsMpda3zONCJHiBqiCFbq2vsMhFa9X3SFasYIU0H9T
+osjFNFTQVwLeZyjf/fuKnfqbcs3JW+OM9fsxxAmUQQyLz8aKywOaMlQgTFTL9r9u
+Jnnr5zUpZZh6WVFIFS9QmNE4zJMZH6vIDk2zKsO0YJVaogxFML35hKlWen4DLbyT
+wJUl9NY7VG+HjvHrr6xeiDAq0g==
+                    </X509Certificate>
+                </X509Data>
+            </KeyInfo>
+        </KeyDescriptor>
+        
+        <KeyDescriptor>
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <X509Data>
+                    <X509Certificate>
+MIIDCTCCAfGgAwIBAgIJAN5X7xMzDu64MA0GCSqGSIb3DQEBBQUAMBkxFzAVBgNV
+BAMTDnNwLmV4YW1wbGUub3JnMB4XDTEzMDUyNDIxMzU0NloXDTIzMDUyMjIxMzU0
+NlowGTEXMBUGA1UEAxMOc3AuZXhhbXBsZS5vcmcwggEiMA0GCSqGSIb3DQEBAQUA
+A4IBDwAwggEKAoIBAQDAVA9a1ip1mvd5rQJe9xhL6TXvIHxPm+FLxabvQJA48sJh
+XsXmLAsyGzSm/HviqdkdR3VxyFhzLoj03TqqPP8/IoTFA2Lp+q9PnaeEHKaYeJGH
+g4RozQ0UKhiuyppWptO2Syls302haIaWWXz+p3iOgjuZKg/ESs1udGEJvAC/OUVu
+Eo08b6BuySxO/KsX9kWYoCF6vm+tN1kpOrMTceCqcJlRDyFzxUo4JTaku/81k88v
+iF+5/b0p7McB3IGqCFHR6MhZol880Dgxeze3o6/hmvXwGbJgOeWc46jgKareWwYn
+CSQ7/08TDvX0RhCca39IJXqSP/Wv4QOkALTdobQhAgMBAAGjVDBSMDEGA1UdEQQq
+MCiCDnNwLmV4YW1wbGUub3JnhhZodHRwczovL3NwLmV4YW1wbGUub3JnMB0GA1Ud
+DgQWBBQ1FR+wdqXqtICqb7G0fms7ELdt1zANBgkqhkiG9w0BAQUFAAOCAQEAoW/5
+uKnQMuQJfEx11uVCItAvRNmjWSmGFXpQ3rown3XbRkdX78PztcIdgwwtNZoTlMmA
+122Kdb8ViXw2tsZaB1iOaBiavMtLgdxbg9j6B6UmQrzERQm+zq5rBAzSTh6VRyDP
+kCMYnlX4+PyjWXGVADI65cRBbFBnED6By0NhJesDfaH8VpY19LN9AYpXVJRv4/Dc
+zlnQds4vPKzOaJGvt01Ni9jqZtcUDzKt9UdmDATbukoStvCKTwcr4gAPvfCfNZgo
+CUaW4GEmfyDkCahd5qNlWw0++Z2kNoSRyPA1PTJIkZhagv+VbO85ua2SDJWVgF4I
+h+XNZ5oAql/cjrwDWw==
+                    </X509Certificate>
+                </X509Data>
+            </KeyInfo>
+        </KeyDescriptor>
+        
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://localhost:8443/sp/sp3/SAML2/Redirect/SLO"/>
+        
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://localhost/sp/sp3/SAML2/POST/ACS" index="1"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://localhost:8443/sp/sp3/SAML2/POST/ACS" index="2"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://localhost/sp/sp3/SAML2/POST/ACS" index="3"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://localhost:8080/sp/sp3/SAML2/POST/ACS" index="4"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://localhost:8443/sp/sp3/SAML2/Artifact/ACS" index="5"/>
+
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://localhost:8443/sp/sp3/SAML2/PAOS/ACS" index="6"/>
+        
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="http://localhost:8080/sp/sp3/SAML1/POST/ACS" index="9"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="https://localhost:8443/sp/sp3/SAML1/POST/ACS" index="10"/>
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01" Location="https://localhost:8443/sp/sp3/SAML1/Artifact/ACS" index="11"/>
+        <AttributeConsumingService isDefault="true" index="1">
+            <ServiceName xml:lang="en">Service Name</ServiceName>
+            <RequestedAttribute FriendlyName="displayName"
+                Name="urn:mace:dir:attribute-def:displayName" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri" />
+            <RequestedAttribute FriendlyName="displayName" isRequired="true"
+                Name="urn:oid:2.16.840.1.113730.3.1.241" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" />
+            <RequestedAttribute FriendlyName="eduPersonPrincipalName"
+                Name="urn:mace:dir:attribute-def:eduPersonPrincipalName" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri" />
+        </AttributeConsumingService>
+        
+    </SPSSODescriptor>
+    <Organization>
+        <OrganizationName xml:lang="en">TSC</OrganizationName>
+        <OrganizationDisplayName xml:lang="en">The Shibboleth Consortium</OrganizationDisplayName>
+        <OrganizationURL xml:lang="en">http://shibboleth.net/</OrganizationURL>
+    </Organization>
+    <ContactPerson contactType="support">
+        <GivenName>J Random</GivenName>
+        <SurName>Engineer</SurName>
+        <EmailAddress>mailto:jre@example.org</EmailAddress>
+    </ContactPerson>
+</EntityDescriptor>
+</EntitiesDescriptor>

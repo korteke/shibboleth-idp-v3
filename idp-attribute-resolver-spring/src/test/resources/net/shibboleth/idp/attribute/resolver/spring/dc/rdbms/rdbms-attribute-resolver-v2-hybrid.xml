@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resolver:AttributeResolver 
+            xmlns="http://www.springframework.org/schema/beans"
+            xmlns:p="http://www.springframework.org/schema/p"
+            xmlns:resolver="urn:mace:shibboleth:2.0:resolver" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xmlns:dc="urn:mace:shibboleth:2.0:resolver:dc" xmlns:enc="urn:mace:shibboleth:2.0:attribute:encoder" 
+            xsi:schemaLocation="urn:mace:shibboleth:2.0:resolver http://shibboleth.net/schema/idp/shibboleth-attribute-resolver.xsd
+                                urn:mace:shibboleth:2.0:resolver:dc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-dc.xsd">
+
+    <resolver:DataConnector id="myDatabase" xsi:type="dc:RelationalDatabase"
+        noRetryDelay="PT5M"
+        mappingStrategyRef="mappings" validatorRef="validator" readOnlyConnection="false">
+        <dc:BeanManagedConnection>dataSource</dc:BeanManagedConnection>
+        <dc:QueryTemplate>
+            <![CDATA[
+                SELECT * FROM people WHERE userid='%s'
+            ]]>
+        </dc:QueryTemplate>
+        
+        <dc:ResultCacheBean>cache</dc:ResultCacheBean>
+    </resolver:DataConnector>
+    
+</resolver:AttributeResolver>

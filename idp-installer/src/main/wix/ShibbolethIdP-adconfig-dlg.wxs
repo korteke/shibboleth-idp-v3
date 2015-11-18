@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Licensed to the University Corporation for Advanced Internet
+     Development, Inc. (UCAID) under one or more contributor license
+     agreements.  See the NOTICE file distributed with this work for
+     additional information regarding copyright ownership. The UCAID
+     licenses this file to You under the Apache License, Version 2.0
+     (the 'License'); you may not use this file except in compliance
+     with the License.  You may obtain a copy of the License at
+     
+     http://www.apache.org/licenses/LICENSE-2.0
+     
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an 'AS IS' BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+     implied.  See the License for the specific language governing
+     permissions and limitations under the License.  -->
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <!-- This file contains the description of the dialog which captures installation
+       values for first time installs -->
+    <Fragment>
+
+        <UI>
+
+      <!-- This Dialog sets up:
+      
+      AD_DOMAIN
+      AD_USER
+      AD_PASS
+      AD_USE_GC
+      
+        -->
+
+            <Dialog Id="ConfigADDlg" Width="370" Height="270" Title="[ProductName] Setup">
+                <!-- Stuff at the top: picture, some text, a line -->
+                <Control Id="TopBitMap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Text="WixUI_Bmp_Banner" />
+                <Control Id="TopInfo" Type="Text" X="15" Y="6" Width="150" Height="12" Text="{\WixUI_Font_Title}Configure for Active Directory" Transparent="yes" />
+                <Control Id="TopDetailed" Type="Text" X="25" Y="24" Width="320" Height="12" Text="This will set up the ldap options for authorization and attribute resolution" Transparent="yes" />
+                <Control Id="TopLine" Type="Line" X="0" Y="44" Width="370" Height="1" />
+
+
+                <Control Id="ADDescriptionLine1" Type="Text" X="25" Y="51" Height="18" Width="320" Text="Fill in details about your Active Directory Install" />
+
+
+                <Control Id="ADDescriptionLine2" Type="Text" X="25" Y="71" Height="18" Width="150" Text="Specify the Active Directory Domain" />
+                <Control Id="ADDomain" Type="Edit" X="185" Y="71" Height="18" Width="150" Property="AD_DOMAIN" Text="[AD_DOMAIN]" />
+
+                <Control Id="UseGC" Type="CheckBox" X="25" Y="91" Height="18" Width="150" Property="AD_USE_GC" CheckBoxValue="TRUE" Text="Use Global Catalog" />
+
+                <Control Id="ADDescriptionLine3" Type="Text" X="25" Y="111" Height="18" Width="320" Text="In order to resolve attributes, the IdP needs a username/password for Active Directory" />
+
+                <Control Id="ADDescriptionLine4" Type="Text" X="25" Y="131" Height="18" Width="150" Text="Username (no domain)" />
+                <Control Id="ADUser" Type="Edit" X="185" Y="131" Height="18" Width="150" Property="AD_USER" Text="[AD_USER]" />
+
+
+                <Control Id="ADDescriptionLine5" Type="Text" X="25" Y="151" Height="18" Width="150" Text="Password" />
+                <Control Id="ADPASS" Type="Edit" X="185" Y="151" Height="18" Width="150" Password="yes" Sunken="no" Property="AD_PASS" Text="[AD_PASS]" />
+
+
+
+
+                <!-- Stuff at the bottom: line, Back,Next, [space] Cancel -->
+                <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="1" />
+                <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="&amp;Back">
+                    <Publish Event="NewDialog" Value="InstallDirDlgShib">1</Publish>
+                </Control>
+
+                <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="&amp;Next" Default="yes">
+                    <Publish Event="NewDialog" Value="WarnDirDlgShib">NOT (INSTALL_JETTY OR (INSTALLDIR=DefaultInstallDir))</Publish>
+                    <Publish Event="NewDialog" Value="VerifyReadyDlg">INSTALL_JETTY OR (INSTALLDIR=DefaultInstallDir)</Publish>
+                </Control>
+
+                <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Text="&amp;Cancel" Cancel="yes">
+                    <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+                </Control>
+            </Dialog>
+
+        </UI>
+    </Fragment>
+</Wix>

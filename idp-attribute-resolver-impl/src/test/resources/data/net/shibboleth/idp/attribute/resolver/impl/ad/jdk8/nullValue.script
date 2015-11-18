@@ -1,0 +1,5 @@
+nativeAttribute = Scripted.getNativeAttribute();
+tmp = new (Java.type("java.util.HashSet"));
+val = Java.type("net.shibboleth.idp.attribute.StringAttributeValue").valueOf(null);
+tmp.add(val);
+nativeAttribute.setValues(tmp);

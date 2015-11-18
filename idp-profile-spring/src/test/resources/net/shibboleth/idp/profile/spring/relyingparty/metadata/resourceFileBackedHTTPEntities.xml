@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata:MetadataProvider xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+	xmlns:metadata="urn:mace:shibboleth:2.0:metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:resource="urn:mace:shibboleth:2.0:resource"
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:metadata http://shibboleth.net/schema/idp/shibboleth-metadata.xsd
+	                   urn:mace:shibboleth:2.0:resource http://shibboleth.net/schema/idp/shibboleth-resource.xsd
+                       urn:oasis:names:tc:SAML:2.0:metadata http://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd"
+
+    parserPoolRef="myParserPool" refreshDelayFactor="0.5" maxRefreshDelay="PT55M" minRefreshDelay="PT15M"
+	id="resourceFileBackedHTTPEntities" xsi:type="metadata:ResourceBackedMetadataProvider">
+	
+	
+	<metadata:MetadataResource xsi:type="resource:FileBackedHttpResource" 
+	   file="%{DIR}/spoolResourceEntities.xml"
+	
+	  url="http://svn.shibboleth.net/view/java-identity-provider/trunk/idp-profile-spring/src/test/resources/net/shibboleth/idp/profile/spring/relyingparty/metadata/entities.xml?revision=5634&amp;view=co"/>
+
+</metadata:MetadataProvider>
+                                   

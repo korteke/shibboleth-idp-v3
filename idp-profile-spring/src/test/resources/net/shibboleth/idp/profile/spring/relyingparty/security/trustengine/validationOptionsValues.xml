@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security:ValidationOptions
+    xmlns:security="urn:mace:shibboleth:2.0:security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd"
+    
+    processCredentialCRLs="false" processExpiredCRLs="true" processEmptyCRLs="false" defaultVerificationDepth="2"/>

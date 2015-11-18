@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+   <bean id="clientBuilder"
+		class="net.shibboleth.utilities.java.support.httpclient.FileCachingHttpClientBuilder"
+		p:maxCacheEntries="3" p:cacheDirectory-ref="theDir" />
+
+	<bean id="basicClient" factory-bean="clientBuilder" init-method="initialize" destroy-method="destroy"
+		factory-method="buildClient" />
+
+	<bean id="basic" class="net.shibboleth.ext.spring.resource.HTTPResource"
+		c:client-ref="basicClient" c:url="http://svn.shibboleth.net/view/java-identity-provider/trunk/idp-profile-spring/src/test/resources/net/shibboleth/idp/profile/spring/relyingparty/metadata/document.xml?view=co" />
+
+    <bean id="inMemoryClient" 
+        class="net.shibboleth.idp.profile.spring.relyingparty.metadata.InMemoryCachingHttpClientFactoryBean"
+        p:maxCacheEntries="3"
+        p:connectionTimeout="PT3M" />
+        
+    <bean id="inMemory" class="net.shibboleth.ext.spring.resource.HTTPResource"
+        c:client-ref="inMemoryClient" c:url="http://svn.shibboleth.net/view/java-identity-provider/trunk/idp-profile-spring/src/test/resources/net/shibboleth/idp/profile/spring/relyingparty/metadata/document.xml?view=co" />
+
+    <bean id="fileClient" 
+        class="net.shibboleth.idp.profile.spring.relyingparty.metadata.FileCachingHttpClientFactoryBean"
+        p:maxCacheEntries="3000"
+        p:cacheDirectory-ref="theDir"/>
+        
+    <bean id="theParent" class="org.springframework.core.io.FileSystemResource" c:file-ref="theDir"/>
+
+    <bean id="thefile" factory-bean="theParent" factory-method="createRelative" c:relativePath="wibble"/>
+        
+    <bean id="fileResource" class="net.shibboleth.ext.spring.resource.FileBackedHTTPResource"
+        c:client-ref="fileClient" c:url="http://svn.shibboleth.net/view/java-identity-provider/trunk/idp-profile-spring/src/test/resources/net/shibboleth/idp/profile/spring/relyingparty/metadata/document.xml?view=co" 
+        c:resource-ref="thefile"/>
+
+
+</beans>

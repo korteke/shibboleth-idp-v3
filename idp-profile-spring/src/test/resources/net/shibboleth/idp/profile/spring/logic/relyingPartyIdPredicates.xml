@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util" xmlns:c="http://www.springframework.org/schema/c" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+    default-init-method="initialize" default-destroy-method="destroy">
+    
+    <!-- This bean MUST be called "conversionService" to work properly. -->
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="net.shibboleth.ext.spring.config.DurationToLongConverter" />
+                <bean class="net.shibboleth.ext.spring.config.StringToIPRangeConverter" />
+                <bean class="net.shibboleth.ext.spring.config.BooleanToPredicateConverter" />
+                <bean class="net.shibboleth.ext.spring.config.StringBooleanToPredicateConverter" />
+                <bean class="net.shibboleth.ext.spring.config.StringToResourceConverter" />
+            </set>
+        </property>
+    </bean>
+
+    <bean class="net.shibboleth.idp.profile.logic.RelyingPartyIdPredicate" id="candidate" c:candidate="Single"/>
+
+    <bean class="net.shibboleth.idp.profile.logic.RelyingPartyIdPredicate" id="candidates" c:candidates="#{ {'Single', 'Double'} }"/>
+
+    <bean class="net.shibboleth.idp.profile.logic.RelyingPartyIdPredicate" id="pred" c:pred="true"/>
+
+    <bean class="net.shibboleth.idp.profile.logic.RelyingPartyIdPredicate" id="candidate_0" c:candidate="Single"/>
+
+    <bean class="net.shibboleth.idp.profile.logic.RelyingPartyIdPredicate" id="candidates_0" c:candidates="#{ {'Single', 'Double'} }"/>
+
+    <bean class="net.shibboleth.idp.profile.logic.RelyingPartyIdPredicate" id="pred_0" c:pred="true"/>
+    
+</beans>
+    

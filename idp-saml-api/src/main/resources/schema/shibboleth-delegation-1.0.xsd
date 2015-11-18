@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:mace:shibboleth:delegation:1.0" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.0">
+
+	<element name="DelegationPolicy">
+		<annotation>
+			<documentation>
+                Represents policy regarding issuance and/or use of delegated Assertion tokens.
+			</documentation>
+		</annotation>
+		<complexType>
+			<attribute name="MaximumTokenDelegationChainLength" type="nonNegativeInteger" use="optional">
+                <annotation>
+                    <documentation>
+                        Specifies a limit on the total number of delegates that may be derived from the initial SAML token.
+                    </documentation>
+                </annotation>
+            </attribute>
+		</complexType>
+	</element>
+
+</schema>

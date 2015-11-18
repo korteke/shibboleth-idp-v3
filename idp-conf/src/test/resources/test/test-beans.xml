@@ -1,0 +1,30 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+
+    default-init-method="initialize" default-destroy-method="destroy">
+
+    <bean id="test.sp.X509Certificate" class="net.shibboleth.ext.spring.factory.X509CertificateFactoryBean"
+        p:resource="classpath:/credentials/sp.crt" />
+
+    <bean id="test.sp.PrivateKey" class="net.shibboleth.ext.spring.factory.PrivateKeyFactoryBean"
+        p:resource="classpath:/credentials/sp.key" />
+
+     <bean id="test.sp.Credential" class="org.opensaml.security.x509.BasicX509Credential"
+        c:entityCertificate-ref="test.sp.X509Certificate"
+        c:privateKey-ref="test.sp.PrivateKey"
+        p:entityId="https://sp.example.org" />
+
+    <bean id="test.idp.X509Certificate" class="net.shibboleth.ext.spring.factory.X509CertificateFactoryBean"
+        p:resource="classpath:/credentials/idp-encryption.crt" />
+
+    <bean id="test.idp.Credential" class="org.opensaml.security.x509.BasicX509Credential"
+        c:entityCertificate-ref="test.idp.X509Certificate"
+        p:entityId="${idp.entityID}" />
+
+</beans>

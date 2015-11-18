@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shibmd:KeyAuthority xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+    <ds:KeyInfo/>
+    <ds:KeyInfo/>
+    <ds:KeyInfo/>
+    <ds:KeyInfo/>
+</shibmd:KeyAuthority>

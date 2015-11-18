@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+
+	default-init-method="initialize" default-destroy-method="destroy">
+
+    <bean id="myParserPool"
+        class="net.shibboleth.utilities.java.support.xml.BasicParserPool"
+        p:maxPoolSize="1000"
+        p:coalescing="true" p:ignoreComments="true"
+        p:ignoreElementContentWhitespace="true" p:namespaceAware="true" />
+        
+        
+	<bean id="shibboleth.MetadataResolverService"
+		class="net.shibboleth.ext.spring.service.ReloadableSpringService"
+		p:serviceConfigurations="classpath:/net/shibboleth/idp/profile/spring/relyingparty/metadata/empty-chain.xml"
+		p:failFast="true" p:reloadCheckDelay="0">
+		<constructor-arg name="claz"
+			value="org.opensaml.saml.metadata.resolver.MetadataResolver" />
+		<constructor-arg name="strategy">
+			<bean id="strat" p:id="strat" class="net.shibboleth.idp.profile.spring.relyingparty.metadata.impl.MetadataResolverServiceStrategy" />
+		</constructor-arg>
+	</bean>
+</beans>

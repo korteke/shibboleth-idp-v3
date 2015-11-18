@@ -1,0 +1,49 @@
+<resolver:AttributeResolver xmlns:resolver="urn:mace:shibboleth:2.0:resolver" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                            xmlns:pc="urn:mace:shibboleth:2.0:resolver:pc" xmlns:ad="urn:mace:shibboleth:2.0:resolver:ad" 
+                            xmlns:dc="urn:mace:shibboleth:2.0:resolver:dc" xmlns:enc="urn:mace:shibboleth:2.0:attribute:encoder" 
+                            xmlns:sec="urn:mace:shibboleth:2.0:security" 
+                            xsi:schemaLocation="urn:mace:shibboleth:2.0:resolver http://shibboleth.net/schema/idp/shibboleth-attribute-resolver.xsd
+                                                urn:mace:shibboleth:2.0:resolver:pc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-pc.xsd
+                                                urn:mace:shibboleth:2.0:resolver:ad http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-ad.xsd
+                                                urn:mace:shibboleth:2.0:resolver:dc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-dc.xsd
+                                                urn:mace:shibboleth:2.0:attribute:encoder http://shibboleth.net/schema/idp/shibboleth-attribute-encoder.xsd
+                                                urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd">
+  
+  <resolver:AttributeDefinition id="skillsoftdept" xmlns="urn:mace:shibboleth:2.0:resolver:ad"
+                                xsi:type="Script"
+                                sourceAttributeID="uid">
+
+    <resolver:Dependency ref="static" />
+
+    <resolver:AttributeEncoder xsi:type="SAML2String" xmlns="urn:mace:shibboleth:2.0:attribute:encoder"
+                               name="skillsoftdept"
+                               friendlyName="dept name for skillsoft"
+                               nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified" />
+
+    <Script><![CDATA[
+
+       importPackage(Packages.edu.internet2.middleware.shibboleth.common.attribute.provider);
+
+        // Create attribute to be returned from definition
+        skillsoftdept = new BasicAttribute("skillsoftdept");
+
+
+    ]]></Script>
+    
+  </resolver:AttributeDefinition>
+  <resolver:DataConnector id="static"
+                          xsi:type="dc:Static" xmlns:resolver="urn:mace:shibboleth:2.0:resolver"
+                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pc="urn:mace:shibboleth:2.0:resolver:pc"
+                          xmlns:ad="urn:mace:shibboleth:2.0:resolver:ad" xmlns:dc="urn:mace:shibboleth:2.0:resolver:dc"
+                          xmlns:enc="urn:mace:shibboleth:2.0:attribute:encoder" xmlns:sec="urn:mace:shibboleth:2.0:security"
+                          xsi:schemaLocation="urn:mace:shibboleth:2.0:resolver http://shibboleth.net/schema/idp/shibboleth-attribute-resolver.xsd
+                                              urn:mace:shibboleth:2.0:resolver:pc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-pc.xsd
+                                              urn:mace:shibboleth:2.0:resolver:ad http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-ad.xsd
+                                              urn:mace:shibboleth:2.0:resolver:dc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-dc.xsd
+                                              urn:mace:shibboleth:2.0:attribute:encoder http://shibboleth.net/schema/idp/shibboleth-attribute-encoder.xsd
+                                              urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd">
+    <dc:Attribute id="staticEpA">
+      <dc:Value>member</dc:Value>
+    </dc:Attribute>
+  </resolver:DataConnector>
+</resolver:AttributeResolver>

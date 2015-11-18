@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Part 1 of a two part attribute resolver.
+-->
+<resolver:AttributeResolver
+        xmlns:resolver="urn:mace:shibboleth:2.0:resolver" 
+        xmlns:pc="urn:mace:shibboleth:2.0:resolver:pc"
+        xmlns:ad="urn:mace:shibboleth:2.0:resolver:ad" 
+        xmlns:dc="urn:mace:shibboleth:2.0:resolver:dc"
+        xmlns:enc="urn:mace:shibboleth:2.0:attribute:encoder" 
+        xmlns:sec="urn:mace:shibboleth:2.0:security"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    	xsi:schemaLocation="urn:mace:shibboleth:2.0:resolver http://shibboleth.net/schema/idp/shibboleth-attribute-resolver.xsd
+                            urn:mace:shibboleth:2.0:resolver:pc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-pc.xsd
+                            urn:mace:shibboleth:2.0:resolver:ad http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-ad.xsd
+                            urn:mace:shibboleth:2.0:resolver:dc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-dc.xsd
+                            urn:mace:shibboleth:2.0:attribute:encoder http://shibboleth.net/schema/idp/shibboleth-attribute-encoder.xsd
+                            urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd">
+
+    <!-- =============================-->
+    <!--      Data Connector          -->
+    <!-- =============================-->
+    <resolver:DataConnector id="staticAttributes2" xsi:type="dc:Static">
+        <dc:Attribute id="NOTOK">
+            <dc:Value>NOTOK</dc:Value>
+        </dc:Attribute>
+        
+    </resolver:DataConnector>
+
+    <resolver:AttributeDefinition xsi:type="ad:Simple" id="IdPNotOK" sourceAttributeID="NOTOK">
+        <resolver:Dependency ref="staticAttributes2" />
+        <resolver:AttributeEncoder xsi:type="enc:SAML2String" 
+            name="http://example.org/result"
+            nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" friendlyName="OKOUT" />
+    </resolver:AttributeDefinition>
+    
+   
+</resolver:AttributeResolver>

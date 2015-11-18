@@ -1,0 +1,50 @@
+dn: dc=example,dc=org
+dc: example
+objectClass: dcObject
+objectClass: organization
+o: example
+
+dn: ou=people,dc=example,dc=org
+ou: people
+description: All people in organization
+objectclass: organizationalunit
+
+dn: cn=John Doe,ou=people,dc=example,dc=org
+objectclass: inetOrgPerson
+cn: John Doe
+cn: J Doe
+givenName: John
+sn: Doe
+uid: jdoe
+userpassword: changeit
+homephone: 555-111-2222
+mail: jdoe@shibboleth.net
+description: test user
+#businessCategory: accountStateWarning
+#businessCategory: accountStateError
+
+dn: cn=Bill Doe,ou=people,dc=example,dc=org
+objectclass: inetOrgPerson
+cn: Bill Doe
+cn: B Doe
+givenName: William
+sn: Doe
+uid: bdoe
+userpassword: changeit
+homephone: 555-111-3333
+mail: bdoe@shibboleth.net
+description: test user
+
+dn: ou=system
+ou: system
+description: System accounts
+objectclass: organizationalunit
+
+dn: uid=myservice,ou=system
+ou: system
+description: Service account
+objectclass: inetOrgPerson
+cn: myservice
+sn: myservice
+uid: myservice
+userpassword: myServicePassword

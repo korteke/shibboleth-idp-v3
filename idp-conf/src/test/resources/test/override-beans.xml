@@ -1,0 +1,42 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+
+    default-init-method="initialize" default-destroy-method="destroy">
+
+    <!-- Override beans from system/conf/subject-c14n-system.xml. -->
+
+    <bean id="c14n/SAML2Transform" parent="shibboleth.AbstractSAML2C14NFlowBean"
+            p:formats-ref="shibboleth.NameTransformFormats">
+        <property name="activationCondition">
+            <bean class="com.google.common.base.Predicates" factory-method="and">
+                <constructor-arg>
+                    <list>
+                        <bean class="net.shibboleth.idp.saml.nameid.impl.NameIDCanonicalization.ActivationCondition" />
+                        <bean parent="shibboleth.Conditions.RelyingPartyId" c:candidates="#{{'https://sp.example.org'}}"  />
+                    </list>
+                </constructor-arg>
+            </bean>
+        </property>
+    </bean>
+               
+    <bean id="c14n/SAML1Transform" parent="shibboleth.AbstractSAML1C14NFlowBean"
+            p:formats-ref="shibboleth.NameTransformFormats"> 
+        <property name="activationCondition">
+            <bean class="com.google.common.base.Predicates" factory-method="and">
+                <constructor-arg>
+                    <list>
+                        <bean class="net.shibboleth.idp.saml.nameid.impl.NameIdentifierCanonicalization.ActivationCondition" />
+                        <bean parent="shibboleth.Conditions.RelyingPartyId" c:candidates="#{{'https://sp.example.org'}}"  />
+                    </list>
+                </constructor-arg>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

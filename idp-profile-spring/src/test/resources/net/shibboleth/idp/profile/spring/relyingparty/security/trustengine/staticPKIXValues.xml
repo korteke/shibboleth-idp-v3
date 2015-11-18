@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security:TrustEngine id="testBean"
+	xsi:type="security:StaticPKIXSignature" xmlns:security="urn:mace:shibboleth:2.0:security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd">
+	<security:TrustedName>Name1</security:TrustedName>
+	<security:TrustedName>Name2</security:TrustedName>
+	<security:TrustedName>Name3</security:TrustedName>
+	<security:ValidationInfo id="PKIXFS"
+		xsi:type="security:PKIXFilesystem" verifyDepth="99" />
+	<security:ValidationInfo id="PKIXIL"
+		xsi:type="security:PKIXInline" verifyDepth="98" />
+	<security:ValidationOptions
+		processCredentialCRLs="false" processExpiredCRLs="false"
+		processEmptyCRLs="false" defaultVerificationDepth="2" />
+</security:TrustEngine>

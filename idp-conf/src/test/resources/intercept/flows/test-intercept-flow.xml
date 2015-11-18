@@ -1,0 +1,48 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+
+    <on-start>
+        <evaluate expression="InitializeProfileRequestContext" />
+        <set name="conversationScope.testProceed1" value="false" />
+        <set name="conversationScope.testProceed2" value="false" />
+    </on-start>
+
+    <action-state id="PopulateInterceptContext">
+        <evaluate expression="PopulateInterceptContext" />
+        <evaluate expression="'proceed'" />
+        
+        <transition on="proceed" to="DoInterceptSubflow" />
+    </action-state>
+
+    <subflow-state id="DoInterceptSubflow" subflow="intercept">
+        <input name="calledAsSubflow" value="true" />
+        <transition on="proceed" to="end" />
+    </subflow-state>
+
+    <end-state id="end">
+        <output name="ProfileRequestContext" value="opensamlProfileRequestContext" />
+        <output name="testProceed1" value="conversationScope.testProceed1" />
+        <output name="testProceed2" value="conversationScope.testProceed2" />
+    </end-state>
+
+    <end-state id="InvalidProfileContext">
+        <output name="ProfileRequestContext" value="opensamlProfileRequestContext" />
+        <output name="testProceed1" value="conversationScope.testProceed1" />
+        <output name="testProceed2" value="conversationScope.testProceed2" />
+    </end-state>
+
+    <end-state id="InvalidProfileConfiguration">
+        <output name="ProfileRequestContext" value="opensamlProfileRequestContext" />
+        <output name="testProceed1" value="conversationScope.testProceed1" />
+        <output name="testProceed2" value="conversationScope.testProceed2" />
+    </end-state>
+    
+    <global-transitions>
+        <transition on="#{!'proceed'.equals(currentEvent.id)}" to="#{currentEvent.id}" />
+    </global-transitions>
+
+    <bean-import resource="test-intercept-beans.xml" />
+
+</flow>

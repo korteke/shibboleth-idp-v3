@@ -1,0 +1,2 @@
+net.shibboleth.idp.saml.xmlobject.impl.XMLObjectProviderInitializer
+net.shibboleth.idp.saml.saml2.profile.delegation.impl.XMLObjectProviderInitializer

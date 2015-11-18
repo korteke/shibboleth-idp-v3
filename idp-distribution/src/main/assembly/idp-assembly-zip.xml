@@ -1,0 +1,35 @@
+<assembly>
+    <id>assembly-zip</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>${idp.assemblyDirectory}</directory>
+            <outputDirectory></outputDirectory>
+            <excludes>
+                <exclude>**/*.bat*</exclude>
+                <exclude>**/*.config*</exclude>
+                <exclude>**/*.ini*</exclude>
+                <exclude>**/*.properties*</exclude>
+                <exclude>**/*.txt*</exclude>
+                <exclude>**/*.vm*</exclude>
+                <exclude>**/*.xml*</exclude>
+            </excludes>
+        </fileSet>
+        <fileSet>
+            <directory>${idp.assemblyDirectory}</directory>
+            <outputDirectory></outputDirectory>
+            <includes>
+                <include>**/*.bat*</include>
+                <include>**/*.config*</include>
+                <include>**/*.ini*</include>
+                <include>**/*.properties*</include>
+                <include>**/*.txt*</include>
+                <include>**/*.vm*</include>
+                <include>**/*.xml*</include>
+            </includes>
+            <lineEnding>windows</lineEnding>
+        </fileSet>
+    </fileSets>
+</assembly>

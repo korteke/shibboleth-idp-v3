@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rp:ProfileConfiguration xmlns:rp="urn:mace:shibboleth:2.0:relying-party" xmlns:saml="urn:mace:shibboleth:2.0:relying-party:saml"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:relying-party http://shibboleth.net/schema/idp/shibboleth-relying-party.xsd
+                        urn:mace:shibboleth:2.0:relying-party:saml http://shibboleth.net/schema/idp/shibboleth-relying-party-saml.xsd"
+
+	xsi:type="saml:SAML1ArtifactResolutionProfile"
+	 
+/>
+

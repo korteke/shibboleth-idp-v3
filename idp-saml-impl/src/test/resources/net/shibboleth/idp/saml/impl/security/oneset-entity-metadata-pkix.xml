@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" Name="example.org">
+
+   <EntityDescriptor entityID="http://foo.example.org/shibboleth">
+      
+      <Extensions>
+         
+         <shibmd:KeyAuthority xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" VerifyDepth="5">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+               <!-- Root CA 1 issues Intermediate CA 1A -->
+               <!-- Intermediate CA 1A issues Intermediate CA 1A1 -->
+               <ds:X509Data>
+                  <!-- O=Internet2, CN=Test Root CA 1 --> 
+                  <ds:X509Certificate>
+                     MIIDgzCCAmugAwIBAgIBADANBgkqhkiG9w0BAQQFADAtMRIwEAYDVQQKEwlJbnRl
+                     cm5ldDIxFzAVBgNVBAMTDlRlc3QgUm9vdCBDQSAxMB4XDTA4MDIxNjAyNDUyNloX
+                     DTMzMDIwOTAyNDUyNlowLTESMBAGA1UEChMJSW50ZXJuZXQyMRcwFQYDVQQDEw5U
+                     ZXN0IFJvb3QgQ0EgMTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMV5
+                     6dwqZGkiVx5/v9ULicAen3RuSRpd+SJ46p6RgXxWRA2WlHZYMW7pMTeN/KvbHKEk
+                     IkAu5fh19iLW+XkhWHGVTm7pPoZ7AdzJ4PfJId290T80/uS/kZT3coOeiqZy6dQ6
+                     659tVXCH9K0X/S5et6i+BS+gHPF/RvxnuVKTBrlHfToxwtN7GtkKRlvGHo9l83p3
+                     yoOEH83gBHBy3Hd2HUSSCH6c/rh/3u2pCzojQA2H8+L9/C3qG/OuLEtmVpaV7flz
+                     THLKQN6diK6NSS2ViEF0ymbb7ZO2caG1fwOLfeBU+Kbmre8XVJTmSAhG4ox8XLmr
+                     4/ugZnU50D1IaCbfhxECAwEAAaOBrTCBqjAPBgNVHRMBAf8EBTADAQH/MBEGCWCG
+                     SAGG+EIBAQQEAwIABzAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0OBBYEFI9bMgOQsY4J
+                     bO1yrcG6nWgVhy3iMFUGA1UdIwROMEyAFI9bMgOQsY4JbO1yrcG6nWgVhy3ioTGk
+                     LzAtMRIwEAYDVQQKEwlJbnRlcm5ldDIxFzAVBgNVBAMTDlRlc3QgUm9vdCBDQSAx
+                     ggEAMA0GCSqGSIb3DQEBBAUAA4IBAQBaf7gv/KYn5THGUJNczro8erZajPVqL678
+                     Jf1lv/oShdDesD0kXjxUIe9OSC2yhqFlZ3Ls8iB8D2naisWgo58Yty9r6nLJtEnB
+                     INrUSpAX1XmIeR/PgbPT+3ZRqWvb2hnkCM8HtfRPZLZCB/Leg4KHQMN0HTyZueCP
+                     K+RZkomQ5ir6O821za9SMboSDGGMr4KqbLFOrIBes+lOwEXVP84J1vi6qj0cWvmh
+                     /r4X3UV0D7qf508NrEvPlw/jTUzEHOf64a1g68V8xWrbef1MKvLZzcD5/meJ3Gpd
+                     V+AEfwI5bBmfpUetZsnLDqz5LX+qu0ORP6kRjS30u/0PNHNzdKtn
+                  </ds:X509Certificate>
+                  <!-- O=Internet2, CN=Test Intermediate CA 1A -->
+                  <ds:X509Certificate>
+                     MIIDjDCCAnSgAwIBAgIBATANBgkqhkiG9w0BAQQFADAtMRIwEAYDVQQKEwlJbnRl
+                     cm5ldDIxFzAVBgNVBAMTDlRlc3QgUm9vdCBDQSAxMB4XDTA4MDIxNjAyNDcxOFoX
+                     DTI4MDIxMTAyNDcxOFowNjESMBAGA1UEChMJSW50ZXJuZXQyMSAwHgYDVQQDExdU
+                     ZXN0IEludGVybWVkaWF0ZSBDQSAxQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
+                     AQoCggEBALy5mrdKqaYlf+bAdeifTJ22FfyHbpLtL6rvg9Zlr3mQC+kmQ1A2H7nO
+                     pXuDGxiwdcFpLEmDHw7B2+p7ghfXvTeu7P7W4JIz4cBq/FhCSiG0hxuy7AQ21inc
+                     o4WJIz9250tWMC7HpELwpFPbfCdPG4jSYcq6fUH1Dp9t8gtL31LVwPgq1hoSEIK0
+                     3nKDQQe9l/wU9ZcS3HbwGOgP521bPUuOyHzYL49r4Te0ACo9Fcpn5JLQa9gzKgnQ
+                     i2O2lVUppsuCpinLJ4GW1q3Ivj1PniAXdLVfBf1CMyfl1WwbWnIBn2mskHKcV7z3
+                     8aaPdsH/7wUPVdPgQwj7ss1ZzKtQCYECAwEAAaOBrTCBqjAPBgNVHRMBAf8EBTAD
+                     AQH/MBEGCWCGSAGG+EIBAQQEAwIABzAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0OBBYE
+                     FL+8i4cdqPjsbNViSBisYTHNZgGxMFUGA1UdIwROMEyAFI9bMgOQsY4JbO1yrcG6
+                     nWgVhy3ioTGkLzAtMRIwEAYDVQQKEwlJbnRlcm5ldDIxFzAVBgNVBAMTDlRlc3Qg
+                     Um9vdCBDQSAxggEAMA0GCSqGSIb3DQEBBAUAA4IBAQBvtwKsWfoObKJECvK99LCH
+                     pyisrcfFV69QlIW1eP77iNz47GXmnAqA6mO3+5SDJujiAa+jXnPTcz1kLJsh6xvP
+                     aozkCGECRwkzgQMew+0LBHcnD5geYdwJosrw9NWhPNJ0MA51y/LrOO2DCTXmYrIH
+                     c/59ew5ed6/8a+EWLF7798ifBZZrlxDHLHR6Sn53ugVh0cBHw6LE/5AGG5Xf1Ysr
+                     Cn4ZpHLwNn+I30+f2mweOYCkB607D4fkZGBpii6l4XRTV0oMg2aLYMZNwXct6Rhr
+                     NCvatfLuvDskkS9gIoRZNj/It+hKqf8aZ5DK+mloLYS0sem4HpE4d2VwpQfG93IK
+                  </ds:X509Certificate>
+                  <!-- O=Internet2, CN=Test Intermediate CA 1A1 -->
+                  <ds:X509Certificate>
+                     MIIDljCCAn6gAwIBAgIBATANBgkqhkiG9w0BAQQFADA2MRIwEAYDVQQKEwlJbnRl
+                     cm5ldDIxIDAeBgNVBAMTF1Rlc3QgSW50ZXJtZWRpYXRlIENBIDFBMB4XDTA4MDIx
+                     NjAyNTAyN1oXDTI4MDIxMTAyNTAyN1owNzESMBAGA1UEChMJSW50ZXJuZXQyMSEw
+                     HwYDVQQDExhUZXN0IEludGVybWVkaWF0ZSBDQSAxQTEwggEiMA0GCSqGSIb3DQEB
+                     AQUAA4IBDwAwggEKAoIBAQC4faOujGl1+5gC8SlsUn805CdmmncOvG8sGA5t2S9V
+                     DetiQAhQknNvjmghiWo/9UGXvQZIqdRlj3L8T6itrJPKBuDTVqCBHic1XYoXLIUD
+                     WqampQH0ehhbDCcghgshHunb3yaaaDeB0ZlgJJ/XqOqKvFcRbOSSWWZe+zDuiShK
+                     2WT0UZWIwC2+v01PEG8a5YUZYCVcQEmEAK/mg5og3B4PQ9Zy+iqMjDp3pcouan8L
+                     Svn59Lm65EEjafFnC/1bgl8xJUbrn4Ue/Y8yq8fI8S3SHwm05ojfhwyj/yAXEoZm
+                     pdDLZcWrl/mdpFo8Nud0w/tTG5SJ7qV09dfhgFx/VtW5AgMBAAGjga0wgaowDwYD
+                     VR0TAQH/BAUwAwEB/zARBglghkgBhvhCAQEEBAMCAAcwDgYDVR0PAQH/BAQDAgGG
+                     MB0GA1UdDgQWBBSm0WQur7Gdx6YjizuqQDo7tkeBpjBVBgNVHSMETjBMgBS/vIuH
+                     Haj47GzVYkgYrGExzWYBsaExpC8wLTESMBAGA1UEChMJSW50ZXJuZXQyMRcwFQYD
+                     VQQDEw5UZXN0IFJvb3QgQ0EgMYIBATANBgkqhkiG9w0BAQQFAAOCAQEADZNut4n5
+                     IzLbXMLbyqO2HdXiCw6JkTY2Mj6kIwngbfLMeRHWuPJmM2JOuA8Wk//OIzDJfpte
+                     d+YOAGCJ8yyAXsB5Qr/68YS8sRbmjYgB9jLiz0wg3p5fnBTX2st7EY4aVR4+7pAZ
+                     12uoPMJvHfd2nsCT01A7fs7qnsOWFnJBRvfDgzRwmx/wkTp8aW3Hvqw28sVnY8q7
+                     9GEEV1DU9sJxrb12pBzWyNLU0v9EiiEWdr0hS4K8D5Q7JmKbFPv1RfocX1ocEPDN
+                     EJMA53C2Y6rq8mHV6IsvzgucLfFCo0tlR2aXTvTJHuu1ddSOKtyVkHwC4cUEmzu3
+                     L9VaYDF1sVm6pw==
+                  </ds:X509Certificate>
+                  <!-- CRL (version 1) issued by Intermedediate CA 1A1 -->
+                  <ds:X509CRL>
+                     MIIBkjB8MA0GCSqGSIb3DQEBBAUAMDcxEjAQBgNVBAoTCUludGVybmV0MjEhMB8G
+                     A1UEAxMYVGVzdCBJbnRlcm1lZGlhdGUgQ0EgMUExFw0wODAyMTYwNDU2MjNaFw0y
+                     NzA0MTcwNDU2MjNaMBQwEgIBAhcNMDgwMjE2MDQyNzQ5WjANBgkqhkiG9w0BAQQF
+                     AAOCAQEAfw8nWPVRK8hpt4ZU4AKiKXDc06Wf2L3IbdXHj/n4GiwQAZX9UJ34firo
+                     GKXKplwrffmVuiEwEwFBpm0M+UuCqcDgSeyruucBzRXPkr1DyPOUJ3fbI7lb9BAP
+                     C/cR7e+I+YTaXa1L15ocVN+reWq3hcWRLzejTOlrPhhTCVRnBwmWx83026PRcnjm
+                     +63YONnMFUpx8Cw3ktLVMGbxHjsDAhMTWB8YSQ3oFV7h6tpzmsr0QQxTUugP5wBX
+                     CmMJqrMIAiGfKBDzm3LfW6ZusjIsQ6HxgMC77/wU2y735POxFrnLMyOgqCTo6YHY
+                     62eLjgwVBEeOk9A4mX+NORA6EZ6BRg==
+                  </ds:X509CRL>
+               </ds:X509Data>
+            </ds:KeyInfo>
+         </shibmd:KeyAuthority>
+         
+      </Extensions>
+      
+      <!-- Protocol BLUE -->
+      <IDPSSODescriptor protocolSupportEnumeration="PROTOCOL_BLUE">
+         <KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+               <ds:KeyName>foo.example.org</ds:KeyName>
+            </ds:KeyInfo>
+         </KeyDescriptor>
+         <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="https://foo.example.org/shibboleth/SSO_FOO"/>
+      </IDPSSODescriptor>
+      
+      <!-- Protocol GREEN -->
+      <IDPSSODescriptor protocolSupportEnumeration="PROTOCOL_GREEN">
+         <!-- Note no 'use' specified. -->
+         <KeyDescriptor>
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+               <ds:KeyName>CN=foo.example.org,O=Internet2</ds:KeyName>
+            </ds:KeyInfo>
+         </KeyDescriptor>
+         <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="https://foo.example.org/shibboleth/SSO_BAR"/>
+      </IDPSSODescriptor>
+      
+      <AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol">
+         <KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+               <ds:KeyName>foo.example.org</ds:KeyName>
+            </ds:KeyInfo>
+         </KeyDescriptor>
+         <AttributeService Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding" Location="https://idp.example.org:8443/shibboleth/AA"/>
+      </AttributeAuthorityDescriptor>
+      
+   </EntityDescriptor>
+   
+
+   <EntityDescriptor entityID="http://bar.example.org/shibboleth">
+      
+      <SPSSODescriptor protocolSupportEnumeration="PROTOCOL_BLUE PROTOCOL_GREEN">
+         <KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+               <ds:KeyName>bar.example.org</ds:KeyName>
+            </ds:KeyInfo>
+         </KeyDescriptor>
+         <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="https://bar.example.org/Shibboleth.sso/POST" index="0"/>
+      </SPSSODescriptor>
+      
+   </EntityDescriptor>
+
+</EntitiesDescriptor>

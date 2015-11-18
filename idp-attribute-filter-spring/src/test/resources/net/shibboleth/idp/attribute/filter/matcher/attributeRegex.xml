@@ -1,0 +1,8 @@
+<afp:AttributeRule attributeID="email"
+    	xmlns:afp="urn:mace:shibboleth:2.0:afp" xmlns:basic="urn:mace:shibboleth:2.0:afp:mf:basic"
+    	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:mace:shibboleth:2.0:afp http://shibboleth.net/schema/idp/shibboleth-afp.xsd
+                            urn:mace:shibboleth:2.0:afp:mf:basic http://shibboleth.net/schema/idp/shibboleth-afp-mf-basic.xsd">
+	<afp:PermitValueRule xsi:type="basic:AttributeValueRegex"
+		regex="^jsmit.*$" />
+</afp:AttributeRule>

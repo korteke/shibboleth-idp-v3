@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Licensed to the University Corporation for Advanced Internet
+     Development, Inc. (UCAID) under one or more contributor license
+     agreements.  See the NOTICE file distributed with this work for
+     additional information regarding copyright ownership. The UCAID
+     licenses this file to You under the Apache License, Version 2.0
+     (the 'License'); you may not use this file except in compliance
+     with the License.  You may obtain a copy of the License at
+     
+     http://www.apache.org/licenses/LICENSE-2.0
+     
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an 'AS IS' BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+     implied.  See the License for the specific language governing
+     permissions and limitations under the License.  -->
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <!-- This file contains the description of the dialog which captures installation
+       values for first time installs -->
+    <Fragment>
+
+        <UI>
+
+      <!-- This Dialog sets up:
+           - INSTALLDIR
+           - INSTALL_JETTY (and as a result turns the jetty feature on or off)
+	   - CONFIGURE_AD (and as a result selects the AD page or not)
+        -->
+
+            <Dialog Id="InstallDirDlgShib" Width="370" Height="270" Title="[ProductName] Setup">
+                <!-- Stuff at the top: picture, some text, a line -->
+                <Control Id="TopBitMap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Text="WixUI_Bmp_Banner" />
+                <Control Id="TopInfo" Type="Text" X="15" Y="6" Width="150" Height="12" Text="{\WixUI_Font_Title}Configure Shibboleth" Transparent="yes" />
+                <Control Id="TopDetailed" Type="Text" X="25" Y="24" Width="320" Height="12" Text="Please choose where to install the Shibboleth IdP and other installation options" Transparent="yes" />
+                <Control Id="TopLine" Type="Line" X="0" Y="44" Width="370" Height="1" />
+
+                <!-- Buttons to control Shibboleth Setup -->
+                <Control Id="DescriptionLine1" Type="Text" X="25" Y="51" Height="12" Width="320" Text="The files for [ProductName] will be installed in the following folder." />
+
+                <Control Id="DescriptionLine2" Type="Text" X="25" Y="68" Height="12" Width="320" Text="To install into a different folder, click the Browse button, and select another folder." />
+
+                <Control Id="DescriptionLine3" Type="Text" X="25" Y="85" Height="12" Width="320" Text="You can choose not to install [ProductName] by clicking Cancel to exit the installer." />
+
+                <!-- Where? -->
+                <Control Id="Dest" Type="Edit" X="25" Y="102" Width="228" Height="17" Property="INSTALLDIR" Text="[INSTALLDIR]" />
+                <Control Id="ChangeFolder" Type="PushButton" X="265" Y="102" Height="17" Width="56" Text="B&amp;rowse...">
+                    <Publish Event="SpawnDialog" Value="BrowseDlg" Order="1">1</Publish>
+                    <Publish Event="[_BrowseProperty]" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
+                </Control>
+
+                <!-- Jetty? -->
+                <Control Id="InstallJetty" Type="CheckBox" X="25" Y="128" Height="20" Width="150" Property="INSTALL_JETTY" CheckBoxValue="TRUE" Text="Install &amp;Jetty" />
+                <!-- AD?=" -->
+
+                <Control Id="ConfigureAD" Type="CheckBox" X="185" Y="128" Height="20" Width="150" Property="CONFIGURE_AD" CheckBoxValue="TRUE" Text="Configure for &amp;Active Directory" />
+
+                <Control Id="DescriptionLine4" Type="Text" X="25" Y="158" Height="36" Width="150" Text="Chose the DNS name for this IdP.  It will be used to generate the EntityID, Certificates and Metadata" />
+                <Control Id="DnsName" Type="Edit" X="185" Y="160" Height="17" Width="150" Property="DNSNAME" Text="[DNSNAME]" />
+
+                <Control Id="DescriptionLine5" Type="Text" X="25" Y="200" Height="20" Width="150" Text="Chose the scope that this IdP will assert. " />
+                <Control Id="IdpScope" Type="Edit" X="185" Y="200" Height="17" Width="150" Property="IDP_SCOPE" Text="[IDP_SCOPE]" />
+
+                <!-- Stuff at the bottom: line, Back,Next, [space] Cancel -->
+                <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="1" />
+                <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="&amp;Back">
+                    <Publish Event="NewDialog" Value="LicenseAgreementDlg">1</Publish>
+                </Control>
+
+                <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="&amp;Next" Default="yes">
+                    <Publish Event="AddLocal" Value="InstallJetty">INSTALL_JETTY</Publish>
+                    <Publish Event="Remove" Value="InstallJetty">Not INSTALL_JETTY</Publish>
+                    <Publish Event="SetTargetPath" Value="[WIXUI_INSTALLDIR]">1</Publish>
+                    <Publish Event="DoAction" Value="WixUIValidatePath">
+            NOT WIXUI_DONTVALIDATEPATH
+          </Publish>
+                    <Publish Event="SpawnDialog" Value="InvalidDirDlg">
+            NOT WIXUI_DONTVALIDATEPATH AND WIXUI_INSTALLDIR_VALID&lt;&gt;"1"
+          </Publish>
+                    <Publish Event="NewDialog" Value="VerifyReadyDlg">
+		(WIXUI_DONTVALIDATEPATH OR WIXUI_INSTALLDIR_VALID="1") AND CONFIGURE_AD &lt;&gt;"TRUE" AND (INSTALL_JETTY OR (INSTALLDIR=DefaultInstallDir))
+	  </Publish>
+                    <Publish Event="NewDialog" Value="WarnDirDlgShib">
+            (WIXUI_DONTVALIDATEPATH OR WIXUI_INSTALLDIR_VALID="1") AND CONFIGURE_AD &lt;&gt;"TRUE" AND NOT (INSTALL_JETTY OR (INSTALLDIR=DefaultInstallDir))
+	  </Publish>
+                    <Publish Event="NewDialog" Value="ConfigADDlg">
+            (WIXUI_DONTVALIDATEPATH OR WIXUI_INSTALLDIR_VALID="1") AND CONFIGURE_AD="TRUE"
+	  </Publish>
+                </Control>
+
+                <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Text="&amp;Cancel" Cancel="yes">
+                    <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+                </Control>
+            </Dialog>
+
+        </UI>
+    </Fragment>
+</Wix>

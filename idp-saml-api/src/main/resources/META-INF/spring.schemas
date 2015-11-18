@@ -1,0 +1,17 @@
+http\://www.oasis-open.org/committees/download.php/1376/oasis-sstc-saml-schema-assertion-1.0.xsd = schema/oasis-sstc-saml-schema-assertion-1.0.xsd
+http\://www.oasis-open.org/committees/download.php/1377/oasis-sstc-saml-schema-protocol-1.0.xsd = schema/oasis-sstc-saml-schema-protocol-1.0.xsd
+http\://www.oasis-open.org/committees/download.php/3408/oasis-sstc-saml-schema-assertion-1.1.xsd = schema/oasis-sstc-saml-schema-assertion-1.1.xsd
+http\://www.oasis-open.org/committees/download.php/3407/oasis-sstc-saml-schema-protocol-1.1.xsd = schema/oasis-sstc-saml-schema-protocol-1.1.xsd
+
+classpath\:/schema/oasis-sstc-saml-schema-assertion-1.0.xsd = schema/oasis-sstc-saml-schema-assertion-1.0.xsd
+classpath\:/schema/oasis-sstc-saml-schema-protocol-1.0.xsd = schema/oasis-sstc-saml-schema-protocol-1.0.xsd
+classpath\:/schema/oasis-sstc-saml-schema-assertion-1.1.xsd = schema/oasis-sstc-saml-schema-assertion-1.1.xsd
+classpath\:/schema/oasis-sstc-saml-schema-protocol-1.1.xsd = schema/oasis-sstc-saml-schema-protocol-1.1.xsd
+
+http\://docs.oasis-open.org/security/saml/v2.0/saml-schema-assertion-2.0.xsd = schema/saml-schema-assertion-2.0.xsd
+http\://docs.oasis-open.org/security/saml/v2.0/saml-schema-protocol-2.0.xsd = schema/saml-schema-protocol-2.0.xsd
+http\://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd = schema/saml-schema-metadata-2.0.xsd
+
+classpath\:/schema/saml-schema-assertion-2.0.xsd = schema/saml-schema-assertion-2.0.xsd
+classpath\:/schema/saml-schema-protocol-2.0.xsd = schema/saml-schema-protocol-2.0.xsd
+classpath\:/schema/saml-schema-metadata-2.0.xsd = schema/saml-schema-metadata-2.0.xsd

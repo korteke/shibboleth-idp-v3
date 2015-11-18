@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resolver:AttributeResolver xmlns:resolver="urn:mace:shibboleth:2.0:resolver" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:pc="urn:mace:shibboleth:2.0:resolver:pc" xmlns:ad="urn:mace:shibboleth:2.0:resolver:ad" xmlns:dc="urn:mace:shibboleth:2.0:resolver:dc"
+    xmlns:enc="urn:mace:shibboleth:2.0:attribute:encoder" xmlns:sec="urn:mace:shibboleth:2.0:security"
+    xsi:schemaLocation="urn:mace:shibboleth:2.0:resolver http://shibboleth.net/schema/idp/shibboleth-attribute-resolver.xsd
+                                               urn:mace:shibboleth:2.0:resolver:pc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-pc.xsd
+                                               urn:mace:shibboleth:2.0:resolver:ad http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-ad.xsd
+                                               urn:mace:shibboleth:2.0:resolver:dc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-dc.xsd
+                                               urn:mace:shibboleth:2.0:attribute:encoder http://shibboleth.net/schema/idp/shibboleth-attribute-encoder.xsd
+                                               urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd">
+
+    <!-- ========================================== -->
+    <!-- Attribute Definitions -->
+    <!-- ========================================== -->
+
+    <resolver:AttributeDefinition xsi:type="Mapped" xmlns="urn:mace:shibboleth:2.0:resolver:ad"
+        id="mapped1" sourceAttributeID="attr1" dependencyOnly="true">
+        <resolver:Dependency ref="static" />
+        <DefaultValue>undefined</DefaultValue>
+        <ValueMap>
+            <ReturnValue>$1</ReturnValue>
+            <SourceValue>(.+)</SourceValue>
+        </ValueMap>
+    </resolver:AttributeDefinition>
+
+    <resolver:AttributeDefinition xsi:type="Mapped" xmlns="urn:mace:shibboleth:2.0:resolver:ad"
+        id="mapped2" sourceAttributeID="attr2" dependencyOnly="true">
+        <resolver:Dependency ref="static" />
+        <DefaultValue>undefined</DefaultValue>
+        <ValueMap>
+            <ReturnValue>$1</ReturnValue>
+            <SourceValue>(.+)</SourceValue>
+        </ValueMap>
+    </resolver:AttributeDefinition>
+
+    <resolver:AttributeDefinition xsi:type="Template" xmlns="urn:mace:shibboleth:2.0:resolver:ad"
+        id="testing">
+        <resolver:Dependency ref="mapped1" />
+        <resolver:Dependency ref="mapped2" />
+        <Template>
+                  <![CDATA[${mapped1}:${mapped2}]]>
+                </Template>
+        <SourceAttribute>mapped1</SourceAttribute>
+        <SourceAttribute>mapped2</SourceAttribute>
+    </resolver:AttributeDefinition>
+
+    <resolver:DataConnector id="static" xsi:type="dc:Static">
+        <dc:Attribute id="attr1">
+            <dc:Value>a1v1</dc:Value>
+            <dc:Value>a1v2</dc:Value>
+        </dc:Attribute>
+        <dc:Attribute id="attr2">
+            <dc:Value>A2V1</dc:Value>
+            <dc:Value>A2V2</dc:Value>
+        </dc:Attribute>
+    </resolver:DataConnector>
+
+</resolver:AttributeResolver>

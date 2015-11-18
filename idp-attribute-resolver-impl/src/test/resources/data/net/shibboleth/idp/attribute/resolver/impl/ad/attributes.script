@@ -1,0 +1,6 @@
+values = at1.getNativeAttribute().getValues().iterator();
+    val = values.next();
+    Scripted.addValue(val.getValue());
+    val = values.next();
+    Scripted.addValue(val);
+    

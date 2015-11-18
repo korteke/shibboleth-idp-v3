@@ -1,0 +1,8 @@
+<mdattr:EntityAttributes xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <saml:Attribute Name="eduPersonEntitlement" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+    <saml:AttributeValue  xsi:type="xs:string">LittleGreenMen</saml:AttributeValue>
+  </saml:Attribute>
+  <saml:Attribute Name="eduPersonAffiliation" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+    <saml:AttributeValue  xsi:type="xs:string">staff</saml:AttributeValue>
+  </saml:Attribute>
+  </mdattr:EntityAttributes>

@@ -1,0 +1,40 @@
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+    <on-start>
+        <evaluate expression="InitializeProfileRequestContext" />
+    </on-start>
+    
+    <action-state id="PopulateResolution">
+        <evaluate expression="PopulateResolution" />
+        <evaluate expression="ResolveAttributes" />
+        <evaluate expression="PopulateSAML1C14NTransform" />
+        <evaluate expression="'proceed'" />
+
+        <transition on="proceed" to="C14N" />
+    </action-state>    
+    
+    <subflow-state id="C14N" subflow="c14n/saml">
+        <input name="calledAsSubflow" value="true" />
+        <transition on="proceed" to="TestAfterC14N" />
+        <transition to="error"/>
+    </subflow-state>
+
+    <action-state id="TestAfterC14N">
+        <evaluate expression="TestAfterC14N" />
+        <evaluate expression="'proceed'" />
+        
+        <transition on="proceed" to="end" />
+    </action-state>    
+    
+    <end-state id="end">
+        <!-- TODO: Probably remove later. For tests, map the profile request context as an output attribute -->
+        <output name="ProfileRequestContext" value="opensamlProfileRequestContext" />
+    </end-state>
+    
+    <end-state id="error" />
+    
+    <bean-import resource="beans.xml" />
+    
+</flow>
+    

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file is an EXAMPLE configuration file. While the configuration 
+	presented in this example file is functional, it isn't very interesting. 
+	However, there are lots of example attributes, encoders, and a couple example 
+	data connectors. Not all attribute definitions, data connectors, or principal 
+	connectors are demonstrated. Deployers should refer to the Shibboleth 2 documentation 
+	for a complete list of components and their options. -->
+<resolver:AttributeResolver xmlns:resolver="urn:mace:shibboleth:2.0:resolver" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                            xmlns:pc="urn:mace:shibboleth:2.0:resolver:pc" xmlns:ad="urn:mace:shibboleth:2.0:resolver:ad" 
+                            xmlns:dc="urn:mace:shibboleth:2.0:resolver:dc" xmlns:enc="urn:mace:shibboleth:2.0:attribute:encoder" 
+                            xmlns:sec="urn:mace:shibboleth:2.0:security" 
+                            xsi:schemaLocation="urn:mace:shibboleth:2.0:resolver http://shibboleth.net/schema/idp/shibboleth-attribute-resolver.xsd
+                                               urn:mace:shibboleth:2.0:resolver:pc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-pc.xsd
+                                               urn:mace:shibboleth:2.0:resolver:ad http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-ad.xsd
+                                               urn:mace:shibboleth:2.0:resolver:dc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-dc.xsd
+                                               urn:mace:shibboleth:2.0:attribute:encoder http://shibboleth.net/schema/idp/shibboleth-attribute-encoder.xsd
+                                               urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd">
+
+    <!-- ========================================== -->
+    <!--      Attribute Definitions                 -->
+    <!-- ========================================== -->
+
+    <resolver:DataConnector id="staticAttributes" xsi:type="dc:Static">
+        <dc:Attribute id="assurance">
+            <dc:Value>tin</dc:Value>
+            <dc:Value>pewter</dc:Value>
+        </dc:Attribute>
+        <dc:Attribute id="oAssurance">
+            <dc:Value>bakelite</dc:Value>
+            <dc:Value>dross</dc:Value>
+        </dc:Attribute>
+        <dc:Attribute id="eduPersonEntitlement">
+            <dc:Value>urn:example.org:entitlement:entitlement1</dc:Value>
+            <dc:Value>urn:mace:dir:entitlement:common-lib-terms</dc:Value>
+        </dc:Attribute>
+    </resolver:DataConnector>
+
+    <resolver:AttributeDefinition xsi:type="ad:Simple" id="eduPersonAssurance" sourceAttributeID="assurance">
+        <resolver:Dependency ref="staticAttributes" />
+        <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:eduPersonAssurance" />
+        <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.11" friendlyName="feduPersonAssurance" />
+        <resolver:AttributeEncoder xsi:type="enc:SAML2String" nameFormat="http://example.org/Format" name="http://example.org/name/for/Attribute" friendlyName="fotherSAMLName" />
+    </resolver:AttributeDefinition>
+
+    <resolver:AttributeDefinition xsi:type="ad:Simple" id="otherPersonAssurance" sourceAttributeID="oAssurance">
+        <resolver:Dependency ref="staticAttributes" />
+        <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:eduPersonAssurance" />
+        <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.11" friendlyName="feduPersonAssurance" />
+    </resolver:AttributeDefinition>
+        
+    <resolver:AttributeDefinition xsi:type="ad:Simple" id="otherFormatPersonAssurance" sourceAttributeID="ofAssurance">
+        <resolver:Dependency ref="staticAttributes" />
+        <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:eduPersonAssurance" />
+        <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.11" nameFormat="http://example.org/Format" friendlyName="fOeduPersonAssurance" />
+    </resolver:AttributeDefinition>
+
+    <resolver:AttributeDefinition xsi:type="ad:Scoped" id="eduPersonScopedAffiliation" scope="example.org" 
+                                  sourceAttributeID="assurance">
+        <resolver:Dependency ref="staticAttributes" />
+        <resolver:AttributeEncoder xsi:type="enc:SAML1ScopedString" name="urn:mace:dir:attribute-def:eduPersonScopedAffiliation" />
+        <resolver:AttributeEncoder xsi:type="enc:SAML2ScopedString" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.9" friendlyName="feduPersonScopedAffiliation" 
+               scopeDelimiter='#'/>
+    </resolver:AttributeDefinition>
+    
+    <resolver:AttributeDefinition xsi:type="ad:SAML2NameID" id="eduPersonTID" 
+                                  nameIdFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent" sourceAttributeID="eduPersonEntitlement">
+        <resolver:Dependency ref="staticAttributes" />
+        <resolver:AttributeEncoder xsi:type="enc:SAML1XMLObject" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.10" />
+        <resolver:AttributeEncoder xsi:type="enc:SAML2XMLObject" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.10" friendlyName="feduPersonTargetedID" />
+    </resolver:AttributeDefinition>
+</resolver:AttributeResolver>

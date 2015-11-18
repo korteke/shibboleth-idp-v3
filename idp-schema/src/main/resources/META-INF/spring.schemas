@@ -1,0 +1,59 @@
+# Current Filter
+http\://shibboleth.net/schema/idp/shibboleth-afp.xsd = schema/shibboleth-afp.xsd
+http\://shibboleth.net/schema/idp/shibboleth-afp-mf-basic.xsd = schema/shibboleth-afp-mf-basic.xsd
+http\://shibboleth.net/schema/idp/shibboleth-afp-mf-saml.xsd = schema/shibboleth-afp-mf-saml.xsd
+
+#  Current Resolver
+http\://shibboleth.net/schema/idp/shibboleth-attribute-resolver.xsd = schema/shibboleth-attribute-resolver.xsd
+http\://shibboleth.net/schema/idp/shibboleth-attribute-resolver-ad.xsd = schema/shibboleth-attribute-resolver-ad.xsd
+http\://shibboleth.net/schema/idp/shibboleth-attribute-resolver-dc.xsd = schema/shibboleth-attribute-resolver-dc.xsd
+http\://shibboleth.net/schema/idp/shibboleth-attribute-resolver-pc.xsd = schema/shibboleth-attribute-resolver-pc.xsd
+http\://shibboleth.net/schema/idp/shibboleth-attribute-encoder.xsd = schema/shibboleth-attribute-encoder.xsd
+
+# Current Relying-Party
+http\://shibboleth.net/schema/idp/shibboleth-security.xsd = schema/shibboleth-security.xsd
+http\://shibboleth.net/schema/idp/shibboleth-metadata.xsd = schema/shibboleth-metadata.xsd
+http\://shibboleth.net/schema/idp/shibboleth-relying-party.xsd = schema/shibboleth-relying-party.xsd
+http\://shibboleth.net/schema/idp/shibboleth-relying-party-saml.xsd = schema/shibboleth-relying-party-saml.xsd
+http\://shibboleth.net/schema/idp/shibboleth-security-policy-saml.xsd = schema/shibboleth-security-policy-saml.xsd
+http\://shibboleth.net/schema/idp/shibboleth-resource.xsd = schema/shibboleth-resource.xsd
+
+# Core schemas
+http\://www.w3.org/2001/xml.xsd = schema/xml.xsd
+http\://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd = schema/xmldsig-core-schema.xsd
+http\://www.w3.org/TR/2013/REC-xmldsig-core1-20130411/xmldsig11-schema.xsd = schema/xmldsig11-schema.xsd
+http\://www.w3.org/TR/xmlenc-core/xenc-schema.xsd = schema/xenc-schema.xsd
+http\://www.w3.org/TR/2013/REC-xmlenc-core1-20130411/xenc-schema-11.xsd = schema/xenc11-schema.xsd
+http\://docs.oasis-open.org/security/saml/v2.0/saml-schema-assertion-2.0.xsd = schema/saml-schema-assertion-2.0.xsd
+http\://docs.oasis-open.org/security/saml/v2.0/saml-schema-protocol-2.0.xsd = schema/saml-schema-protocol-2.0.xsd
+http\://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd = schema/saml-schema-metadata-2.0.xsd
+
+# Legacy Filter
+classpath\:/schema/shibboleth-2.0-afp.xsd = schema/shibboleth-afp.xsd
+classpath\:/schema/shibboleth-2.0-afp-mf-basic.xsd = schema/shibboleth-afp-mf-basic.xsd
+classpath\:/schema/shibboleth-2.0-afp-mf-saml.xsd = schema/shibboleth-afp-mf-saml.xsd
+
+# Legacy Resolver
+classpath\:/schema/shibboleth-2.0-attribute-resolver.xsd = schema/shibboleth-attribute-resolver.xsd
+classpath\:/schema/shibboleth-2.0-attribute-resolver-ad.xsd = schema/shibboleth-attribute-resolver-ad.xsd
+classpath\:/schema/shibboleth-2.0-attribute-resolver-dc.xsd = schema/shibboleth-attribute-resolver-dc.xsd
+classpath\:/schema/shibboleth-2.0-attribute-resolver-pc.xsd = schema/shibboleth-attribute-resolver-pc.xsd
+classpath\:/schema/shibboleth-2.0-attribute-encoder.xsd = schema/shibboleth-attribute-encoder.xsd
+
+# Legacy Relying-Party
+classpath\:/schema/shibboleth-2.0-security.xsd = schema/shibboleth-security.xsd
+classpath\:/schema/shibboleth-2.0-metadata.xsd = schema/shibboleth-metadata.xsd
+classpath\:/schema/shibboleth-2.0-relying-party.xsd = schema/shibboleth-relying-party.xsd
+classpath\:/schema/shibboleth-2.0-relying-party-saml.xsd = schema/shibboleth-relying-party-saml.xsd
+classpath\:/schema/shibboleth-2.0-security-policy-saml.xsd = schema/shibboleth-security-policy-saml.xsd
+classpath\:/schema/shibboleth-2.0-resource.xsd = schema/shibboleth-resource.xsd
+
+# Legacy core schemas 
+classpath\:/schema/xml.xsd = schema/xml.xsd
+classpath\:/schema/xmldsig-core-schema.xsd = schema/xmldsig-core-schema.xsd
+classpath\:/schema/xmldsig11-schema.xsd = schema/xmldsig11-schema.xsd
+classpath\:/schema/xenc-schema.xsd = schema/xenc-schema.xsd
+classpath\:/schema/xenc11-schema.xsd = schema/xenc11-schema.xsd
+classpath\:/schema/saml-schema-assertion-2.0.xsd = schema/saml-schema-assertion-2.0.xsd
+classpath\:/schema/saml-schema-protocol-2.0.xsd = schema/saml-schema-protocol-2.0.xsd
+classpath\:/schema/saml-schema-metadata-2.0.xsd = schema/saml-schema-metadata-2.0.xsd

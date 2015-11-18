@@ -1,0 +1,18 @@
+
+<ad:AttributeDefinition xmlns="urn:mace:shibboleth:2.0:resolver"
+	id="container" xmlns:ad="urn:mace:shibboleth:2.0:resolver:ad"
+	xmlns:enc="urn:mace:shibboleth:2.0:attribute:encoder" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:mace:shibboleth:2.0:resolver http://shibboleth.net/schema/idp/shibboleth-attribute-resolver.xsd
+                        urn:mace:shibboleth:2.0:resolver:pc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-pc.xsd
+                        urn:mace:shibboleth:2.0:resolver:ad http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-ad.xsd
+                        urn:mace:shibboleth:2.0:resolver:dc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-dc.xsd
+                        urn:mace:shibboleth:2.0:attribute:encoder http://shibboleth.net/schema/idp/shibboleth-attribute-encoder.xsd
+                        urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd"
+	xsi:type="ad:Mapped">
+	<resolver:Dependency xmlns:resolver="urn:mace:shibboleth:2.0:resolver"
+		ref="TheOrphan" />
+	<ad:ValueMap>
+		<ad:ReturnValue>return</ad:ReturnValue>
+		<ad:SourceValue ignoreCase="true" partialMatch="true">sourceValueAttributes1</ad:SourceValue>
+	</ad:ValueMap>
+</ad:AttributeDefinition>
